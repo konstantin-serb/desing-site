@@ -1,0 +1,1244 @@
+html {
+    --lightGray: #fafafa;
+    --grayBlock: #E3E3E3;
+    --gray: #C5C5C5;
+    --gold: #C28D2A;
+    --bordo: #B90000;
+    --darkGray: #777;
+    --darkGray2: #535151;
+    --darkGray3: #7B7B7B;
+    --blue: #0060B9;
+    --warning: orangered;
+    --lightGreen: #34E830;
+    --yellow: #FFE600;
+    --lightYellow: #FFFCE5;
+    --green: #038F00;
+    --orange: orange;
+    --lightBlue: #182EF2;
+    --black: black;
+    --ligthGold: #E8D3B1;
+    --magenta: #F90DA9;
+    --userFon:#DFDFDF;
+    --userFon2:#D1D1D1;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+.status-attention {
+    color: var(--orange);
+}
+
+.status-normal {
+    color: var(--gold);
+}
+
+.status-success {
+    color: var(--green);
+}
+
+.status-warning {
+    color: var(--warning);
+}
+
+.status-info {
+    color: var(--lightBlue);
+}
+
+.status-notApproved {
+    color: var(--darkGray);
+}
+
+
+:root {
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'PT Sans Narrow';
+    background-color: var(--lightGray);
+    font-size: 1rem;
+    line-height: inherit;
+}
+
+body.adminPage {
+    background-color: #B9B9B9;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: Oswald;
+    text-align: center;
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 3.13em;
+}
+
+h2 {
+    font-size: 2.19em;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.9em;
+    font-weight: 400;
+}
+
+h4 {
+    font-size: 1.7em;
+}
+
+h5 {
+    font-size: 1.3em;
+}
+
+.a-link {
+    text-decoration: none;
+    color: inherit;
+    font-family: Oswald;
+    font-weight: normal;
+}
+
+.b-link {
+    text-decoration: none;
+    color: inherit;
+    font-family: "PT Sans Narrow";
+    font-weight: normal;
+}
+
+img {
+    width: 100%;
+    margin-bottom: -5px;
+}
+
+.block-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.button {
+    margin: 1em auto;
+}
+
+.button a {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--bordo);
+    width: 15em;
+    text-align: center;
+    padding: 0.2em 0;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.adminPage .button a {
+    border: 1px solid var(--black);
+    color: var(--black);
+    background: var(--gray);
+    transition: all 0.4s;
+}
+
+.adminPage .button a:hover{
+    background-color: var(--lightGray);
+    transition: all 0.4s;
+}
+
+.homePage h2 {
+    color: var(--bordo);
+    text-transform: uppercase;
+    margin-bottom: 0.6em;
+}
+
+/*---------form------------*/
+.formStyle {
+    width: 100%;
+    font-family: 'Oswald';
+    padding-bottom: 2em;
+}
+
+.formStyle .form-group {
+    width: 100%;
+}
+
+.formStyle input {
+    height: 2.5em;
+    display: block;
+    width: 100%;
+    padding: 0.7em;
+    text-align: center;
+    border: 1px solid var(--gray);
+    outline: none;
+    font-size: 1.05rem;
+    color: #555;
+    background-color: #E4E4E4;
+}
+
+input:focus {
+    border: 1px solid #888;
+    border-radius: 0;
+}
+
+.form-group + .form-group {
+    margin-top: 1.5em;
+}
+
+.formStyle label {
+    display: block;
+    text-align: center;
+    margin-bottom: 0.5em;
+    color: var(--gray);
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.formStyle button {
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+    padding: 0.4em 0;
+    background-color: var(--gold);
+    color: #fff;
+    border: none;
+    font-family: Oswald;
+    font-size: 1rem;
+    width: 10em;
+    cursor: pointer;
+}
+
+.formStyle button:focus {
+    outline: none;
+}
+
+.formStyle p.help-block {
+    text-align: center;
+    margin-top: 0.2em;
+    color: var(--bordo);
+}
+
+
+
+/*------------------------endShedule-----------------------------*/
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.toggle {
+    background-color: #D8D8D8;
+    height: 3em;
+}
+
+.adminPage .toggle {
+    background-color: var(--darkGray)
+}
+
+.adminPage svg > rect {
+    fill: black;
+}
+
+.toggle svg {
+    float: right;
+    margin-top: 0.85em;
+    margin-right: 0.7em;
+}
+
+menu {
+    display: none;
+    background-color: whitesmoke;
+    height: 100vh;
+    margin-top: 0;
+    padding: 0;
+    z-index: 10;
+}
+
+.adminPage menu {
+    background-color: #b9b9b9;
+}
+
+menu.is-open {
+    display: block;
+    z-index: 100;
+}
+
+ul {
+    margin: 0;
+    padding-top: 20%;
+    padding-left: 0;
+}
+
+ul > li {
+    list-style-type: none;
+    display: block;
+    text-align: center;
+    /*z-index: 10;*/
+}
+
+ul > li > a.a-link,
+ul > li > .wrapLi > a.a-link {
+    color: var(--gray);
+    font-size: 1.2rem;
+}
+
+.adminPage ul > li > a.a-link,
+.adminPage ul > li > .wrapLi > a.a-link {
+    color: var(--black);
+    font-size: 1.2rem;
+}
+
+li {
+    margin-bottom: 1em;
+}
+
+.navi .active a,
+.adminPage .navi .active a {
+    border-bottom: 2px solid var(--gold);
+    color: var(--gold);
+    padding-bottom: 0.2em;
+}
+
+#main-menu hr {
+    display: none;
+    margin: 0;
+    border-top: none;
+    border-color: var(--gray);
+}
+
+.adminPage #main-menu hr {
+    border-color: var(--black);
+}
+
+.adminPage hr {
+    border-top: none;
+    border-color: var(--black);
+}
+
+
+/*------------------------firstSection---------------------------------*/
+
+.firstSection {
+    background-image: url("../img/fon.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+}
+
+.myContainer {
+    padding: 0 5px;
+}
+
+.GrandTitle h1,
+.GrandTitle h2 {
+    text-transform: uppercase;
+}
+
+.GrandTitle h1 {
+    font-weight: bold;
+    color: var(--gold);
+}
+
+.GrandTitle {
+    padding-top: 5em;
+}
+
+.GrandTitle h2 {
+    color: var(--bordo);
+}
+
+.GrandTitle .a-link {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+
+/*--------------------aboutProject--------------------*/
+.aboutProject {
+    text-align: center;
+}
+
+
+/*--------------------ourPortfolio-------------------*/
+.ourPortfolio {
+    background-color: #EEEEEE;
+    padding: 1em 0 1.5em;
+}
+
+.slider {
+    border-radius: 0.3em;
+    overflow: hidden;
+}
+
+/*----------------------workPrincip-------------------------*/
+.workPrincip {
+
+}
+
+.workPrincip .wrap {
+    background-color: #f2f5f5;
+    padding: 2em 0;
+}
+
+.workPrincip p {
+    line-height: 130%;
+    text-align: center;
+    color: #7B7B7B;
+}
+
+/*-------------------advantages--------------------------*/
+.advantages .subtitle {
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-size: 1.13rem;
+}
+
+
+.advantages .itemWrap {
+    background-color: #F3F3F3;
+    padding: 0.5em;
+    height: 23em;
+}
+
+.advantages .itemWrap + .itemWrap {
+    margin-top: 0.5em;
+}
+
+.advantages svg {
+    width: 100%;
+}
+
+.advantages .item {
+    padding: 1.5em 1.5em;
+    border: 1px solid black;
+    height: 100%;
+}
+
+.advantages .svg {
+    width: 90px;
+    margin: 0 auto;
+}
+
+.advantages h5 {
+    color: var(--gold);
+    margin: 0 0 1em;
+}
+
+.advantages .item p {
+    text-align: center;
+}
+
+
+/*----------------------------------Как начать работу над проектом -----------------------------*/
+.howToStart {
+    padding: 0.5em 0;
+    margin-top: 1.5em;
+    background-image: url("../img/fon2.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.howToStart p {
+    text-align: center;
+    padding: 0 1em;
+}
+
+.howToStart .wrap {
+    border: 1px solid black;
+    padding: 0 0.5em;
+}
+
+
+/*-------------------------------Привыз к действию------------------------------*/
+.fonImage {
+    background-image: url("../img/01.jpg");
+    background-position: center;
+    background-size: cover;
+    height: 110vw;
+}
+
+.callToAction .bottom {
+    color: var(--gold);
+}
+
+
+/*------------------------------footer-----------------------------------*/
+footer {
+    margin-top: 1em;
+}
+
+footer.allUsers,
+footer.userFooter,
+footer.adminFooter{
+    background-image: url("../img/fonFooter.jpg");
+    background-size: cover;
+    background-position: center;
+    background-color: #ababab;
+    background-blend-mode: multiply;
+    padding: 1em 0;
+}
+
+footer.adminFooter{
+    background-color: #6f5650;
+    background-blend-mode: multiply;
+}
+
+footer p {
+    color: white;
+    font-family: Oswald;
+    font-size: 1.26rem;
+    margin: 0.2em 0;
+}
+
+footer .chapter {
+    text-align: center;
+}
+
+footer .chapter + .chapter {
+    margin-top: 2.5em;
+}
+
+
+/*----------------------------------------------------------------------------------------------------*/
+.mainContent {
+    min-height: 80vh;
+    padding-top:2.5em;
+}
+
+.guestPage h2 {
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.subtitle1 {
+    font-family: Oswald;
+    font-weight: 300;
+    font-size: 1em;
+    color: var(--gray);
+    text-align:center;
+    margin-top: -1em;
+    margin-bottom: 2em;
+}
+
+.mainContent .top h2 {
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-size: 3rem;
+    margin-bottom: 0;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.adminPage .mainContent .top h2 {
+    text-transform: uppercase;
+    color: var(--bordo);
+    font-size: 2.5rem;
+}
+
+.mainContent h5 {
+    color: var(--darkGray);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.adminPage .mainContent h5 {
+    color: var(--black);
+}
+
+.mainContent h2 {
+    text-transform: uppercase;
+    color: var(--gold);
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.5em;
+}
+
+.adminPage .mainContent h2 {
+    text-shadow: 3px 3px 5px rgba(255, 255, 255, 0.5);
+}
+
+.graphicBlock {
+    margin: 1.5em 0;
+}
+
+.graphic {
+    height: 1em;
+    width: 100%;
+    background-color: var(--gray);
+    position: relative;
+    z-index: 1;
+}
+
+.done {
+    position: absolute;
+    height: 1em;
+    left:0;
+    top: 0;
+    z-index: 2;
+    background-color: var(--gold);
+}
+
+.graphic .startDate,
+.graphic .endDate {
+    font-size: 0.8rem;
+    color: var(--gray);
+    position: absolute;
+    top: 1.4em;
+}
+
+.graphic .endDate{
+    right: 0;
+}
+
+.textBlock {
+    position: relative;
+}
+
+.now {
+    position: absolute;
+    font-size: 0.8rem;
+    color: var(--gray);
+    top: -1.5em;
+    right: 0;
+}
+
+.cardProjects p {
+    text-align: center;
+}
+
+.cardProjects h5 {
+    color: var(--gold);
+}
+
+
+.cardProjects .itemWrap {
+    background-color: #fff;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 0.4em;
+}
+
+.cardProjects .item {
+    border: 1px solid black;
+    padding: 0.7em;
+}
+
+.cardProjects .itemWrap{
+    margin-bottom: 0.5em;
+}
+
+.pausaProjects h2,
+.pausaProjects h5,
+.pausaProjects .a-link{
+    color: var(--darkGray);
+}
+
+.pausaProjects .a-link{
+    border-color: var(--darkGray);
+}
+
+.pausaProjects .done {
+    background-color: var(--darkGray);
+}
+
+.pausaProjects .item {
+    border: 3px solid var(--gray);
+}
+
+
+
+.endProjects h2,
+.endProjects h5,
+.endProjects .a-link{
+    color: var(--blue);
+}
+
+.endProjects .a-link{
+    border-color: var(--blue);
+}
+
+.endProjects .done {
+    display: none;
+}
+
+.endProjects .item {
+    border: 3px solid var(--blue);
+}
+
+.cardMessage .itemWrap {
+    background-color: #fff;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    padding: 0.4em;
+}
+
+.cardMessage  .item {
+    border: 1px solid black;
+    padding: 0.7em;
+}
+
+.cardDraft h4 {
+    color: var(--gold);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.lastMessage h4 {
+    color: var(--blue);
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}
+
+.lastMessage h2 {
+    color: var(--blue);
+}
+
+.lastMessage .button a{
+    color: var(--blue);
+}
+
+.cardMessage .subtitle {
+    display: block;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.cardMessage .text {
+    color: var(--darkGray);
+}
+
+.cardMessage .itemWrap {
+    margin-bottom: 0.5em;
+}
+
+.wrapLi {
+    position: relative;
+    width: 5rem;
+    margin: 0 auto;
+}
+
+.countMessage {
+    position: absolute;
+    top: -0.8em;
+    right: -1.4em;
+    font-size: 1rem;
+    background-color: var(--bordo);
+    width: 1.5em;
+    height: 1.5em;
+    border-radius: 2em;
+}
+
+.cont-link {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    vertical-align: -0.06em;
+}
+
+.itemWrap.warning .item {
+    border: 3px solid var(--warning);
+}
+
+.frame {
+    border: 1px solid black;
+    margin-top: 1.5em;
+}
+
+.frame h2.inFrame{
+    margin: 0.1em 0;
+}
+
+.topInfo .frame {
+    padding-top: 0.7em;
+    margin-bottom: 1em;
+    padding-bottom: 1.5em;
+}
+
+.stringWrap + .stringWrap {
+    padding-top: 0.4em;
+}
+
+.stringWrap {
+    display: flex;
+    justify-content: center;
+    /*align-items:flex-end;*/
+}
+
+.stringWrap > div {
+    width: calc(50% - 0.5em);
+}
+
+.stringWrap > div + div{
+    margin-left: 0.4em;
+}
+
+.stringWrap > div:first-child {
+    text-align: right;
+}
+
+.stringBold, .stringRegular {
+    font-family: Oswald;
+}
+
+.stringRegular {
+    align-self: flex-end;
+}
+
+.stringBold {
+    font-weight: bold;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.stringBlock + .stringBlock{
+    margin-top: 2em;
+}
+
+.buttonBlock a {
+    text-transform: uppercase;
+    border: 1px solid #7B7B7B;
+    padding: 0.2em 1em;
+    border-radius: 3em;
+    margin: 0 0.1em;
+}
+
+.rightButton a {
+    background-color: #FFE600;
+    color: #7B7B7B;
+}
+
+.leftButton a {
+    background-color: var(--green);
+    color: white;
+}
+
+.buttonBlock .stringWrap{
+    display: block;
+}
+
+.buttonBlock .stringWrap > div {
+    width: inherit;
+    text-align: center;
+}
+
+.buttonBlock .stringWrap div + div {
+    margin-top: 1em;
+}
+
+.projectPhoto {
+    width: 100%;
+    margin: 1em auto;
+    border: 1px solid black;
+    padding: 0.5em;
+}
+
+.stagesItem {
+    background-color: var(--gold);
+    padding: 1em;
+    margin-bottom:0.6em;
+    /*height: 20em;*/
+    position: relative;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.stagesItem svg {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    width: 60px;
+    height: 60px;
+
+}
+
+.stages .wrap {
+    padding-right: -5px;
+}
+
+.stagesItem.stageDone svg > path {
+    fill: var(--lightGreen);
+}
+
+.stagesItem.stageInWork svg > path {
+    fill: var(--yellow);
+}
+
+.stagesItem.stageWait svg > path {
+    fill: white;
+}
+
+.stagesItem h3 {
+    margin: 0.5em 0;
+    color: white;
+}
+
+.stagesItem h4 {
+    margin: 0.5em 0;
+    font-size: 1.3rem;
+
+}
+
+.stagesItem .top {
+    min-height: 8em;
+}
+
+.stagesItem .stringRegular {
+    font-family: "PT Sans Narrow";
+    color: var(--darkGray2);
+}
+
+.stagesItem.stageDone h4 {
+    color: var(--darkGray2);
+}
+
+.stagesItem.stageInWork h4 {
+    color: var(--yellow);
+}
+
+.stagesItem.stageWait h4 {
+    color: white;
+}
+
+.stagesItem .doneDay {
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.stagesItem.stageDone .doneDay {
+    color: var(--lightGreen);
+}
+
+.stagesItem.stageInWork .doneDay {
+    color: var(--yellow);
+}
+
+.stagesItem.stageWait .doneDay {
+    color: white;
+}
+
+.stages .buttonBlock {
+    margin: 2em 0;
+}
+
+.doc_content {
+    padding: 0.5em 1em;
+    background-color: #C4C4C4;
+}
+
+h3.inFrame {
+    text-transform: uppercase;
+    color: var(--darkGray);
+    font-size: 2.2rem;
+    margin: 0.1em 0 0.3em;
+}
+
+.frame.frame-stage {
+    padding: 0.7em 0.5em;
+}
+
+.frame-stage .stringWrap {
+    padding-top: 0.1em;
+}
+
+.frame-stage .stringBlock + .stringBlock {
+    margin-top: 1em;
+}
+
+.b-success a{
+    background-color: var(--green);
+    color: white;
+}
+
+.b-warging a{
+    background-color: var(--yellow);
+    color: var(--gold);
+}
+
+.b-danger a{
+    background-color: var(--warning);
+    color: white;
+}
+
+.loginPage {
+    padding-top: 4em;
+}
+
+.stage .frame-stage {
+    background-color: var(--lightYellow);
+}
+
+.blockButtons {
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.buttonBlock .blockButtons .leftButton,
+.buttonBlock .blockButtons .centerButton,
+.buttonBlock .blockButtons .rightButton {
+    width: inherit;
+    margin: 1em 0.3em;
+}
+
+.stageDiscussion .projectPhoto {
+    border: none;
+    box-shadow: 0px 0px 6px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1em;
+}
+
+.stageDiscussion .attributs {
+    margin-bottom: 1em;
+}
+
+.imageComment {
+    background-color: #EBEBEB;
+    padding: 0.6em 0.5em;
+    border-radius: 1em;
+}
+
+.imageComment p {
+    margin: 0.3em 0;
+}
+
+.itemDiscussion h3{
+    font-size: 1.6rem;
+    color: var(--darkGray3);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-bottom: 0.4em;
+}
+
+.itemDiscussion h4 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 0.5em 0;
+}
+
+.itemDiscussion.end .projectPhoto,
+.itemDiscussion.end .b-danger,
+.itemDiscussion.end .b-success {
+    display: none;
+}
+
+.adminPanel > .myContainer > .wrap{
+    margin: 2em 0;
+}
+
+.adminPanel .itemBlock {
+    position: relative;
+    padding: 0.5em 0 5em;
+    border-radius: 0.25em;
+    filter: drop-shadow(3px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 0.5em;
+}
+
+.itemBlock.work {
+    background-color: var(--grayBlock);
+}
+
+.itemBlock.decor {
+    background-color: var(--ligthGold);
+}
+
+.adminPanel .itemBlock .wrap {
+    display: block;
+}
+
+.adminPanel .itemBlock h4 {
+    text-transform: uppercase;
+    margin: 0.5em 0;
+    font-size: 1.4rem;
+    text-shadow: 3px 3px 4px rgba(0, 0, 0, 0.25);
+}
+
+.adminPanel .itemBlock.work h4 {
+    color: var(--bordo);
+}
+
+.adminPanel .itemBlock.decor h4 {
+    color: var(--green);
+}
+
+.adminPanel .itemBlock h4 a{
+    padding: 0 0.5em;
+}
+
+.adminPanel .itemBlock p {
+    font-family: Oswald;
+    text-align: center;
+    margin: 0.2em;
+}
+
+.svg-icon {
+    width: 4em;
+    height: 4em;
+    margin: 1em auto;
+}
+
+.svg-icon svg {
+    width: 100%;
+}
+
+.adminPanel .chapter2{
+    position: absolute;
+    bottom: 2em;
+    left: 0;
+    right: 0;
+}
+
+.adminPanel .chapter2 .button-admin {
+    text-align: center;
+}
+
+.button-admin a {
+    color: white;
+    padding: 0.2em 1.5em 0.4em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0.15em;
+}
+
+.work .button-admin a{
+    background-color: var(--green);
+}
+
+.decor .button-admin a{
+    background-color: var(--gold);
+}
+
+.adminPanel .chapter1 a:hover,
+.adminPanel h4 a:hover {
+    border-bottom: 2px solid;
+}
+
+.adminPanel .chapter1 a {
+    padding: 0 0.5em;
+}
+
+.noFormalizes.cardProjects h2 {
+    color: var(--magenta);
+}
+
+.noFormalizes.cardProjects .item {
+    border: 3px solid var(--magenta);
+}
+
+.userMenu a {
+    display: block;
+}
+
+.usersWrap {
+    padding: 1.5em 0 1em;
+}
+
+.userItem {
+    background-color: var(--userFon);
+    padding: 1em 1em;
+    font-family: Oswald;
+    filter: drop-shadow(3px 4px 4px rgba(0, 0, 0, 0.25));
+    margin-bottom: 0.5em;
+}
+
+.userItem .head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.userItem .head > div {
+    width: calc(50% - 0.3em);
+}
+
+.userItem .avatarPhoto {
+    margin-right: 0.3em;
+    border: 2px solid var(--gold);
+    height: 100%;
+}
+
+.userItem .userName p {
+    margin-bottom: 0;
+    margin-top: 0.5em;
+}
+
+.userItem .userName {
+    font-size: 1.3rem;
+    /*font-weight: bold;*/
+    align-self: flex-end;
+}
+
+.userName .surname {
+    font-size: 1.2em;
+}
+
+.userItem .userInfo {
+    padding-top: 1em;
+}
+
+.userItem .userInfo p {
+    margin: 0.2em 0;
+    font-size: 1.1rem;
+}
+
+.clients .user-button {
+    padding-top: 1em;
+}
+
+.clients .user-button a{
+    background-color: var(--green);
+    display: inline;
+    color: white;
+    padding: 0.3em 1.5em 0.4em;
+    border-radius: 0.2em;
+}
+
+.userMenu > .wrapMenu > a {
+    font-size: 1.14rem;
+    padding: 0.2em 0;
+    text-align: center;
+}
+
+.userMenu > .wrapMenu {
+    background-color: var(--userFon2);
+    padding: 0.3em 0.5em;
+}
+
+.userMenu > .wrapMenu > a.active {
+    color: var(--green);
+}
+
+.staff h2 {
+    color: var(--green);
+}
+
+.staff .userItem {
+    background-color: var(--ligthGold);
+}
+
+.staff .user-button {
+    padding-top: 1em;
+}
+
+.staff .user-button a {
+    background-color: var(--gold);
+    display: inline;
+    color: white;
+    padding: 0.3em 1.5em 0.4em;
+    border-radius: 0.2em;
+}
+
+.adminPage .graphic .startDate, .graphic .endDate,
+.adminPage .now{
+    color: white;
+}
+
+
+
+
+
+
+
+

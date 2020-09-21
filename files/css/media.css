@@ -1,0 +1,457 @@
+@media (min-width: 490px) {
+    :root {
+        font-size: 1.1em;
+    }
+
+    .advantages .itemWrap {
+        height: 18em;
+    }
+
+    .GrandTitle {
+        padding-top: 30vh;
+    }
+
+    .buttonBlock .stringWrap {
+        display: flex;
+    }
+
+    .buttonBlock .stringWrap > div {
+        width: calc(50% - 0.5em);
+    }
+
+    .buttonBlock .stringWrap div + div {
+        margin-top: 0;
+    }
+
+    .buttonBlock .stringWrap .leftButton {
+        text-align: right;
+        margin-right: 0.1em;
+    }
+
+    .buttonBlock .stringWrap .rightButton {
+        text-align: left;
+        margin-right: 0.1em;
+    }
+}
+
+
+/*---------------------------------------660------------------------------------*/
+
+
+@media (min-width: 660px) {
+    .stages .wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .stagesItem {
+        width: calc(50% - 0.3em);
+    }
+
+    .stagesItem:nth-child(2n) {
+        margin-left: 0.5em;
+    }
+
+    .adminPanel .wrap {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+
+    .adminPanel .itemBlock {
+        width: calc(50% - 0.5em);
+        margin-right: 0.5em;
+    }
+
+    .adminPanel .itemBlock:nth-child(2n) {
+        margin-right: 0;
+    }
+
+    .usersWrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .usersWrap .userItem {
+        margin-right: 0.5em;
+        width: calc(50% - 0.3em);
+    }
+
+    .usersWrap .userItem:nth-child(2n) {
+        margin-right: 0;
+    }
+
+
+
+}
+
+
+/*---------------------------------------860--------------------------------*/
+@media (min-width: 860px) {
+    .toggle {
+        display: none;
+    }
+
+    .mainContent {
+        padding-top: 4em;
+    }
+
+    .myContainer {
+        padding: 0 1em;
+    }
+
+    #main-menu {
+        display: block;
+    }
+
+    menu {
+        background-color: transparent;
+    }
+
+    ul {
+        padding-top: 1em;
+        padding-left: 0;
+        display: flex;
+    }
+
+    ul > li + li {
+        margin-left: 7%;
+    }
+
+    ul > li > a.a-link,
+    .adminPage ul > li > a.a-link,
+    ul > li > .wrapLi > a.a-link,
+    .adminPage ul > li > .wrapLi > a.a-link {
+        font-size: 1.05rem;
+        text-transform: uppercase;
+    }
+
+    ul > li:last-child {
+        margin-left: auto;
+    }
+
+    #main-menu hr {
+        display: block;
+    }
+
+    .advantages .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .advantages .itemWrap {
+        height: auto;
+        width: calc(50% - 0.4em);
+    }
+
+
+    .advantages .itemWrap + .itemWrap {
+        margin-top: 0;
+        margin-left: 0.4em;
+    }
+
+    .advantages .itemWrap:nth-child(3) {
+        margin-left: 0;
+    }
+
+    .advantages .itemWrap:nth-child(5) {
+        margin-left: 0;
+    }
+
+    .advantages .itemWrap {
+        margin-bottom: 0.8em;
+    }
+
+    footer p {
+        font-size: 1.05rem;
+    }
+
+    .footerWrap {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    footer .chapter + .chapter {
+        margin-top: inherit;
+    }
+
+    footer .centerChapter.chapter {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        top: 22%;
+        bottom: 0;
+    }
+
+    footer.adminFooter .centerChapter.chapter {
+        top: 0;
+    }
+
+
+
+    footer.userFooter .centerChapter.chapter {
+        position: relative;
+
+    }
+
+    .leftChapter, .rightChapter {
+        z-index: 2;
+    }
+
+    .leftChapter p {
+        text-align: left;
+    }
+
+    .rightChapter p {
+        text-align: right;
+    }
+
+    .workPrincip > .wrap {
+        background-image: url("../img/fon3.jpg");
+        background-position: center;
+        background-size: cover;
+        padding-bottom: 10em;
+    }
+
+    menu {
+
+        height: inherit;
+
+    }
+
+    .GrandTitle h1 {
+        font-size: 4rem;
+    }
+
+    .GrandTitle h2 {
+        font-size: 2.7rem;
+    }
+
+
+    .GrandTitle {
+        padding-top: 37vh;
+    }
+
+    .formStyle {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .cardProjects .blockWrap,
+    .cardMessage .blockWrap {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .cardProjects .itemWrap,
+    .cardMessage .itemWrap {
+        width: calc(50% - 0.5em);
+    }
+
+    .cardProjects .itemWrap + .itemWrap,
+    .cardMessage .itemWrap + .itemWrap {
+        margin-left: 0.5em;
+    }
+
+    .projectPhoto {
+        width: 70%;
+    }
+
+
+    .stagesItem {
+        width: calc(33.3% - 0.35em);
+    }
+
+    .stagesItem + .stagesItem {
+        margin-left: 0.5em;
+    }
+
+    .stagesItem:nth-child(3n+4) {
+        margin-left: 0;
+    }
+
+    .discussItem .attributs {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .discussItem .attributs .stringWrap {
+        align-self: center;
+    }
+
+    .discussItem .attributs .stringWrap:first-child {
+       padding-top:0.5em;
+    }
+
+    .discussItem .attributs .stringWrap:nth-child(2) {
+        padding-top:0.5em;
+    }
+
+    .discussItem .attributs .block1 > div{
+        margin: 0 1em;
+    }
+
+    .discussItem .attributs > div {
+        display: flex;
+        justify-content: center;
+    }
+
+    .discussItem .stringWrap > div {
+        width: inherit;
+    }
+
+    .adminPanel .itemBlock {
+        width: calc(33% - 0.5em);
+        margin-right: 0.5em;
+    }
+
+    .adminPanel .itemBlock:nth-child(2n) {
+        margin-right: 0.5em;
+    }
+
+    .adminPanel .itemBlock:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    .usersWrap .userItem {
+        margin-right: 0.5em;
+        width: calc(25% - 0.5em);
+    }
+
+    .usersWrap .userItem:nth-child(2n) {
+        margin-right: 0.5em;
+    }
+
+    .usersWrap .userItem:nth-child(4n) {
+        margin-right: 0;
+    }
+
+    .userMenu > .wrapMenu {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+}
+
+
+
+
+
+
+
+
+/*--------------------------------1220----------------------------*/
+@media (min-width: 1220px) {
+    :root {
+        font-size: 1.2em;
+    }
+
+    .myContainer {
+        padding: 0 2em;
+    }
+
+    .advantages .itemWrap {
+        height: auto;
+        width: calc(33% - 0.4em);
+    }
+
+
+    .advantages .itemWrap + .itemWrap {
+        margin-top: 0;
+        margin-left: 0.4em;
+    }
+
+    .advantages .itemWrap:nth-child(4) {
+        margin-left: 0;
+    }
+
+    .fonImage {
+
+        height: 50vw;
+    }
+
+    .formStyle {
+        width: 60%;
+    }
+
+    .cardProjects .itemWrap,
+    .cardMessage .itemWrap {
+        width: calc(33.3% - 0.5em);
+    }
+
+    .stagesItem {
+        width: calc(25% - 0.4em);
+    }
+
+    .stagesItem + .stagesItem {
+        margin-left: 0.5em;
+    }
+
+    .stagesItem:nth-child(4n+5) {
+        margin-left: 0;
+    }
+
+    .discussItem .attributs {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .discussItem .attributs .block1 {
+        width: 80%;
+        justify-content: space-between;
+    }
+
+
+}
+
+
+/*----------------------------1500----------------------------------*/
+@media (min-width: 1500px) {
+    :root {
+        font-size: calc(1.1em + 0.2vw);
+    }
+
+    .myContainer {
+        width: 95%;
+        margin: 0 auto;
+    }
+
+    .adminPanel .itemBlock {
+        width: calc(33% - 0.5em);
+        margin-right: 0.5em;
+    }
+}
+
+
+/*----------------------------1700----------------------------------*/
+@media (min-width: 1700px) {
+
+    .myContainer {
+        width: 90%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

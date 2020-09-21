@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="Удаленный дизайн интерьера"/>
+    <meta name="keywords" content="Дизайн, удаленный дизайн"/>
+    <title>Создание нового проекта</title>
+    <link rel="stylesheet" type="text/css" href="../files/fonts/oswald/oswald.css">
+    <link rel="stylesheet" type="text/css" href="../files/fonts/ptsansnarrow/ptsansnarrow.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/media.css">
+
+</head>
+<body class="adminPage">
+<header>
+    <div class="toggle">
+        <div class="toggle-menu" id="toggle-menu">
+            <svg width="33" height="19" viewBox="0 0 33 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0.591797" y="0.268555" width="31.9527" height="3.20987" fill="#7B7B7B"/>
+                <rect x="10.2212" y="7.98877" width="22.3231" height="3.20987" fill="#7B7B7B"/>
+                <rect x="0.591797" y="15.709" width="31.9527" height="3.20987" fill="#7B7B7B"/>
+            </svg>
+        </div>
+    </div>
+    <menu id="main-menu">
+        <div class="myContainer">
+            <ul class="navi">
+                <li><a class="a-link" href="#">Главная</a></li>
+                <li><a class="a-link" href="#">Пользователи</a></li>
+                <li class="active"><a class="a-link" href="#">Проекты</a></li>
+                <li class="">
+                    <div class="wrapLi">
+                        <a class="a-link" href="#">Сообщения</a>
+                        <div class="countMessage">
+                            <a href="#" class="cont-link">8</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a class="a-link" href="#">Сайт</a></li>
+                <li><a class="a-link" href="#">Выход (Иван Иванович)</a></li>
+            </ul>
+            <hr>
+        </div>
+    </menu>
+</header>
+
+
+<div class="mainContent adminPage">
+
+    <section class="top">
+        <div class="myContainer">
+            <div class="">
+                <h2>Создание нового проекта</h2>
+            </div>
+            <hr>
+        </div>
+    </section>
+    <section class="create general">
+        <div class="myContainer">
+            <form>
+
+            </form>
+        </div>
+    </section>
+
+
+</div>
+
+
+<footer class="adminFooter">
+    <div class="myContainer">
+        <div class="footerWrap">
+            <div class="leftChapter chapter">
+                <p><a href="#" class="a-link">Проекты</a></p>
+                <p><a href="#" class="a-link">Заказчики</a></p>
+                <p><a href="#" class="a-link">Сотрудники</a></p>
+                <p><a href="#" class="a-link">Портфолио</a></p>
+                <p><a href="#" class="a-link">Образец проекта</a></p>
+            </div>
+            <div class="centerChapter chapter">
+                <p><a href="#" class="a-link">Недооформленные проекты</a></p>
+                <p><a href="#" class="a-link">Активные проекты</a></p>
+                <p><a href="#" class="a-link">Создать новый проект</a></p>
+                <p><a href="#" class="a-link">Создать нового заказчика</a></p>
+                <p><a href="#" class="a-link">Создать нового сотрудника</a></p>
+
+            </div>
+            <div class="rightChapter chapter">
+                <p><a href="#" class="a-link">Главная</a></p>
+                <p><a href="#" class="a-link">Пользователи</a></p>
+                <p><a href="#" class="a-link">Проекты</a></p>
+                <p><a href="#" class="a-link">Сообщения</a></p>
+                <p><a href="#" class="a-link">Сайт</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+<script type="text/javascript">
+    (function () {
+        var button = document.getElementById('toggle-menu');
+        button.addEventListener('click', function (event) {
+            event.preventDefault();
+            var menu = document.getElementById('main-menu');
+            menu.classList.toggle('is-open');
+        });
+    })();
+</script>
+</body>
+</html>
