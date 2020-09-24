@@ -4,6 +4,7 @@
 
 /* @var $content string */
 
+use app\components\AdminBase;
 use yii\helpers\Html;
 use app\assets\DesignAsset;
 use yii\helpers\Url;
@@ -66,16 +67,21 @@ if (empty($this->params['activePage'])) {
                         Вход</a>
                 </li>
                 <?php else:?>
-                <li class="<?php
-                if($this->params['activePage'] == 'login')echo 'active';
-                ?>">
-                    <a class="a-link" href="<?=Url::to(['/logout'])?>">
-                        Выход (<?=Yii::$app->user->identity->username?>)</a>
-                </li>
+                    <li class="logout-button <?php
+                    if($this->params['activePage'] == 'login')echo 'active';
+                    ?>">
+                        <?=Html::beginForm(['/logout'], 'post')?>
+                        <?=Html::submitButton('Выход'.' ('.Yii::$app->user->identity->username.')', ['class' => 'a-link'])?>
+                        <?=Html::endForm()?>
+                    </li>
                 <?php endif;?>
 
             </ul>
+            <?php if(AdminBase::isAdmin(Yii::$app->user->identity)):?>
+            <a href="<?=Url::to(['/admin'])?>"><hr></a>
+            <?php else:?>
             <hr>
+            <?php endif;?>
         </div>
     </menu>
 

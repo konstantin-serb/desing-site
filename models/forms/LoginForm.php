@@ -31,7 +31,7 @@ class LoginForm extends Model
         if ($this->validate()) {
             $user = User::findByEmail($this->email);
             Yii::$app->user->login($user);
-            return true;
+            return $user;
         }
         return false;
     }

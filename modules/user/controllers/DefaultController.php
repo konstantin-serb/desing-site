@@ -6,6 +6,7 @@ use app\models\forms\LoginForm;
 use Yii;
 use yii\web\Controller;
 use app\models\forms\RegisterForm;
+use app\components\AdminBase;
 
 
 class DefaultController extends Controller
@@ -15,9 +16,14 @@ class DefaultController extends Controller
     {
         $this->view->params['activePage'] = 'login';
         $model = new LoginForm;
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
+        if ($model->load(Yii::$app->request->post()) && $user = $model->login()) {
 
-            return $this->redirect(['/site/index']);
+           if (AdminBase::isAdmin($user)) {
+               return $this->redirect(['/admin']);
+           } else {
+               return $this->redirect(['/']);
+           }
+
         }
 
         return $this->render('login', [

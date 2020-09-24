@@ -3,6 +3,7 @@
         font-size: 1.1em;
     }
 
+
     .advantages .itemWrap {
         height: 18em;
     }
@@ -72,7 +73,7 @@
     .usersWrap {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: start;
     }
 
     .usersWrap .userItem {
@@ -83,6 +84,10 @@
     .usersWrap .userItem:nth-child(2n) {
         margin-right: 0;
     }
+
+
+
+
 
 
 
@@ -124,7 +129,8 @@
     ul > li > a.a-link,
     .adminPage ul > li > a.a-link,
     ul > li > .wrapLi > a.a-link,
-    .adminPage ul > li > .wrapLi > a.a-link {
+    .adminPage ul > li > .wrapLi > a.a-link,
+    .logout-button button  {
         font-size: 1.05rem;
         text-transform: uppercase;
     }

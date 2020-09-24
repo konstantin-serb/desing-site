@@ -10,6 +10,8 @@ use yii\web\IdentityInterface;
  *
  * @property int $id
  * @property string $username
+ * @property string $lastName
+ * @property string $surname
  * @property string $auth_key
  * @property string $password_hash
  * @property string|null $password_reset_token
@@ -37,6 +39,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return [
             'id' => 'ID',
             'username' => 'Username',
+            'lastName' => 'Last Name',
+            'surname' => 'Surname',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
@@ -82,5 +86,6 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
         return $this->authKey === $authKey;
     }
+
 
 }

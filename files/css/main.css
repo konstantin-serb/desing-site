@@ -22,6 +22,10 @@ html {
     --userFon2:#D1D1D1;
 }
 
+hr {
+    border: 1px solid;
+}
+
 a:hover,
 a:focus {
     text-decoration: none;
@@ -128,6 +132,10 @@ img {
 .block-link {
     text-decoration: none;
     color: inherit;
+}
+
+.block-link:hover {
+    color:inherit;
 }
 
 .button {
@@ -290,13 +298,29 @@ ul > li {
 }
 
 ul > li > a.a-link,
-ul > li > .wrapLi > a.a-link {
+ul > li > .wrapLi > a.a-link,
+.logout-button button {
     color: var(--gray);
     font-size: 1.2rem;
 }
 
+.adminPage .logout-button button {
+    color: black;
+}
+
+.logout-button button:focus {
+    border:none;
+}
+
+.logout-button button {
+    border: none;
+    background: none;
+    text-transform: uppercase;
+}
+
 .adminPage ul > li > a.a-link,
-.adminPage ul > li > .wrapLi > a.a-link {
+.adminPage ul > li > .wrapLi > a.a-link,
+.admin .logout-button button {
     color: var(--black);
     font-size: 1.2rem;
 }
@@ -646,6 +670,10 @@ footer .chapter + .chapter {
     border-color: var(--darkGray);
 }
 
+.a-link:hover {
+    color: inherit;
+}
+
 .pausaProjects .done {
     background-color: var(--darkGray);
 }
@@ -741,6 +769,10 @@ footer .chapter + .chapter {
     color: white;
     text-align: center;
     vertical-align: -0.06em;
+}
+
+.cont-link:hover {
+    color: white;
 }
 
 .itemWrap.warning .item {
@@ -1103,6 +1135,10 @@ h3.inFrame {
     border-radius: 0.15em;
 }
 
+.button-admin a:hover {
+    color: white;
+}
+
 .work .button-admin a{
     background-color: var(--green);
 }
@@ -1114,6 +1150,7 @@ h3.inFrame {
 .adminPanel .chapter1 a:hover,
 .adminPanel h4 a:hover {
     border-bottom: 2px solid;
+    color: inherit;
 }
 
 .adminPanel .chapter1 a {
@@ -1157,6 +1194,7 @@ h3.inFrame {
     margin-right: 0.3em;
     border: 2px solid var(--gold);
     height: 100%;
+    overflow: hidden;
 }
 
 .userItem .userName p {
@@ -1188,7 +1226,7 @@ h3.inFrame {
 }
 
 .clients .user-button a{
-    background-color: var(--green);
+    background-color: var(--gold);
     display: inline;
     color: white;
     padding: 0.3em 1.5em 0.4em;
@@ -1223,7 +1261,7 @@ h3.inFrame {
 }
 
 .staff .user-button a {
-    background-color: var(--gold);
+    background-color: var(--green);
     display: inline;
     color: white;
     padding: 0.3em 1.5em 0.4em;
@@ -1235,6 +1273,9 @@ h3.inFrame {
     color: white;
 }
 
+.usersWrap .bottom {
+    padding-top: 1em;
+}
 
 
 

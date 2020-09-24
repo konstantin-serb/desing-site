@@ -17,6 +17,9 @@ $config = [
         'user' => [
             'class' => 'app\modules\user\Module',
         ],
+        'admin' => [
+            'class' => 'app\modules\admin\Module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -59,6 +62,12 @@ $config = [
                 '/login' => '/user/default/login',
                 '/logout' => '/user/default/logout',
                 '/register' => '/user/default/register',
+                '/admin' => '/admin/admin/index',
+                '/admin/users' => '/admin/admin/all-users',
+                '/admin/clients' => '/admin/admin/clients',
+                '/admin/staff' => '/admin/admin/staff',
+//                '' => '',
+//                '' => '',
             ],
         ],
 
