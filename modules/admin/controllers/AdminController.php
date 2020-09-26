@@ -28,19 +28,17 @@ class AdminController extends \yii\web\Controller
     }
 
 
-    public function actionClients()
-    {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
-
-        return $this->render('clients');
-    }
-
-
     public function actionStaff()
     {
         if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
 
         return $this->render('staff');
     }
+
+
+
+
+
+
 
 }

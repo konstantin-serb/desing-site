@@ -18,19 +18,13 @@ $this->title = 'Админпанель | Пользователи';
         <div class="myContainer">
             <a class="a-link" href="<?=Url::to(['/admin/clients'])?>"><h2>Заказчики</h2></a>
             <div class="userMenu">
-                <div class="wrapMenu">
-                    <a href="#" class="a-link active">Добавить</a>
-                    <a href="#" class="a-link">Все заказчики</a>
-                    <a href="#" class="a-link">Поиск по фамилии</a>
-                    <a href="#" class="a-link">В работе</a>
-                    <a href="#" class="a-link">Приостановленные</a>
-                    <a href="#" class="a-link">Завершенные</a>
-                </div>
+                <!--                Меню юзера-->
+                <?=$this->render('/client/party/userMenu')?>
                 <div class="usersWrap">
                     <div class="userItem">
                         <div class="head">
                             <div class="avatarPhoto">
-                                <img src="../files/img/temporary/sm_full%20(13).jpg">
+                                <img src="/files/img/temporary/sm_full%20(13).jpg">
                             </div>
                             <div class="userName">
                                 <p class="surname">Иванов</p>

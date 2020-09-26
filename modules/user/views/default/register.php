@@ -5,24 +5,29 @@ use yii\widgets\ActiveForm;
 $this->title = 'Регистрация';
 
 ?>
-<h1>Register</h1>
 
-<?php //dumper($_SESSION) ?>
+<div class="mainContent guestPage">
+    <section class="registerPage">
+        <div class="myContainer">
+            <h2>Резервная регистрация</h2>
+            <p class="subtitle1">
+                Только для разработчкика
+            </p>
+            <div class="formStyle">
+                <?php $form = ActiveForm::begin(['id' => 'form-signup']);?>
+                    <div class="form-group">
+                        <?=$form->field($model, 'username') ->textInput(['autofocus' => true])?>
+                        <?=$form->field($model, 'email')?>
+                    </div>
+                    <div class="form-group">
+                        <?=$form->field($model, 'password') -> passwordInput()?>
+                    </div>
 
-<div class="row">
-    <div class="col-lg-5">
-        <?php $form = ActiveForm::begin(['id' => 'form-signup']);?>
-
-        <?=$form->field($model, 'username') ->textInput(['autofocus' => true])?>
-
-        <?=$form->field($model, 'email')?>
-
-        <?=$form->field($model, 'password') -> passwordInput()?>
-
-        <div class="form-group">
-            <?=Html::submitButton('Register', ['class' => 'btn btn-primary', 'name' => 'signup-button'])?>
+                    <br>
+                    <button type="submit" class="submit" name="signup-button">Регистрация</button>
+                <?php ActiveForm::end();?>
+            </div>
         </div>
-
-        <?php ActiveForm::end();?>
-    </div>
+    </section>
 </div>
+

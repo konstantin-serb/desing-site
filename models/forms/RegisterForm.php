@@ -43,8 +43,8 @@ class RegisterForm extends Model
             $user->updated_at = $time;
             $user->auth_key = Yii::$app->security->generateRandomString(10);
             $user->password_hash = Yii::$app->security->generatePasswordHash($this->password);
-
-            return $user->save();
+            $user->save();
+            return $user;
 
         }
         return false;

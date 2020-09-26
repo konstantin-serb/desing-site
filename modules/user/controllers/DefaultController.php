@@ -32,12 +32,12 @@ class DefaultController extends Controller
     }
 
 
-    public function actionRegister()
+    public function actionRegister72()
     {
         $model = new RegisterForm();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            Yii::$app->session->setFlash('success', 'User registered');
-            return $this->redirect(['/site/index']);
+        if ($model->load(Yii::$app->request->post()) && $user = $model->save()) {
+            Yii::$app->user->login($user);
+            return $this->redirect(['/']);
         }
 
         return $this->render('register', [

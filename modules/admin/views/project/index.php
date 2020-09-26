@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\helpers\Url;
+
 $this->title = 'Проекты';
 ?>
 
@@ -18,7 +20,7 @@ $this->title = 'Проекты';
             <h2>Недооформленные проекты:</h2>
             <div class="blockWrap">
                 <div class="itemWrap">
-                    <a href="#" class="block-link">
+                    <a href="<?=Url::to(['/admin/project/view'])?>" class="block-link">
                         <div class="item">
                             <img src="../files/img/int1.jpg" title="" class="image">
                             <h5>Дизайн интерьера квартиры по улице Петровского 45</h5>
@@ -49,7 +51,7 @@ $this->title = 'Проекты';
                     </a>
                 </div>
                 <div class="itemWrap">
-                    <a href="#" class="block-link">
+                    <a href="<?=Url::to(['/admin/project/view'])?>" class="block-link">
                         <div class="item">
                             <img src="../files/img/int1.jpg" title="" class="image">
                             <h5>Дизайн интерьера квартиры по улице Петровского 45</h5>
@@ -80,7 +82,7 @@ $this->title = 'Проекты';
                     </a>
                 </div>
                 <div class="itemWrap">
-                    <a href="#" class="block-link">
+                    <a href="<?=Url::to(['/admin/project/view'])?>" class="block-link">
                         <div class="item">
                             <img src="../files/img/int1.jpg" title="" class="image">
                             <h5>Дизайн интерьера квартиры по улице Петровского 45</h5>

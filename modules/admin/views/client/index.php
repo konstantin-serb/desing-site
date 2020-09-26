@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 
+use yii\helpers\Url;
+
 $this->title = 'Заказчики';
 ?>
 
@@ -14,16 +16,11 @@ $this->title = 'Заказчики';
     </section>
     <section class="clients">
         <div class="myContainer">
-
+            <div class="add-button">
+                <a class="a-link" href="<?=Url::to(['/admin/client/create'])?>">Добавить нового заказчика</a>
+            </div>
             <div class="userMenu">
-                <div class="wrapMenu">
-                    <a href="#" class="a-link active">Добавить</a>
-                    <a href="#" class="a-link">Все заказчики</a>
-                    <a href="#" class="a-link">Поиск по фамилии</a>
-                    <a href="#" class="a-link">В работе</a>
-                    <a href="#" class="a-link">Приостановленные</a>
-                    <a href="#" class="a-link">Завершенные</a>
-                </div>
+                <?=$this->render('/client/party/userMenu')?>
                 <div class="usersWrap">
                     <div class="userItem">
                         <div class="head">

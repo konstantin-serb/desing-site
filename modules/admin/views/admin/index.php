@@ -131,7 +131,7 @@ $this->title = 'Админпанель | Главная';
                         </div>
                         <div class="chapter2 chapter">
                             <div class="button-admin">
-                                <a class="a-link" href="#">Добавить нового</a>
+                                <a class="a-link" href="<?=Url::to(['/admin/client/create'])?>">Добавить нового</a>
                             </div>
                         </div>
                     </div>

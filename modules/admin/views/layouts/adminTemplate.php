@@ -50,7 +50,7 @@ if (empty($this->params['activePage'])) {
                 ?>"><a class="a-link" href="<?=Url::to(['/admin/users'])?>">Пользователи</a></li>
                 <li class="<?php
                 if($this->params['activePage'] == 'projects')echo 'active';
-                ?>"><a class="a-link" href="<?=Url::to(['/admin/projects'])?>">Проекты</a></li>
+                ?>"><a class="a-link" href="<?=Url::to(['/admin/project'])?>">Проекты</a></li>
 
                 <li class="<?php
                 if($this->params['activePage'] == 'message')echo 'active';
@@ -116,11 +116,11 @@ if (empty($this->params['activePage'])) {
 
             </div>
             <div class="rightChapter chapter">
-                <p><a href="#" class="a-link">Главная</a></p>
-                <p><a href="#" class="a-link">Пользователи</a></p>
-                <p><a href="#" class="a-link">Проекты</a></p>
+                <p><a href="<?=Url::to(['/admin'])?>" class="a-link">Главная</a></p>
+                <p><a href="<?=Url::to(['/admin/users'])?>" class="a-link">Пользователи</a></p>
+                <p><a href="<?=Url::to(['/admin/project'])?>" class="a-link">Проекты</a></p>
                 <p><a href="#" class="a-link">Сообщения</a></p>
-                <p><a href="#" class="a-link">Сайт</a></p>
+                <p><a href="<?=Url::to(['/'])?>" class="a-link">Сайт</a></p>
             </div>
         </div>
     </div>

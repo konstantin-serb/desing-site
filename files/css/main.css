@@ -1277,6 +1277,29 @@ h3.inFrame {
     padding-top: 1em;
 }
 
+.admin-form label{
+    color: white;
+}
+
+.userCreate .subtitle1 {
+    color: white;
+    margin-top: 1.5em;
+}
+
+.add-button {
+    text-align: center;
+    padding: 0.5em 0 1.5em;
+    color: white;
+}
+
+.clients .add-button a{
+    font-size: 1.2em;
+    background-color: var(--gold);
+    padding: 0.3em 1.5em 0.4em;
+    border-radius: 0.2em;
+
+}
+
 
 
 
