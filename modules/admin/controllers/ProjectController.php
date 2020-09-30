@@ -12,7 +12,7 @@ class ProjectController extends Controller
 
     public function actionIndex()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $this->view->params['activePage'] = 'projects';
 
         return $this->render('index');
@@ -21,7 +21,7 @@ class ProjectController extends Controller
 
     public function actionView()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
         return $this->render('view');
     }

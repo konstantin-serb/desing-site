@@ -6,6 +6,8 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
+$this->title = 'Создание нового клиента';
+
 ?>
 
 

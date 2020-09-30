@@ -20,10 +20,15 @@ html {
     --magenta: #F90DA9;
     --userFon:#DFDFDF;
     --userFon2:#D1D1D1;
+    --adminBackground: #dadada;
 }
 
 hr {
     border: 1px solid;
+}
+
+.userPage hr {
+    border-top: none;
 }
 
 a:hover,
@@ -67,7 +72,9 @@ a:focus {
     box-sizing: inherit;
 }
 
-
+body.employeePage {
+    background-color: #FAFAE7;
+}
 
 body {
     margin: 0;
@@ -79,7 +86,7 @@ body {
 }
 
 body.adminPage {
-    background-color: #B9B9B9;
+    background-color: var(--adminBackground);
 }
 
 h1, h2, h3, h4, h5 {
@@ -115,6 +122,7 @@ h5 {
     color: inherit;
     font-family: Oswald;
     font-weight: normal;
+    cursor: pointer;
 }
 
 .b-link {
@@ -156,7 +164,7 @@ img {
 .adminPage .button a {
     border: 1px solid var(--black);
     color: var(--black);
-    background: var(--gray);
+    background: var(--adminBackground);
     transition: all 0.4s;
 }
 
@@ -180,6 +188,64 @@ img {
 
 .formStyle .form-group {
     width: 100%;
+}
+
+.flex-input {
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+}
+
+.form-group.field-signupemployeeform-position {
+    width: 80%;
+}
+
+.formStyle .form-group.plus-link-add-position {
+    width: 18%;
+    align-self: end;
+    margin-bottom: 0;
+    margin-top: 2.15em;
+}
+
+.plus-link-add-position a {
+    display: block;
+    background-color: white;
+    padding: 0.55em ;
+    text-align: center;
+
+}
+
+.formStyle button.close{
+    display: block;
+    margin: 0 auto;
+    text-transform: uppercase;
+    padding: 0.4em 0;
+    background-color: transparent;
+    color: var(--warning);
+    border: none;
+    font-family: Oswald;
+    font-size: 2rem;
+    width: 1em;
+    cursor: pointer;
+}
+
+#successMessage {
+    color: var(--green);
+}
+
+.admin-form .modal-body label {
+    color: black;
+}
+
+select.form-control {
+    height: 2.65em;
+    font-size: 1rem;
+    padding: 0.3em
+}
+
+.admin-form .label-modal p{
+    text-align: center;
+    color: var(--green);
 }
 
 .formStyle input {
@@ -256,6 +322,10 @@ header {
     background-color: var(--darkGray)
 }
 
+.employeePage .toggle {
+    background-color: var(--bordo)
+}
+
 .adminPage svg > rect {
     fill: black;
 }
@@ -276,7 +346,7 @@ menu {
 }
 
 .adminPage menu {
-    background-color: #b9b9b9;
+    background-color: var(--adminBackground);
 }
 
 menu.is-open {
@@ -301,6 +371,11 @@ ul > li > a.a-link,
 ul > li > .wrapLi > a.a-link,
 .logout-button button {
     color: var(--gray);
+    font-size: 1.2rem;
+}
+
+.employeePage ul > li > a.a-link, ul > li > .wrapLi > a.a-link, .logout-button button {
+    color: var(--darkGray2);
     font-size: 1.2rem;
 }
 
@@ -336,11 +411,22 @@ li {
     padding-bottom: 0.2em;
 }
 
+.employeePage .userFrame {
+    background-color: transparent;
+    padding: 1em 0.5em 1em;
+    margin-top: 1em;
+    border: 2px solid var(--gold);
+}
+
 #main-menu hr {
     display: none;
     margin: 0;
     border-top: none;
     border-color: var(--gray);
+}
+
+.employeePage #main-menu hr {
+    border-color: var(--darkGray);
 }
 
 .adminPage #main-menu hr {
@@ -1107,6 +1193,15 @@ h3.inFrame {
     margin: 0.2em;
 }
 
+.itemBlock a.a-link {
+    text-align: center;
+}
+
+.itemBlock .rightBlock .user-button a.a-link{
+    text-align: right;
+    margin-right: 0;
+}
+
 .svg-icon {
     width: 4em;
     height: 4em;
@@ -1203,7 +1298,7 @@ h3.inFrame {
 }
 
 .userItem .userName {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     /*font-weight: bold;*/
     align-self: flex-end;
 }
@@ -1227,7 +1322,8 @@ h3.inFrame {
 
 .clients .user-button a{
     background-color: var(--gold);
-    display: inline;
+    width: 16em;
+    margin: 0 auto;
     color: white;
     padding: 0.3em 1.5em 0.4em;
     border-radius: 0.2em;
@@ -1297,7 +1393,170 @@ h3.inFrame {
     background-color: var(--gold);
     padding: 0.3em 1.5em 0.4em;
     border-radius: 0.2em;
+}
 
+.staff .add-button a{
+    font-size: 1.2em;
+    background-color: var(--green);
+    padding: 0.3em 1.5em 0.4em;
+    border-radius: 0.2em;
+}
+
+.userFrame {
+    border: 1px solid var(--lightGray);
+    padding: 0 0.5em 1em;
+}
+
+.userFrame .head .leftBlock .avatarPhoto {
+    padding-top: 1em;
+    width: 200px;
+    margin: 1em auto;
+}
+
+.oneUser p {
+    font-family: Oswald;
+    text-align: center;
+}
+
+.projects.paused h5, .projects.paused p,
+.userFrame p {
+    margin: 0.2em 0;
+}
+
+.userFrame .head .userName {
+    font-size: 1.5em;
+    font-weight: 500;
+}
+
+.userFrame .itemBlock {
+    margin: 1.3em 0;
+}
+
+.oneUser  .itemWrap{
+    padding: 1em 0 0.5em;
+}
+
+.projects .title {
+    font-size: 1.3rem;
+}
+
+.projects .rightBlock {
+    font-size: 1.2rem;
+}
+
+.projects.paused h5,
+.projects.paused p {
+    color: #888888;
+    transition: 1s;
+}
+
+.projects.paused {
+    padding: 1em 0.5em;
+}
+
+.projects.paused .done {
+    background-color: #888888;
+    transition: 1s;
+}
+
+.oneUser .projectDone {
+    background-color: white;
+    padding: 1em 0.5em;
+}
+
+.projects.paused img {
+    filter: grayscale(100%);
+    transition: 1s;
+}
+
+.paused .block-link:hover  img {
+    filter: none;
+    transition: 1s;
+}
+
+
+.paused .block-link:hover  p {
+    color: inherit;
+    transition: 1s;
+}
+
+.paused .block-link:hover  .done {
+    background-color: var(--gold);
+    transition: 1s;
+}
+
+.top .adminCreate .subtitle {
+    color: white;
+    font-size: 1.2rem;
+}
+
+.input-group {
+    width: 100%;
+    margin: 1em auto;
+    background-color: var(--userFon);
+}
+
+.input-group p,
+.bottom-block p{
+    text-align: center;
+    font-family: Oswald;
+    padding: 0.5em;
+
+}
+
+.client-info h5.grey {
+    color: var(--darkGray2);
+}
+
+.info-block {
+    background-color: #c4c4c4;
+    padding: 1em;
+}
+
+.info-block .myLabel {
+    text-align: center;
+    margin-bottom: 0;
+    font-family: Oswald;
+    margin-top: 1.5em;
+}
+
+.info-block .input-group {
+    margin-bottom: 2.5em;
+}
+
+.gold-button {
+    margin: 1em auto;
+    width: 10em;
+    background-color: var(--gold);
+    padding: 0.4em 0;
+}
+
+.gold-button a {
+    text-transform: uppercase;
+    display:block;
+    text-align: center;
+    background-color: var(--gold);
+    color: #fff;
+    border: none;
+    font-family: Oswald;
+    font-size: 1rem;
+}
+
+.oneClient .gold-button {
+    width: 100%;
+}
+
+.formStyle.modal-form {
+    width: 100%;
+}
+
+.modal-form .head {
+    flex-direction: column;
+}
+
+.modal-form .avatarPhoto {
+    width: 10em;
+    margin: 1em auto;
 }
 
 

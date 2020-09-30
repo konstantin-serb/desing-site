@@ -27,6 +27,16 @@ class AddClientForm extends Model
         ];
     }
 
+    public function attributeLabels()
+    {
+        return [
+            'userName' => 'Имя',
+            'lastName' => 'Отчество',
+            'surname' => 'Фамилия',
+
+        ];
+    }
+
 
     public function save()
     {

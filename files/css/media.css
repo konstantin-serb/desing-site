@@ -3,7 +3,6 @@
         font-size: 1.1em;
     }
 
-
     .advantages .itemWrap {
         height: 18em;
     }
@@ -32,6 +31,18 @@
     .buttonBlock .stringWrap .rightButton {
         text-align: left;
         margin-right: 0.1em;
+    }
+
+    .oneUser .projects .leftBlock {
+        text-align: center;
+    }
+
+    .oneUser .projects .leftBlock img {
+        width: 350px;
+    }
+
+    .oneClient .gold-button {
+        width: 20em;
     }
 }
 
@@ -91,6 +102,8 @@
 
 
 
+
+
 }
 
 
@@ -128,8 +141,10 @@
 
     ul > li > a.a-link,
     .adminPage ul > li > a.a-link,
+    .employeePage ul > li > a.a-link,
     ul > li > .wrapLi > a.a-link,
     .adminPage ul > li > .wrapLi > a.a-link,
+    .employeePage ul > li > .wrapLi > a.a-link,
     .logout-button button  {
         font-size: 1.05rem;
         text-transform: uppercase;
@@ -195,7 +210,8 @@
         bottom: 0;
     }
 
-    footer.adminFooter .centerChapter.chapter {
+    footer.adminFooter .centerChapter.chapter,
+    footer.customerFooter .centerChapter.chapter {
         top: 0;
     }
 
@@ -346,8 +362,141 @@
         justify-content: space-between;
     }
 
+    .oneUser .projects .item {
+        display: flex;
+    }
 
+    .oneUser .projects .item .leftBlock img{
+        width: 100%;
+    }
+
+    .oneUser .projects .item .leftBlock{
+        width: 18em;
+    }
+
+    .oneUser .projects .item .rightBlock{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 0.7em;
+
+    }
+
+    .oneUser .rightBlock .topBlock {
+        text-align: right;
+    }
+
+    .oneUser .rightBlock .topBlock p{
+        width: 100%;
+
+    }
+
+    .oneUser .projects .item .rightBlock p{
+        text-align: left;
+        font-size: 1.1rem;
+    }
+
+    .oneUser .projects .item .rightBlock .graphic,
+    .oneUser .projects .item .rightBlock .done{
+        height: 0.6em;
+    }
+
+    .input-group {
+        width: 70%;
+    }
+
+    .staff .staffInfo h3,
+    .staff .staffInfo p,
+    .staff .itemBody p{
+        text-align: left;
+    }
+
+    .formStyle.modal-form {
+        width: 80%;
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------1000----------------------------*/
+@media (min-width: 1000px) {
+    .userFrame .head {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+    .userFrame .itemBlock {
+        margin: 0.3em 0;
+    }
+
+    .userFrame .head .leftBlock .avatarPhoto {
+        padding-top: 0;
+        width: 9em;
+        margin: 0;
+    }
+
+    .userFrame {
+        border: 2px solid var(--userFon);
+        padding: 1em 0.5em 1em;
+        margin-top: 1em;
+    }
+
+    .userFrame .itemBlock.centerBlock {
+        margin-left: 1em;
+    }
+
+    .userFrame .itemBlock.centerBlock p{
+        text-align: left;
+    }
+
+    .userFrame .itemBlock.rightBlock p{
+        text-align: right;
+    }
+
+    .itemBlock.centerBlock,
+    .itemBlock.rightBlock {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .itemBlock.rightBlock {
+        margin-left: auto;
+    }
+
+    .clients .rightBlock .user-button a{
+        margin-right: 0;
+    }
+
+    .clients .centerBlock .user-button a{
+        margin-left: 0;
+    }
+}
+
+
+
+
+
+
+
+
+
 
 
 

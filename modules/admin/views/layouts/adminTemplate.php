@@ -79,7 +79,7 @@ if (empty($this->params['activePage'])) {
                 if($this->params['activePage'] == 'login')echo 'active';
                 ?>">
                     <?=Html::beginForm(['/logout'], 'post')?>
-                    <?=Html::submitButton('Выход'.' ('.Yii::$app->user->identity->username.')', ['class' => 'a-link'])?>
+                    <?=Html::submitButton('Выход'.' ('.Yii::$app->user->identity->username. ' '. Yii::$app->user->identity->lastName . ')', ['class' => 'a-link'])?>
 <!--                    <a class="a-link" href="--><?//=Url::to(['/logout'])?><!--">-->
                     </a>
                     <?=Html::endForm()?>

@@ -55,9 +55,20 @@ if (empty($this->params['activePage'])) {
                 <li class="<?php
                 if($this->params['activePage'] == 'price')echo 'active';
                 ?>"><a class="a-link" href="#">Цены</a></li>
-                <li class="<?php
-                if($this->params['activePage'] == 'contacts')echo 'active';
-                ?>"><a class="a-link" href="#">Контакты</a></li>
+
+                <?php if (AdminBase::isCustomer()):?>
+                <li class="">
+                    <a class="a-link" href="<?=Url::to('/customer')?>">Кабинет</a>
+                </li>
+                <?php elseif (AdminBase::isEmployee()):?>
+                    <li class="">
+                        <a class="a-link" href="<?=Url::to('/employee')?>">Кабинет</a>
+                    </li>
+                <?php else:?>
+                    <li class="<?php
+                    if($this->params['activePage'] == 'contacts')echo 'active';
+                    ?>"><a class="a-link" href="#">Контакты</a></li>
+                <?php endif;?>
 
                 <?php if(Yii::$app->user->isGuest):?>
                 <li class="<?php
@@ -71,7 +82,7 @@ if (empty($this->params['activePage'])) {
                     if($this->params['activePage'] == 'login')echo 'active';
                     ?>">
                         <?=Html::beginForm(['/logout'], 'post')?>
-                        <?=Html::submitButton('Выход'.' ('.Yii::$app->user->identity->username.')', ['class' => 'a-link'])?>
+                        <?=Html::submitButton('Выход'.' ('.Yii::$app->user->identity->username. ' '. Yii::$app->user->identity->lastName . ')', ['class' => 'a-link'])?>
                         <?=Html::endForm()?>
                     </li>
                 <?php endif;?>

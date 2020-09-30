@@ -2,6 +2,7 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\Clients;
 use Yii;
 use app\components\AdminBase;
 
@@ -12,7 +13,7 @@ class AdminController extends \yii\web\Controller
 
     public function actionIndex()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $this->view->params['activePage'] = 'home';
 
         return $this->render('index');
@@ -21,16 +22,23 @@ class AdminController extends \yii\web\Controller
 
     public function actionAllUsers()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $this->view->params['activePage'] = 'users';
 
-        return $this->render('users');
+        $clients = Clients::find()->where(['hash' => null])
+            ->orderBy('created_at desc')
+            ->limit(8)
+            ->all();
+
+        return $this->render('users', [
+            'clients' => $clients,
+        ]);
     }
 
 
     public function actionStaff()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
         return $this->render('staff');
     }

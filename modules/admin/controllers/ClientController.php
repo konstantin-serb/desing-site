@@ -3,13 +3,12 @@
 
 namespace app\modules\admin\controllers;
 
-
-
 use app\models\forms\client\AddClientForm;
 use Yii;
 use yii\web\Controller;
 use app\components\AdminBase;
 use app\models\Clients;
+use app\models\forms\AdminEditForm;
 
 class ClientController extends Controller
 {
@@ -18,15 +17,20 @@ class ClientController extends Controller
 
     public function actionIndex()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $clients = Clients::find()
+            ->orderBy('created_at desc')
+            ->all();
 
-        return $this->render('index');
+        return $this->render('index', [
+            'clients' => $clients,
+        ]);
     }
 
 
     public function actionAdd()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $model = new AddClientForm();
 
         if ($model->load(Yii::$app->request->post()) && $client = $model->save()) {
@@ -42,7 +46,7 @@ class ClientController extends Controller
 
     public function actionUndeFormed($id)
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
         $client = Clients::getOne($id);
 
@@ -55,7 +59,7 @@ class ClientController extends Controller
 
     public function actionUndeformeds()
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $undeformeds = Clients::find()->where(['!=', 'hash', 'null'])->orderBy('created_at desc')->all();
 
 
@@ -67,11 +71,30 @@ class ClientController extends Controller
 
     public function actionView($id)
     {
-        if (!AdminBase::isAdmin(Yii::$app->user->identity)) $this->redirect(['/']);
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $client = Clients::getOne($id);
 
         return $this->render('view', [
             'user' => $client,
+        ]);
+    }
+
+
+    public function actionUpdate($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $client = Clients::find()->where(['id' => $id])->one();
+        $model = new AdminEditForm();
+        $model->id = $client->id;
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->save()) {
+                return $this->redirect(['/admin/client/view', 'id' => $id]);
+            }
+        }
+        return $this->render('update', [
+            'model' => $model,
+            'client' => $client,
         ]);
     }
 

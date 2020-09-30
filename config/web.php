@@ -21,6 +21,12 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'customer' => [
+            'class' => 'app\modules\customer\Module',
+        ],
+        'employee' => [
+            'class' => 'app\modules\employee\Module',
+        ],
     ],
     'components' => [
         'request' => [
@@ -67,8 +73,13 @@ $config = [
                 '/admin/users' => '/admin/admin/all-users',
                 '/admin/client/create' => '/admin/client/add',
                 '/admin/clients' => '/admin/client/index',
-                '/admin/staff' => '/admin/admin/staff',
-//                '' => '',
+
+                '/customer/personal-data' => '/customer/default/personal-data',
+                '/employee/personal-data' => '/employee/default/personal-data',
+                '/customer/update' => '/customer/default/update',
+                '/employee/update' => '/employee/default/update',
+                '/staff/register' => '/site/staff-register',
+                '/employee' => '/employee/default/index',
 //                '' => '',
             ],
         ],

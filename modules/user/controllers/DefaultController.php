@@ -18,8 +18,12 @@ class DefaultController extends Controller
         $model = new LoginForm;
         if ($model->load(Yii::$app->request->post()) && $user = $model->login()) {
 
-           if (AdminBase::isAdmin($user)) {
+           if (AdminBase::isAdmin()) {
                return $this->redirect(['/admin']);
+           } elseif (AdminBase::isCustomer()) {
+               return $this->redirect(['/customer']);
+           } elseif (AdminBase::isEmployee()) {
+               return $this->redirect(['/employee']);
            } else {
                return $this->redirect(['/']);
            }

@@ -16,14 +16,16 @@ use Yii;
  * @property int|null $created_at
  * @property int|null $register_date
  * @property int|null $status
+ * @property int|null $avatar
  *
  * @property User $user
  */
 class Clients extends \yii\db\ActiveRecord
 {
-    /**
-     * {@inheritdoc}
-     */
+    const STATUS_UNDEREGISTERED = 9;
+    const STATUS_REGISTERED = 10;
+
+
     public static function tableName()
     {
         return 'clients';
@@ -56,5 +58,46 @@ class Clients extends \yii\db\ActiveRecord
     public static function getOne($id)
     {
         return self::find()->where(['id' => $id])->one();
+    }
+
+
+    public function getStatus()
+    {
+        switch ($this->status) {
+            case self::STATUS_UNDEREGISTERED :
+                $result = 'Недооформленный';
+                break;
+            case self::STATUS_REGISTERED :
+                $result = 'Клиент';
+                break;
+            default:
+                $result = '?';
+        }
+        return $result;
+    }
+
+    public function getCssStyle()
+    {
+        switch ($this->status) {
+            case self::STATUS_UNDEREGISTERED :
+                $result = 'class="status-warning"';
+                break;
+            case self::STATUS_REGISTERED :
+                $result = 'class="status-success"';
+                break;
+            default:
+                $result = '';
+        }
+        return $result;
+    }
+
+
+    public function getImage()
+    {
+        if ($this->avatar) {
+            return '/files/uploads/'.$this->avatar;
+        } else {
+            return '/files/uploads/avatar/no-foto.png';
+        }
     }
 }

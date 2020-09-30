@@ -88,4 +88,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     }
 
 
+    public function getClient()
+    {
+        return $this->hasOne(Clients::class, ['user_id' => 'id']);
+    }
+
+
 }
