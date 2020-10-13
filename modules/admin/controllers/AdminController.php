@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Clients;
+use app\models\Employee;
 use Yii;
 use app\components\AdminBase;
 
@@ -29,23 +30,16 @@ class AdminController extends \yii\web\Controller
             ->orderBy('created_at desc')
             ->limit(8)
             ->all();
+        $staff = Employee::find()->where(['hash' => null])
+            ->orderBy('create_at desc')
+            ->limit(8)
+            ->all();
 
         return $this->render('users', [
             'clients' => $clients,
+            'staff' => $staff,
         ]);
     }
-
-
-    public function actionStaff()
-    {
-        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
-
-        return $this->render('staff');
-    }
-
-
-
-
 
 
 

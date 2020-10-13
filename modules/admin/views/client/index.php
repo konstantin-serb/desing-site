@@ -23,7 +23,7 @@ $this->title = 'Заказчики';
             </div>
             <div class="userMenu">
                 <?=$this->render('/client/party/userMenu')?>
-                <div class="usersWrap">
+                <div class="usersWrap" <?php if(count($clients)<5)echo 'style="justify-content:center;"';?>>
                     <?php foreach($clients as $client):?>
                         <?=$this->render('/client/party/userItem', [
                             'client' => $client,

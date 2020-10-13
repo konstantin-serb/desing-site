@@ -14,7 +14,10 @@ function createPosition() {
         data: {params},
         success:function (data) {
             if (data.success == true) {
-                $('#signupemployeeform-position').html(data.value);
+
+                    $('#signupemployeeform-position').html(data.value);
+                    $('#updatepositionform-position').html(data.value);
+
                 $('#successMessage').html('<p>Должность успешно добавлена в список</p>');
             }
 

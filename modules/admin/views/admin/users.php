@@ -2,6 +2,8 @@
 /** @var $this yii\web\View
  *@var $clients \app\models\Clients
  *@var $client \app\models\Clients
+ * @var $staff \app\models\Employee
+ * @var $userStaff \app\models\Employee
  */
 
 use yii\helpers\Url;
@@ -23,12 +25,14 @@ $this->title = 'Админпанель | Пользователи';
             <div class="userMenu">
                 <!--                Меню юзера-->
                 <?=$this->render('/client/party/userMenu')?>
-                <div class="usersWrap">
+                <div class="usersWrap" <?php if(count($clients)<5)echo 'style="justify-content:center;"';?>>
+
                     <?php foreach($clients as $client):?>
                     <?=$this->render('/client/party/userItem', [
                             'client' => $client,
                         ])?>
                     <?php endforeach;?>
+
                 </div>
                 <div class="button">
                     <a href="<?=Url::to(['/admin/clients'])?>" class="a-link">Все заказчики</a>
@@ -44,111 +48,16 @@ $this->title = 'Админпанель | Пользователи';
             <a href="<?=Url::to(['/admin/staff'])?>"><h2>Сотрудники</h2></a>
             <div class="userMenu">
                 <?=$this->render('/staff/party/staffMenu')?>
-                <div class="usersWrap">
-                    <div class="userItem">
-                        <div class="head">
-                            <div class="avatarPhoto">
-                                <img src="../files/img/temporary/sm_full%20(13).jpg">
-                            </div>
-                            <div class="userName">
-                                <p class="surname">Иванов</p>
-                                <p>Иван</p>
-                                <p>Иванович</p>
-                            </div>
-                        </div>
-                        <div class="userInfo">
-                            <p>email: ivanov@gmail.com</p>
-                            <p>Дата регистрации: 21 июля 2020г.</p>
-                            <p><a href="#" class="a-link">Проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Законченных проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Проектов в работе: 1</a></p>
-                            <p><a href="#" class="a-link">Проектов на паузе: 0</a></p>
-                            <div class="user-button">
-                                <a class="a-link" href="#">Добавить проект</a>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p>Должность: <span class="status-normal">Дизайнер</span></p>
-                        </div>
-                    </div>
-                    <div class="userItem">
-                        <div class="head">
-                            <div class="avatarPhoto">
-                                <img src="../files/img/temporary/sm_full%20(13).jpg">
-                            </div>
-                            <div class="userName">
-                                <p class="surname">Иванов</p>
-                                <p>Иван</p>
-                                <p>Иванович</p>
-                            </div>
-                        </div>
-                        <div class="userInfo">
-                            <p>email: ivanov@gmail.com</p>
-                            <p>Дата регистрации: 21 июля 2020г.</p>
-                            <p><a href="#" class="a-link">Проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Законченных проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Проектов в работе: 1</a></p>
-                            <p><a href="#" class="a-link">Проектов на паузе: 0</a></p>
-                            <div class="user-button">
-                                <a class="a-link" href="#">Добавить проект</a>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p>Должность: <span class="status-normal">Рендерщик</span></p>
-                        </div>
-                    </div>
-                    <div class="userItem">
-                        <div class="head">
-                            <div class="avatarPhoto">
-                                <img src="../files/img/temporary/sm_full%20(13).jpg">
-                            </div>
-                            <div class="userName">
-                                <p class="surname">Иванов</p>
-                                <p>Иван</p>
-                                <p>Иванович</p>
-                            </div>
-                        </div>
-                        <div class="userInfo">
-                            <p>email: ivanov@gmail.com</p>
-                            <p>Дата регистрации: 21 июля 2020г.</p>
-                            <p><a href="#" class="a-link">Проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Законченных проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Проектов в работе: 1</a></p>
-                            <p><a href="#" class="a-link">Проектов на паузе: 0</a></p>
-                            <div class="user-button">
-                                <a class="a-link" href="#">Добавить проект</a>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p>Должность: <span class="status-normal">Дизайнер</span></p>
-                        </div>
-                    </div>
-                    <div class="userItem">
-                        <div class="head">
-                            <div class="avatarPhoto">
-                                <img src="../files/img/temporary/sm_full%20(13).jpg">
-                            </div>
-                            <div class="userName">
-                                <p class="surname">Иванов</p>
-                                <p>Иван</p>
-                                <p>Иванович</p>
-                            </div>
-                        </div>
-                        <div class="userInfo">
-                            <p>email: ivanov@gmail.com</p>
-                            <p>Дата регистрации: 21 июля 2020г.</p>
-                            <p><a href="#" class="a-link">Проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Законченных проектов: 3</a></p>
-                            <p><a href="#" class="a-link">Проектов в работе: 1</a></p>
-                            <p><a href="#" class="a-link">Проектов на паузе: 0</a></p>
-                            <div class="user-button">
-                                <a class="a-link" href="#">Добавить проект</a>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p>Должность: <span class="status-normal">Дизайнер</span></p>
-                        </div>
-                    </div>
+                <div class="usersWrap" <?php if(empty($staff) || count($staff) < 4) echo 'style="justify-content:center;"';?>>
+                    <?php if(!empty($staff)):?>
+                    <?php foreach($staff as $userStaff):?>
+                        <?=$this->render('/staff/party/staffItem',[
+                                'user' => $userStaff,
+                            ])?>
+                    <?php endforeach;?>
+                    <?php else:?>
+                    <h3>У вас пока нет зарегистрированных сотрудников</h3>
+                    <?php endif;?>
                 </div>
                 <div class="button">
                     <a href="<?=Url::to(['/admin/staff'])?>" class="a-link">Все сотрудники</a>

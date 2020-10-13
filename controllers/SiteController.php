@@ -74,11 +74,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $userId = $model->save()) {
                 $user = User::find()->where(['id' => $userId])->one();
                 Yii::$app->user->login($user);
-                if ($user->status == self::STATUS_CLIENT) {
-                    return $this->redirect(['/customer']);
-                } elseif($user->status == self::STATUS_STAFF) {
-                    return $this->redirect(['/employee']);
-                }
+            return $this->redirect(['/customer']);
             }
 
         return $this->render('register', [
@@ -95,12 +91,7 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $userId = $model->save()) {
             $user = User::findOne($userId);
             Yii::$app->user->login($user);
-            if ($user->status == self::STATUS_CLIENT) {
-                return $this->redirect(['/']);
-            } elseif($user->status == self::STATUS_STAFF) {
-                return $this->redirect(['/']);
-            }
-
+           return $this->redirect(['/employee']);
         }
 
         return $this->render('staff-register',[

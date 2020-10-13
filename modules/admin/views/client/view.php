@@ -30,6 +30,7 @@ $this->title = $user->surname . ' ' . $user->user_name . ' ' . $user->last_name;
             <div class="userMenu">
                 <?= $this->render('/client/party/oneUserMenu', [
                         'user' => $user,
+                    'modelUpdateFIO' => $modelUpdateFIO,
                 ]) ?>
 
                 <div class="userFrame">

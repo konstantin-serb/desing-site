@@ -18,8 +18,8 @@ html {
     --black: black;
     --ligthGold: #E8D3B1;
     --magenta: #F90DA9;
-    --userFon:#DFDFDF;
-    --userFon2:#D1D1D1;
+    --userFon: #DFDFDF;
+    --userFon2: #D1D1D1;
     --adminBackground: #dadada;
 }
 
@@ -29,6 +29,10 @@ hr {
 
 .userPage hr {
     border-top: none;
+}
+
+.alwaysCenter {
+    text-align: center;
 }
 
 a:hover,
@@ -143,7 +147,7 @@ img {
 }
 
 .block-link:hover {
-    color:inherit;
+    color: inherit;
 }
 
 .button {
@@ -168,7 +172,7 @@ img {
     transition: all 0.4s;
 }
 
-.adminPage .button a:hover{
+.adminPage .button a:hover {
     background-color: var(--lightGray);
     transition: all 0.4s;
 }
@@ -191,9 +195,9 @@ img {
 }
 
 .flex-input {
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:space-between;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .form-group.field-signupemployeeform-position {
@@ -210,12 +214,12 @@ img {
 .plus-link-add-position a {
     display: block;
     background-color: white;
-    padding: 0.55em ;
+    padding: 0.55em;
     text-align: center;
 
 }
 
-.formStyle button.close{
+.formStyle button.close {
     display: block;
     margin: 0 auto;
     text-transform: uppercase;
@@ -243,7 +247,7 @@ select.form-control {
     padding: 0.3em
 }
 
-.admin-form .label-modal p{
+.admin-form .label-modal p {
     text-align: center;
     color: var(--green);
 }
@@ -302,7 +306,6 @@ input:focus {
     margin-top: 0.2em;
     color: var(--bordo);
 }
-
 
 
 /*------------------------endShedule-----------------------------*/
@@ -384,7 +387,7 @@ ul > li > .wrapLi > a.a-link,
 }
 
 .logout-button button:focus {
-    border:none;
+    border: none;
 }
 
 .logout-button button {
@@ -591,7 +594,7 @@ footer {
 
 footer.allUsers,
 footer.userFooter,
-footer.adminFooter{
+footer.adminFooter {
     background-image: url("../img/fonFooter.jpg");
     background-size: cover;
     background-position: center;
@@ -600,7 +603,7 @@ footer.adminFooter{
     padding: 1em 0;
 }
 
-footer.adminFooter{
+footer.adminFooter {
     background-color: #6f5650;
     background-blend-mode: multiply;
 }
@@ -624,7 +627,7 @@ footer .chapter + .chapter {
 /*----------------------------------------------------------------------------------------------------*/
 .mainContent {
     min-height: 80vh;
-    padding-top:2.5em;
+    padding-top: 2.5em;
 }
 
 .guestPage h2 {
@@ -637,7 +640,7 @@ footer .chapter + .chapter {
     font-weight: 300;
     font-size: 1em;
     color: var(--gray);
-    text-align:center;
+    text-align: center;
     margin-top: -1em;
     margin-bottom: 2em;
 }
@@ -692,7 +695,7 @@ footer .chapter + .chapter {
 .done {
     position: absolute;
     height: 1em;
-    left:0;
+    left: 0;
     top: 0;
     z-index: 2;
     background-color: var(--gold);
@@ -706,7 +709,7 @@ footer .chapter + .chapter {
     top: 1.4em;
 }
 
-.graphic .endDate{
+.graphic .endDate {
     right: 0;
 }
 
@@ -742,17 +745,17 @@ footer .chapter + .chapter {
     padding: 0.7em;
 }
 
-.cardProjects .itemWrap{
+.cardProjects .itemWrap {
     margin-bottom: 0.5em;
 }
 
 .pausaProjects h2,
 .pausaProjects h5,
-.pausaProjects .a-link{
+.pausaProjects .a-link {
     color: var(--darkGray);
 }
 
-.pausaProjects .a-link{
+.pausaProjects .a-link {
     border-color: var(--darkGray);
 }
 
@@ -769,14 +772,13 @@ footer .chapter + .chapter {
 }
 
 
-
 .endProjects h2,
 .endProjects h5,
-.endProjects .a-link{
+.endProjects .a-link {
     color: var(--blue);
 }
 
-.endProjects .a-link{
+.endProjects .a-link {
     border-color: var(--blue);
 }
 
@@ -794,7 +796,7 @@ footer .chapter + .chapter {
     padding: 0.4em;
 }
 
-.cardMessage  .item {
+.cardMessage .item {
     border: 1px solid black;
     padding: 0.7em;
 }
@@ -815,7 +817,7 @@ footer .chapter + .chapter {
     color: var(--blue);
 }
 
-.lastMessage .button a{
+.lastMessage .button a {
     color: var(--blue);
 }
 
@@ -870,7 +872,7 @@ footer .chapter + .chapter {
     margin-top: 1.5em;
 }
 
-.frame h2.inFrame{
+.frame h2.inFrame {
     margin: 0.1em 0;
 }
 
@@ -894,7 +896,7 @@ footer .chapter + .chapter {
     width: calc(50% - 0.5em);
 }
 
-.stringWrap > div + div{
+.stringWrap > div + div {
     margin-left: 0.4em;
 }
 
@@ -915,7 +917,7 @@ footer .chapter + .chapter {
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.stringBlock + .stringBlock{
+.stringBlock + .stringBlock {
     margin-top: 2em;
 }
 
@@ -937,7 +939,7 @@ footer .chapter + .chapter {
     color: white;
 }
 
-.buttonBlock .stringWrap{
+.buttonBlock .stringWrap {
     display: block;
 }
 
@@ -960,7 +962,7 @@ footer .chapter + .chapter {
 .stagesItem {
     background-color: var(--gold);
     padding: 1em;
-    margin-bottom:0.6em;
+    margin-bottom: 0.6em;
     /*height: 20em;*/
     position: relative;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -1068,17 +1070,17 @@ h3.inFrame {
     margin-top: 1em;
 }
 
-.b-success a{
+.b-success a {
     background-color: var(--green);
     color: white;
 }
 
-.b-warging a{
+.b-warging a {
     background-color: var(--yellow);
     color: var(--gold);
 }
 
-.b-danger a{
+.b-danger a {
     background-color: var(--warning);
     color: white;
 }
@@ -1125,7 +1127,7 @@ h3.inFrame {
     margin: 0.3em 0;
 }
 
-.itemDiscussion h3{
+.itemDiscussion h3 {
     font-size: 1.6rem;
     color: var(--darkGray3);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -1144,7 +1146,7 @@ h3.inFrame {
     display: none;
 }
 
-.adminPanel > .myContainer > .wrap{
+.adminPanel > .myContainer > .wrap {
     margin: 2em 0;
 }
 
@@ -1183,7 +1185,7 @@ h3.inFrame {
     color: var(--green);
 }
 
-.adminPanel .itemBlock h4 a{
+.adminPanel .itemBlock h4 a {
     padding: 0 0.5em;
 }
 
@@ -1197,7 +1199,7 @@ h3.inFrame {
     text-align: center;
 }
 
-.itemBlock .rightBlock .user-button a.a-link{
+.itemBlock .rightBlock .user-button a.a-link {
     text-align: right;
     margin-right: 0;
 }
@@ -1212,7 +1214,7 @@ h3.inFrame {
     width: 100%;
 }
 
-.adminPanel .chapter2{
+.adminPanel .chapter2 {
     position: absolute;
     bottom: 2em;
     left: 0;
@@ -1234,11 +1236,11 @@ h3.inFrame {
     color: white;
 }
 
-.work .button-admin a{
+.work .button-admin a {
     background-color: var(--green);
 }
 
-.decor .button-admin a{
+.decor .button-admin a {
     background-color: var(--gold);
 }
 
@@ -1269,7 +1271,7 @@ h3.inFrame {
 }
 
 .userItem {
-    background-color: var(--userFon);
+    background-color: var(--lightGray);
     padding: 1em 1em;
     font-family: Oswald;
     filter: drop-shadow(3px 4px 4px rgba(0, 0, 0, 0.25));
@@ -1320,13 +1322,25 @@ h3.inFrame {
     padding-top: 1em;
 }
 
-.clients .user-button a{
+.clients .user-button a {
     background-color: var(--gold);
     width: 16em;
     margin: 0 auto;
     color: white;
     padding: 0.3em 1.5em 0.4em;
     border-radius: 0.2em;
+}
+
+.clients .user-button.leftButton a {
+    background-color: var(--gold);
+    display: inline;
+    color: white;
+    padding: 0.3em 1.5em 0.4em;
+    border-radius: 0.2em;
+}
+
+#updatePosition .field-updatepositionform-position {
+    width: 80%;
 }
 
 .userMenu > .wrapMenu > a {
@@ -1336,8 +1350,13 @@ h3.inFrame {
 }
 
 .userMenu > .wrapMenu {
-    background-color: var(--userFon2);
+    background-color: var(--lightGray);
     padding: 0.3em 0.5em;
+    margin-bottom: 1em;
+}
+
+.staff .userMenu > .wrapMenu {
+    background-color: var(--lightYellow);
 }
 
 .userMenu > .wrapMenu > a.active {
@@ -1349,7 +1368,7 @@ h3.inFrame {
 }
 
 .staff .userItem {
-    background-color: var(--ligthGold);
+    background-color: var(--lightYellow);
 }
 
 .staff .user-button {
@@ -1365,7 +1384,7 @@ h3.inFrame {
 }
 
 .adminPage .graphic .startDate, .graphic .endDate,
-.adminPage .now{
+.adminPage .now {
     color: white;
 }
 
@@ -1373,7 +1392,7 @@ h3.inFrame {
     padding-top: 1em;
 }
 
-.admin-form label{
+.admin-form label {
     color: white;
 }
 
@@ -1388,18 +1407,28 @@ h3.inFrame {
     color: white;
 }
 
-.clients .add-button a{
+.clients .add-button a {
     font-size: 1.2em;
     background-color: var(--gold);
     padding: 0.3em 1.5em 0.4em;
     border-radius: 0.2em;
 }
 
-.staff .add-button a{
+.staff .add-button a {
     font-size: 1.2em;
     background-color: var(--green);
     padding: 0.3em 1.5em 0.4em;
     border-radius: 0.2em;
+}
+
+.adminPage .userFrame {
+    border: 1px solid white;
+    background-color: var(--lightGray);
+}
+
+.adminPage .staff .userFrame {
+    border: 1px solid white;
+     background-color: var(--lightYellow);
 }
 
 .userFrame {
@@ -1432,7 +1461,7 @@ h3.inFrame {
     margin: 1.3em 0;
 }
 
-.oneUser  .itemWrap{
+.oneUser .itemWrap {
     padding: 1em 0 0.5em;
 }
 
@@ -1469,18 +1498,18 @@ h3.inFrame {
     transition: 1s;
 }
 
-.paused .block-link:hover  img {
+.paused .block-link:hover img {
     filter: none;
     transition: 1s;
 }
 
 
-.paused .block-link:hover  p {
+.paused .block-link:hover p {
     color: inherit;
     transition: 1s;
 }
 
-.paused .block-link:hover  .done {
+.paused .block-link:hover .done {
     background-color: var(--gold);
     transition: 1s;
 }
@@ -1497,7 +1526,7 @@ h3.inFrame {
 }
 
 .input-group p,
-.bottom-block p{
+.bottom-block p {
     text-align: center;
     font-family: Oswald;
     padding: 0.5em;
@@ -1533,7 +1562,7 @@ h3.inFrame {
 
 .gold-button a {
     text-transform: uppercase;
-    display:block;
+    display: block;
     text-align: center;
     background-color: var(--gold);
     color: #fff;

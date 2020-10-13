@@ -8,7 +8,7 @@ use Yii;
 use yii\web\Controller;
 use app\components\AdminBase;
 use app\models\Clients;
-use app\models\forms\AdminEditForm;
+use app\models\forms\client\AdminEditForm;
 
 class ClientController extends Controller
 {
@@ -21,6 +21,7 @@ class ClientController extends Controller
         $clients = Clients::find()
             ->orderBy('created_at desc')
             ->all();
+
 
         return $this->render('index', [
             'clients' => $clients,
@@ -73,28 +74,18 @@ class ClientController extends Controller
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $client = Clients::getOne($id);
+        $modelUpdateFIO = new AdminEditForm();
+        $modelUpdateFIO->id = $client->id;
+        if ($modelUpdateFIO->load(Yii::$app->request->post())) {
+
+            if ($modelUpdateFIO->save()) {
+                return $this->refresh();
+            }
+        }
 
         return $this->render('view', [
             'user' => $client,
-        ]);
-    }
-
-
-    public function actionUpdate($id)
-    {
-        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
-        $client = Clients::find()->where(['id' => $id])->one();
-        $model = new AdminEditForm();
-        $model->id = $client->id;
-
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) {
-                return $this->redirect(['/admin/client/view', 'id' => $id]);
-            }
-        }
-        return $this->render('update', [
-            'model' => $model,
-            'client' => $client,
+            'modelUpdateFIO' => $modelUpdateFIO,
         ]);
     }
 

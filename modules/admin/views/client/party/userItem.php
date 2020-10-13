@@ -39,7 +39,7 @@ use yii\helpers\Url;
         <p><a href="#" class="a-link">Законченных проектов: 3</a></p>
         <p><a href="#" class="a-link">Проектов в работе: 1</a></p>
         <p><a href="#" class="a-link">Проектов на паузе: 0</a></p>
-        <div class="user-button">
+        <div class="user-button leftButton">
             <a class="a-link" href="#">Добавить проект</a>
         </div>
     </div>

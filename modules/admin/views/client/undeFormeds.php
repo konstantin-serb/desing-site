@@ -25,12 +25,16 @@ $this->title = 'Недооформленные заказчики';
             <div class="userMenu">
 <!--                Меню юзера-->
                 <?=$this->render('/client/party/userMenu')?>
-                <div class="usersWrap">
+                <div class="usersWrap" <?php if(empty($undeformeds) || count($undeformeds) < 5) echo 'style="justify-content:center;"';?>>
+                    <?php if(!empty($undeformeds)):?>
                     <?php foreach($undeformeds as $user):?>
                         <?=$this->render('/client/party/userItem', [
                             'client' => $user,
                         ])?>
                     <?php endforeach;?>
+                    <?php else:?>
+                    <h3>Нет недооформленных заказчиков</h3>
+                    <?php endif;?>
                 </div>
 
             </div>

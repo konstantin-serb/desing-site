@@ -1,7 +1,7 @@
 <?php
 /**
- * @var $user \app\models\Clients
- * @var $modelUpdateFIO \app\models\forms\AdminEditForm
+ * @var $user \app\models\Employee
+ * @var $modelUpdateFIO \app\models\forms\employee\AdminEditForm
  */
 
 use yii\helpers\Url;
@@ -16,7 +16,7 @@ $modelUpdateFIO->lastName = $user->last_name;
 ?>
 
 <div class="wrapMenu">
-    <a class="a-link" href="<?=Url::to(['/admin/client'])?>">Все заказчики</a>
+    <a class="a-link" href="<?=Url::to(['/admin/staff'])?>">Все сотрудники</a>
 
     <?php Modal::begin([
         'size' => 'modal-lg',
@@ -40,6 +40,7 @@ $modelUpdateFIO->lastName = $user->last_name;
         <div class="form-group">
             <?=$form->field($modelUpdateFIO, 'lastName')->label('Отчество')->textInput()?>
         </div>
+
 
         <br>
         <button type="submit" class="submit" name="add-button">Сохранить</button>

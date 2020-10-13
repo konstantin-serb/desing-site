@@ -5,7 +5,9 @@ namespace app\modules\admin\controllers;
 
 use app\components\AdminBase;
 use app\models\Employee;
+use app\models\forms\employee\AdminEditForm;
 use app\models\forms\employee\SignupEmployeeForm;
+use app\models\forms\employee\UpdatePositionForm;
 use app\models\forms\position\AddPositionForm;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -102,8 +104,42 @@ class StaffController extends Controller
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $user = Employee::findOne($id);
+        $modelUpdateFIO = new AdminEditForm();
+
+        $modelUpdateFIO->id = $id;
+
+        if ($modelUpdateFIO->load(Yii::$app->request->post())) {
+            if ($modelUpdateFIO->save()) {
+                return $this->refresh();
+            }
+        }
 
         return $this->render('view', [
+            'user' => $user,
+            'modelUpdateFIO' => $modelUpdateFIO,
+
+        ]);
+    }
+
+
+    public function actionEditPosition($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $user = Employee::findOne($id);
+        $model = new UpdatePositionForm();
+        $allPosition = Position::find()->orderBy('id')->all();
+        $position = ArrayHelper::map($allPosition, 'id', 'position');
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model->id = $id;
+            if ($model->save()) {
+                return $this->redirect(['/admin/staff/view', 'id' => $id]);
+            }
+        }
+
+        return $this->render('edit-position', [
+            'position' => $position,
+            'model' => $model,
             'user' => $user,
         ]);
     }
