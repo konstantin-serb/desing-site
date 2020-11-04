@@ -7,10 +7,13 @@ $this->title = 'Проекты';
 ?>
 
 <div class="mainContent">
-    <section class="top">
+    <section class="top clients">
         <div class="myContainer">
             <h2>Проекты</h2>
             <h5>Страница управления проектами</h5>
+            <div class="add-button">
+                <a class="a-link" href="<?=Url::to(['/admin/project/create'])?>">Добавить новый проект</a>
+            </div>
             <hr>
         </div>
     </section>

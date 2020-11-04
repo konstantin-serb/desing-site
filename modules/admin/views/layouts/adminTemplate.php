@@ -12,6 +12,8 @@ DesignAsset::register($this);
 
 if (empty($this->params['activePage'])) {
     $this->params['activePage'] = '';
+
+
 }
 ?>
 <?php $this->beginPage() ?>

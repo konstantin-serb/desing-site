@@ -27,6 +27,78 @@ hr {
     border: 1px solid;
 }
 
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.button-group > .a-link {
+    margin: 0.3em;
+}
+/*hr {*/
+/*    height: 1px;*/
+/*    overflow: hidden;*/
+/*    font-size: 0;*/
+/*    line-height: 0;*/
+/*    background: #ccc;*/
+/*    margin: 50px 0;*/
+/*    border: 0;*/
+/*}*/
+
+/* css for calendar */
+.b-calendar {
+    font: 14px/1.2 Arial, sans-serif;
+    background: #f2f2f2;
+}
+.b-calendar--along {
+    width: 300px;
+    padding: 30px 40px;
+    /*margin: 50px auto;*/
+}
+.b-calendar--many {
+    padding: 20px;
+    /*width: 250px;*/
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+}
+.b-calendar__title {
+    text-align: center;
+    margin: 0 0 20px;
+}
+.b-calendar__year {
+    font-weight: bold;
+    color: #333;
+}
+.b-calendar__tb {
+    width: 100%;
+}
+.b-calendar__head {
+    font: bold 14px/1.2 Arial, sans-serif;
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #c0c0c0;
+}
+.b-calendar__np {
+    padding: 5px;
+}
+.b-calendar__day {
+    font: 14px/1.2 Arial, sans-serif;
+    padding: 8px 5px;
+    text-align: left;
+}
+.b-calendar__weekend {
+    color: red;
+}
+
+.calendar-wrap {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
 .userPage hr {
     border-top: none;
 }
@@ -981,6 +1053,11 @@ footer .chapter + .chapter {
     padding-right: -5px;
 }
 
+svg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 .stagesItem.stageDone svg > path {
     fill: var(--lightGreen);
 }
@@ -1587,6 +1664,126 @@ h3.inFrame {
     width: 10em;
     margin: 1em auto;
 }
+
+.create-subtitle {
+    font-size: 2.2rem;
+    color: var(--warning);
+    margin: 0.5em 0;
+}
+
+.formStyle.all-width {
+    width: 100%;
+}
+
+.all-width input {
+    background-color: white;
+    font-family: Oswald;
+}
+
+.all-width label {
+    color: white;
+}
+
+.addProject select {
+    width: 100%;
+    border: 1px solid #ccc;
+    font-family: Oswald;
+}
+
+.mod-group div:last-child a {
+    background-color: white;
+    display:block;
+    width: auto;
+    text-align: center;
+    padding: 0.2em;
+    font-size: 1.5rem;
+    height: 1.67em;
+    margin-top: 0.77em;
+    margin-left: 0.5em;
+}
+
+.mod-group {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.price-group .mod-group {
+    margin-left:0;
+}
+
+.mod-group div:last-child {
+    width: 25%;
+}
+
+.photoDate {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.addProject .form-group + .form-group {
+    margin-top: 1em;
+}
+
+.result {
+    background-color: var(--gray);
+    margin-top: 0.5em;
+    text-align: center;
+    width: 100%;
+    padding: 0.5em 0;
+}
+
+.contribution-wrap {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.contrColumt {
+    width: 19%;
+}
+
+.endSelect label {
+    color: white;
+}
+
+.formStyle  button {
+    width: 100%;
+    padding: 0.7em 0;
+}
+
+h5.helpMessage {
+    font-size: 1.1em;
+}
+
+.svgIcon {
+    display: inline-block;
+    height: 1.4em;
+    width: 1.4em;
+    vertical-align: -0.4em;
+}
+
+.projectPhoto {
+    position: relative;
+}
+
+.block-link-abs {
+    position: absolute;
+    right: 1em;
+    top: 1em;
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+h2 .svgIcon {
+    vertical-align: -0.15em;
+}
+
+
+
+
+
+
 
 
 

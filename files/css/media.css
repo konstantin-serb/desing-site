@@ -44,7 +44,31 @@
     .oneClient .gold-button {
         width: 20em;
     }
+
+    #price__group1 {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1em;
+    }
+
+    #price__group1 .form-group:last-child {
+        margin-top: 0;
+    }
+
+    #price__group1 div:first-child {
+        width: 30%;
+        margin-right: 0.5em;
+    }
+
+
+
+
+
 }
+
+
+
+
 
 
 /*---------------------------------------660------------------------------------*/
@@ -95,6 +119,8 @@
     .usersWrap .userItem:nth-child(2n) {
         margin-right: 0;
     }
+
+
 
 
 
@@ -415,6 +441,42 @@
     .formStyle.modal-form {
         width: 80%;
     }
+
+    #block1 .form-group {
+        margin-top: 0;
+    }
+
+    #block1,
+    #block2-2
+    {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+    }
+
+    .mod-group {
+        display: flex;
+        margin-left: 0.5em;
+    }
+
+    #block1 div:last-child a {
+        margin-top: 1.41em;
+    }
+
+    #block2-2 div:last-child
+    {
+        margin-top: 0;
+    }
+
+    #block2-1-1 div:last-child
+    {
+        margin-top: 0.9em;
+    }
+
+
+
+
+
 }
 
 
@@ -486,6 +548,23 @@
 
     .clients .centerBlock .user-button a{
         margin-left: 0;
+    }
+
+    .price-wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .price-wrap div:first-child {
+        margin-right: 0.5em;
+    }
+
+    #price__group2 {
+        width: 30%;
+    }
+
+    #price__group1 {
+        width: 69%;
     }
 }
 
@@ -565,6 +644,63 @@
         width: 80%;
         justify-content: space-between;
     }
+
+    #block2 {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #block2-1 {
+        margin-top: 1em;
+    }
+
+    #block2-2 {
+        margin-left: 0.5em;
+    }
+
+    #block2-1-1 {
+        margin-left: 0;
+    }
+
+    .wrap-group {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .price-group {
+        width: 120%;
+        margin-right: 0.5em;
+    }
+
+    .mod-group div:last-child {
+        width: 50%;
+    }
+
+    .mod-group div:last-child a {
+
+        margin-left: 0;
+    }
+
+    .plus-link {
+        margin-left: 0.5em;
+    }
+
+    #block2-2 div:last-child{
+        margin-left:0.5em;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }

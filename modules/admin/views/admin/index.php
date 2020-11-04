@@ -332,7 +332,7 @@ $this->title = 'Админпанель | Главная';
                     <h4><a href="#" class="a-link">Сайт</a></h4>
                     <div class="wrap">
                         <div class="chapter1 chapter">
-                            <p><a href="#" class="a-link">Редактировать заголовок: <span class="">2</span></a></p>
+                            <p><a href="<?=Url::to(['/admin/calendar'])?>" class="a-link">Календарь</a></p>
                             <p><a href="#" class="a-link">Редактировать футер: <span class="">2</span></a></p>
                             <p><a href="#" class="a-link">Редактировать контакты: <span class="">2</span></a></p>
                             <p><a href="#" class="a-link">Редактировать слайдер: <span class="">2</span></a></p>
