@@ -319,7 +319,7 @@ select.form-control {
     padding: 0.3em
 }
 
-.admin-form .label-modal p {
+.mod-group .label-modal {
     text-align: center;
     color: var(--green);
 }
@@ -1712,7 +1712,7 @@ h3.inFrame {
     margin-left:0;
 }
 
-.mod-group div:last-child {
+.form-group.plus-link {
     width: 25%;
 }
 
@@ -1778,6 +1778,7 @@ h5.helpMessage {
 h2 .svgIcon {
     vertical-align: -0.15em;
 }
+
 
 
 

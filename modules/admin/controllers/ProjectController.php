@@ -3,11 +3,13 @@
 namespace app\modules\admin\controllers;
 
 use app\components\AdminBase;
+use app\models\City;
 use app\models\forms\admin\AddProjectForm;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use app\models\Clients;
+
 
 class ProjectController extends Controller
 {
@@ -39,34 +41,25 @@ class ProjectController extends Controller
         foreach ($customerObjects as $object) {
             $customers += [$object->id => $object->surname. ' '. $object->user_name . ' ' . $object->last_name];
         }
-
+        $cityObject = City::find()->orderBy('city asc')->all();
+        $city = ArrayHelper::map($cityObject, 'id', 'city');
 
 
         if ($model->load(Yii::$app->request->post())) {
-            dumper($model); die;
+            if ($model->save()) {
+                return $this->redirect(['/admin/project/index']);
+            }
         }
 
         return $this->render('create', [
             'model' => $model,
             'customers' => $customers,
+            'city' => $city,
         ]);
     }
 
 
-    public function actionCalendar() {
-        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
-        //Часовой пояс
-        date_default_timezone_set("Asia/Tbilisi");
-
-//        $wday = date('t');
-//
-//        dumper($wday);
-//        die;
-
-
-        return $this->render('calendar');
-    }
 
 
 }

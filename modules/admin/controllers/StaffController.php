@@ -56,7 +56,6 @@ class StaffController extends Controller
         $model = new AddPositionForm();
 
         $model->position = Yii::$app->request->post('params')['position'];
-        $value = $model->value();
 
         if ($model->validate()) {
             if ($model->save()) {

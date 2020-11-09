@@ -60,6 +60,22 @@ class AddClientForm extends Model
         }
     }
 
+
+    public function value()
+    {
+        $array = Clients::find()->orderBy('id desc')->all();
+
+        $value = '';
+
+        foreach($array as $item) {
+            $value .= '<option value="'.$item->id.'">'
+                .$item->surname.' '.$item->user_name. ' ' . $item->last_name
+                .'</option>';
+        }
+
+        return $value;
+    }
+
 }
 
 

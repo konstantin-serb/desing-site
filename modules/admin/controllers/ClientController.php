@@ -9,6 +9,7 @@ use yii\web\Controller;
 use app\components\AdminBase;
 use app\models\Clients;
 use app\models\forms\client\AdminEditForm;
+use yii\web\Response;
 
 class ClientController extends Controller
 {
@@ -42,6 +43,24 @@ class ClientController extends Controller
         return $this->render('add', [
             'model' => $model,
         ]);
+    }
+
+    public function actionAddAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = new AddClientForm();
+        $model->surname = Yii::$app->request->post('params')['surname'];
+        $model->userName = Yii::$app->request->post('params')['name'];
+        $model->lastName = Yii::$app->request->post('params')['lastName'];
+
+        if ($model->save()) {
+            $value = $model->value();
+            return [
+                'success' => true,
+                'value' => $value,
+            ];
+        }
     }
 
 

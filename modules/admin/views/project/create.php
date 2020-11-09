@@ -1,12 +1,31 @@
 <?php
 /**
  * @var $model \app\models\forms\admin\AddProjectForm
+ * @var $customers \app\models\Clients
+ * @var $city \app\models\City
+ *
  */
 
 $this->title = 'Создание нового проекта';
 
 use dosamigos\datepicker\DatePicker;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Modal;
+
+$model->pricePart1 = 20;
+$model->pricePart2 = 20;
+$model->pricePart3 = 20;
+$model->pricePart4 = 20;
+$model->pricePart5 = 20;
+
+$this->registerJsFile('/files/js/addCustomerAJAX.js', [
+    'depends' => \yii\web\JqueryAsset::class,
+]);
+
+$this->registerJsFile('/files/js/addCityAJAX.js', [
+    'depends' => \yii\web\JqueryAsset::class,
+]);
+
 
 ?>
 
@@ -38,21 +57,47 @@ use yii\widgets\ActiveForm;
                 <div class="formBlock">
                     <div class="input-block" id="block1">
                         <div class="form-group field-simple-position">
-                            <label class="control-label">Введите идентификатор проекта</label>
-                            <input type="text" class="form-control">
+                            <?=$form->field($model, 'projectId')->textInput()
+                            ->label('Введите идентификатор проекта')?>
                             <div class="help-block"></div>
                         </div>
                         <div class="form-group mod-group" id="block1-2">
                             <?=$form->field($model, 'customer')->dropDownList($customers)?>
-<!--                            <div class="form-group field-simple-position">-->
-<!--                                <label class="control-label">Заказчик</label>-->
-<!--                                <select class="form-control">-->
-<!--                                    <option value="1">Иванов Иван Иванович</option>-->
-<!--                                </select>-->
-<!--                                <div class="help-block"></div>-->
-<!--                            </div>-->
+
                             <div class="form-group plus-link">
-                                <a class="block-link">+</a>
+                                <?php Modal::begin([
+                                        'size' => 'modal-lg',
+                                    'header' => '<h2>Добавить нового заказчка</h2>',
+                                    'toggleButton' => [
+                                            'label' => '+',
+                                        'tag' => 'a',
+                                        'class' => 'a-link plus-button',
+                                    ],
+                                ])?>
+                                <div id="successMessage">
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="label-modal">Фамилия</label>
+                                    <input type="text" id="customer-surname"
+                                           class="form-control"  aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label-modal">Имя</label>
+                                    <input type="text" id="customer-name"
+                                           class="form-control"  aria-required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label class="label-modal">Отчество</label>
+                                    <input type="text" id="customer-lastName"
+                                           class="form-control"  aria-required="true">
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button id="addCustomer" type="button" class="btn btn-primary">Сохранить</button>
+                                </div>
+
+                                <?php Modal::end();?>
                             </div>
                         </div>
                     </div>
@@ -60,28 +105,49 @@ use yii\widgets\ActiveForm;
                     <div class="input-block" id="block2">
                         <div class="form-group" id="block2-1">
                             <div class="form-group">
-                                <label class="control-label">Полное название проекта</label>
-                                <input type="text" class="form-control">
+                                <?=$form->field($model, 'nameProject')->textInput()->label('
+                                Полное название проекта')?>
                                 <div class="help-block"></div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Площадь, на которую делается проект</label>
-                                <input type="text" class="form-control">
+                                <?=$form->field($model, 'area')
+                                ->textInput()->label('Площадь, на которую делается проект')?>
                                 <div class="help-block"></div>
                             </div>
                             <div class="form-group mod-group" id="block2-1-1">
                                 <div class="form-group field-simple-position">
-                                    <label class="control-label">Город</label>
-                                    <select class="form-control">
-                                        <option value="1">Киев</option>
-                                    </select>
-                                    <div class="help-block"></div>
+                                    <?=$form->field($model, 'city')->dropDownList($city)?>
+
                                 </div>
                                 <div class="form-group plus-link">
-                                    <a class="block-link">+</a>
+                                    <?php Modal::begin([
+                                        'size' => 'modal-lg',
+                                        'header' => '<h2>Добавить город</h2>',
+                                        'toggleButton' => [
+                                            'label' => '+',
+                                            'tag' => 'a',
+                                            'class' => 'a-link plus-button',
+                                        ],
+                                    ])?>
+                                    <div id="successCityMessage">
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="label-modal">Город</label>
+                                        <input type="text" id="city"
+                                               class="form-control"  aria-required="true">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button id="addCity" type="button" class="btn btn-primary">Добавить</button>
+                                    </div>
+
+                                    <?php Modal::end();?>
                                 </div>
                             </div>
+
                         </div>
+
                         <div class="form-group" id="block2-2">
                             <div class="form-group">
 
@@ -100,12 +166,16 @@ use yii\widgets\ActiveForm;
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Дата завершения проекта, дней</label>
-                                <input type="text" class="form-control">
+                                <?=$form->field($model, 'length')
+                                ->textInput()->label('Дата завершения проекта, дней')?>
                                 <div class="help-block"></div>
                             </div>
+
                         </div>
                     </div>
+                </div>
+                <div class="form-group">
+                    <?=$form->field($model, 'image')->fileInput()->label('Выберете фото для проекта')?>
                 </div>
                 <br>
                 <hr>
@@ -119,12 +189,14 @@ use yii\widgets\ActiveForm;
                                 <div id="price__group1">
                                     <div class="form-group">
                                         <label>Цифрой</label>
-                                        <input type="text">
+                                        <?=$form->field($model, 'priceDigital')
+                                            ->label(false)?>
                                         <div class="help-block"></div>
                                     </div>
                                     <div class="form-group">
                                         <label>Словами</label>
-                                        <input type="text">
+                                        <?=$form->field($model, 'priceWords')
+                                            ->label(false)?>
                                         <div class="help-block"></div>
                                     </div>
                                 </div>
@@ -148,46 +220,31 @@ use yii\widgets\ActiveForm;
                                 <div class="contrColumt">
                                     <div class="form-group">
                                         <label>1(%)</label>
-                                        <input type="text" placeholder="20">
-                                        <div class="result">
-                                            <span>300</span>
-                                        </div>
+                                        <?=$form->field($model, 'pricePart1')->label(false)?>
                                     </div>
                                 </div>
                                 <div class="contrColumt">
                                     <div class="form-group">
                                         <label>2(%)</label>
-                                        <input type="text" placeholder="20">
-                                        <div class="result">
-                                            <span>300</span>
-                                        </div>
+                                        <?=$form->field($model, 'pricePart2')->label(false)?>
                                     </div>
                                 </div>
                                 <div class="contrColumt">
                                     <div class="form-group">
                                         <label>3(%)</label>
-                                        <input type="text" placeholder="20">
-                                        <div class="result">
-                                            <span>300</span>
-                                        </div>
+                                        <?=$form->field($model, 'pricePart3')->label(false)?>
                                     </div>
                                 </div>
                                 <div class="contrColumt">
                                     <div class="form-group">
                                         <label>4(%)</label>
-                                        <input type="text" placeholder="20">
-                                        <div class="result">
-                                            <span>300</span>
-                                        </div>
+                                        <?=$form->field($model, 'pricePart4')->label(false)?>
                                     </div>
                                 </div>
                                 <div class="contrColumt">
                                     <div class="form-group">
                                         <label>5(%)</label>
-                                        <input type="text" placeholder="20">
-                                        <div class="result">
-                                            <span>300</span>
-                                        </div>
+                                        <?=$form->field($model, 'pricePart5')->label(false)?>
                                     </div>
                                 </div>
                             </div>
