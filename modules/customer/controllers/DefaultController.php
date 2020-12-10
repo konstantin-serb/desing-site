@@ -48,6 +48,7 @@ class DefaultController extends Controller
         if ($modelPhoto->load(Yii::$app->request->post()))
         {
             $avatar = UploadedFile::getInstance($modelPhoto, 'avatar');
+
             if (is_uploaded_file($avatar->tempName)) {
                 if ($modelPhoto->save($avatar, $customerId)) {
                     return $this->refresh();

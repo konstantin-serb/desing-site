@@ -22,10 +22,12 @@ class m200921_065822_create_user_table extends Migration
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
             'email' => $this->string()->notNull()->unique(),
-
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
+            'admin_status' => $this->integer(),
+            'lastName' => $this->string(),
+            'surname' => $this->string(),
         ], $tableOptions);
     }
 

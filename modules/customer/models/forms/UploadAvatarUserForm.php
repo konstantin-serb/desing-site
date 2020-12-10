@@ -1,8 +1,6 @@
 <?php
 
-
 namespace app\modules\customer\models\forms;
-
 
 use app\components\Storage;
 use app\models\Clients;
@@ -10,7 +8,6 @@ use app\models\Employee;
 use app\models\User;
 use Yii;
 use yii\base\Model;
-
 
 class UploadAvatarUserForm extends Model
 {

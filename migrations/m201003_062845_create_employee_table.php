@@ -26,7 +26,9 @@ class m201003_062845_create_employee_table extends Migration
             'register_date' => $this->integer(),
             'status' => $this->integer(),
             'rating' => $this->integer(),
-            'position' => $this->string(),
+            'position' => $this->integer(),
+            'avatar' => $this->string(),
+            'info' => $this->text(),
         ]);
 
         // creates index for column `user_id`

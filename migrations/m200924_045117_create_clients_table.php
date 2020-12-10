@@ -25,6 +25,7 @@ class m200924_045117_create_clients_table extends Migration
             'created_at' => $this->integer(),
             'register_date' => $this->integer(),
             'status' => $this->integer(),
+            'avatar' => $this->string(),
         ]);
 
         // creates index for column `user_id`

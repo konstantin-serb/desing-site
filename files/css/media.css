@@ -60,6 +60,15 @@
         margin-right: 0.5em;
     }
 
+    .doubleLink a{
+        width: 10em;
+    }
+
+    .doubleLink {
+        width: 25em;
+    }
+
+
 
 
 
@@ -118,6 +127,50 @@
 
     .usersWrap .userItem:nth-child(2n) {
         margin-right: 0;
+    }
+
+    .groupForFlex {
+        display:flex;
+    }
+
+    .flex__length {
+        margin-left: 1em;
+    }
+
+    .flex__length.cityInput {
+        margin-left: 0;
+    }
+
+
+    .button-container{
+        width:50%;
+        margin:0 auto;
+    }
+
+    .doubleColumn {
+        flex-direction: row;
+        justify-content: space-between;
+
+    }
+
+    .doubleColumn > div {
+        width:49%;
+    }
+
+    .doubleColumn > .columnContract.left {
+        text-align: left;
+    }
+
+    .doubleColumn > .columnContract.left h4{
+        text-align: left;
+    }
+
+    .doubleColumn > .columnContract.right {
+        text-align: right;
+    }
+
+    .doubleColumn > .columnContract.right h4{
+        text-align: right;
     }
 
 
@@ -432,6 +485,11 @@
         width: 70%;
     }
 
+    .docs .form-group input {
+        width: 100%;
+    }
+
+
     .staff .staffInfo h3,
     .staff .staffInfo p,
     .staff .itemBody p{
@@ -473,10 +531,38 @@
         /*margin-top: 0.9em;*/
     }
 
+    .formStyleBig {
+        width: 90%;
+        margin: 0.5em auto;
+    }
 
+    .docs .formStyleBig {
+        width: 100%;
+        margin: 0.5em 0;
+    }
 
+    .formStyleBig .form-group {
+        margin: 0.5em 0;
+    }
 
+    .buttonGroup1 {
+        width: 10em;
+        margin: 0 auto;
+    }
 
+    #hiddenContracts .wrap {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #hiddenContracts .wrap > div {
+        width: 100%;
+    }
+
+    .centerBlockInputs {
+        width: 60%;
+        margin: 0 auto;
+    }
 }
 
 
@@ -565,6 +651,11 @@
 
     #price__group1 {
         width: 69%;
+    }
+
+    .doc_content {
+        max-height: 20em;
+        overflow: scroll;
     }
 }
 
@@ -682,7 +773,7 @@
     }
 
     .plus-link {
-        margin-left: 0.5em;
+        /*margin-left: 0.5em;*/
     }
 
     #block2-2 div:last-child{

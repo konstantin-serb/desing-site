@@ -36,6 +36,7 @@ hr {
 .button-group > .a-link {
     margin: 0.3em;
 }
+
 /*hr {*/
 /*    height: 1px;*/
 /*    overflow: hidden;*/
@@ -51,11 +52,13 @@ hr {
     font: 14px/1.2 Arial, sans-serif;
     background: #f2f2f2;
 }
+
 .b-calendar--along {
     width: 300px;
     padding: 30px 40px;
     /*margin: 50px auto;*/
 }
+
 .b-calendar--many {
     padding: 20px;
     /*width: 250px;*/
@@ -63,31 +66,38 @@ hr {
     vertical-align: top;
     margin: 10px;
 }
+
 .b-calendar__title {
     text-align: center;
     margin: 0 0 20px;
 }
+
 .b-calendar__year {
     font-weight: bold;
     color: #333;
 }
+
 .b-calendar__tb {
     width: 100%;
 }
+
 .b-calendar__head {
     font: bold 14px/1.2 Arial, sans-serif;
     padding: 5px;
     text-align: left;
     border-bottom: 1px solid #c0c0c0;
 }
+
 .b-calendar__np {
     padding: 5px;
 }
+
 .b-calendar__day {
     font: 14px/1.2 Arial, sans-serif;
     padding: 8px 5px;
     text-align: left;
 }
+
 .b-calendar__weekend {
     color: red;
 }
@@ -216,6 +226,7 @@ img {
 .block-link {
     text-decoration: none;
     color: inherit;
+    cursor: pointer;
 }
 
 .block-link:hover {
@@ -319,7 +330,9 @@ select.form-control {
     padding: 0.3em
 }
 
-.mod-group .label-modal {
+.formStyle.label-modal label,
+.mod-group .label-modal,
+.modal-lab .label-modal {
     text-align: center;
     color: var(--green);
 }
@@ -346,13 +359,14 @@ input:focus {
     margin-top: 1.5em;
 }
 
-.formStyle label {
+label {
     display: block;
     text-align: center;
     margin-bottom: 0.5em;
     color: var(--gray);
     font-weight: 300;
     font-size: 1.1rem;
+    font-family: Oswald;
 }
 
 .formStyle button {
@@ -833,6 +847,10 @@ footer .chapter + .chapter {
 
 .a-link:hover {
     color: inherit;
+}
+
+.bottom-2 {
+    font-size: 0.9rem;
 }
 
 .pausaProjects .done {
@@ -1484,7 +1502,8 @@ h3.inFrame {
     color: white;
 }
 
-.clients .add-button a {
+.clients .add-button a,
+.stages .add-button a {
     font-size: 1.2em;
     background-color: var(--gold);
     padding: 0.3em 1.5em 0.4em;
@@ -1505,7 +1524,7 @@ h3.inFrame {
 
 .adminPage .staff .userFrame {
     border: 1px solid white;
-     background-color: var(--lightYellow);
+    background-color: var(--lightYellow);
 }
 
 .userFrame {
@@ -1603,11 +1622,16 @@ h3.inFrame {
 }
 
 .input-group p,
+.modalInput,
 .bottom-block p {
     text-align: center;
     font-family: Oswald;
     padding: 0.5em;
+}
 
+.modalInput {
+    font-size: 1.2rem;
+    height: 2em;
 }
 
 .client-info h5.grey {
@@ -1692,7 +1716,7 @@ h3.inFrame {
 
 .mod-group div:last-child a {
     background-color: white;
-    display:block;
+    display: block;
     width: auto;
     text-align: center;
     padding: 0.2em;
@@ -1709,7 +1733,7 @@ h3.inFrame {
 }
 
 .price-group .mod-group {
-    margin-left:0;
+    margin-left: 0;
 }
 
 .form-group.plus-link {
@@ -1734,7 +1758,7 @@ h3.inFrame {
 }
 
 .contribution-wrap {
-    display:flex;
+    display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
@@ -1747,7 +1771,7 @@ h3.inFrame {
     color: white;
 }
 
-.formStyle  button {
+.formStyle button {
     width: 100%;
     padding: 0.7em 0;
 }
@@ -1779,13 +1803,363 @@ h2 .svgIcon {
     vertical-align: -0.15em;
 }
 
+.count p {
+    text-align: center;
+    background-color: var(--lightGray);
+    padding: 0.5em 0;
+    color: red;
+}
+
+ .photoDate2 .control-label,
+ .label-modal{
+     color: green;
+ }
+
+ .photoDate2 .dow,
+ .photoDate2 .prev,
+ .photoDate2 .next {
+     color: var(--darkGray);
+ }
+
+.photoDate2 .day,
+.datepicker-switch{
+    color: goldenrod;
+    text-align: center;
+}
+
+.photoDate2 {
+    width: 280px;
+}
+
+.flex__length {
+    width: 100%;
+}
+
+.modal-footer .btn + .btn {
+    margin-top: 0.5em;
+     margin-left: 0;
+}
+
+.formStyle button.close-my{
+
+    background-color: white;
+    color: var(--darkGray2);
+    border:1px solid var(--darkGray2);
+
+}
+
+.mistake {
+    color: red;
+}
+
+.success-message {
+    text-align:center;
+    padding: 0.5em 0;
+    font-size: 1.3rem;
+    color: green;
+}
+
+.modalDoubleButton {
+    display: flex;
+    justify-content: center;
+}
+
+.modalDoubleButton button+button {
+    margin: 0 0.4em;
+}
+
+.modalDoubleButton button+a {
+    margin: 0 0.4em;
+}
+
+.formStyle.label-modal {
+    padding-bottom: 1em;
+}
+
+.modalDoubleButton button{
+    font-size: 1.1rem;
+    font-family: Oswald;
+    padding: 0.3em 1em;
+}
+
+.modalDoubleButton a{
+    font-size: 1.1rem;
+    font-family: Oswald;
+    padding: 0.3em 1em;
+}
+
+.btn-gold {
+    background-color: var(--gold);
+    color: white;
+}
+
+.btn-del {
+    background-color: red;
+    color: white;
+}
+
+.btn-orange {
+    background-color: var(--orange);
+    color: white;
+}
+
+.btn-orange:hover {
+    color: var(--lightYellow);
+}
+
+.hiddenInputs {
+    display: none;
+}
+
+.hidden-block {
+    transition: all 2s ease 0s;
+    border: 1px solid gray;
+    margin:1em 0.3em 0 0.3em;
+    padding: 1em;
+    background-color: var(--darkGray);
+}
+
+.mod-group div:last-child a.hidden-a {
+    margin-top: 0.4em;
+    margin-left: 0.2em;
+}
+
+.hidden-block .price-group {
+    margin-bottom: -1.9em;
+}
+
+.hidden-block h5 {
+    margin-bottom: 0.2em;
+    margin-top:0.5em;
+}
+
+.hidden-block .formStyle {
+    padding-bottom: 0;
+}
+
+.doubleLink a{
+    display: block;
+    padding: 0.3em 0 0.4em;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    width: 7em;
+    margin: 0.1em;
+    text-align: center;
+}
+
+.doubleLink {
+    width: 16em;
+    padding: 1em 0;
+    display: flex;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.singleLink a {
+    display: block;
+    padding: 0.3em 0 0.4em;
+    border-radius: 0.2em;
+    font-size: 1.2em;
+    width: 12em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.formStyleBig input {
+    height: 2em;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.formStyleBig textarea {
+    width: 100%;
+    font-size: 1.1rem;
+}
+
+.formStyleBig {
+    width: 100%;
+    margin: 1em auto;
+}
+
+.formStyleBig label{
+    color: var(--gold);
+}
+
+.textVar {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.contractView {
+    background-color: var(--lightGray);
+    padding: 1em;
+    font-size: 1.2rem;
+}
+
+.contractView h3 {
+    font-size: 1.5rem;
+}
+
+.contractView h4 {
+    font-size: 1.4rem;
+    text-align: left;
+    display: inline;
+}
+
+.colorBlue {
+    color: blue;
+}
+
+.doubleColumn {
+    display:flex;
+    flex-direction: column;
+
+}
+
+.doubleColumn > .columnContract {
+    width: 100%;
+    text-align: center;
+    padding: 1em 0;
+}
+
+.doubleColumn > .columnContract h4{
+    text-align: center;
+}
+
+.imageUpdate {
+    position: absolute;
+    right: 25px;
+    top: 25px;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    /*border:solid 1px red;*/
+}
+
+.imageUpdate > input[type="file"] {
+    position: absolute;
+    padding-left:50px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: transparent;
+    z-index: 100;
+}
+
+.imageUpdate .svgIcon {
+    position: absolute;
+    top:10px;
+    right: 10px;
+    z-index: 2;
+    background-color: rgba(255,255,255, 0.5);
+    padding: 7px 5px 5px 9px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.item > .title {
+    min-height: 4em;
+}
+
+.docs h3 {
+    color: var(--lightGray);
+    margin-top: 0;
+}
+
+.docs h4 {
+    color: var(--lightGray);
+}
+
+.docs label.control-label {
+    color: var(--lightYellow);
+}
+
+.docs .form-group input {
+    width: 100%;
+}
+
+.docs textarea {
+    font-size: 1.1rem;
+}
+
+.procent-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+.procent-group .form-group + .form-group {
+    margin-top: 0;
+    margin-left: 0.5em;
+}
+
+.leftAlign {
+    text-align: left;
+    padding-right: 1em;
+}
+
+.rightAlign {
+    text-align: right;
+
+}
+
+.contractCompact {
+    max-height: 20em;
+    overflow: scroll;
+}
+
+.textAreaUpdate {
+    padding: 1em 0;
+}
+
+.textAreaUpdate textarea,
+.textAreaUpdate input {
+    font-family: Oswald;
+    color: black;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.textAreaUpdate input {
+    height: 2.5em;
+    text-align: center;
+}
+
+.textAreaUpdate label {
+    color: #1c7430;
+}
+
+.textAreaUpdate .procent-group > div {
+    width: 100%;
+}
+
+.updateGroup {
+    max-height: 10em;
+    overflow: scroll;
+}
 
 
+.del-red {
+    color: red;
+}
 
+.delete-block {
+    border: 4px solid red;
+    padding: 1em;
+    background-color: var(--lightYellow);
+    margin:1em;
+}
 
+.btn-red {
+    background-color: red;
+    color: var(--lightYellow);
+}
 
-
-
+.btn-red:hover {
+    color: white;
+}
 
 
 
