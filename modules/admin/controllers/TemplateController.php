@@ -3,9 +3,11 @@
 
 namespace app\modules\admin\controllers;
 
+use app\models\CharacteristicsTemplates;
 use app\models\forms\template\AddContractCopyForm;
 use app\models\forms\template\EditContractForm;
 use app\models\TemplateContract;
+use app\models\templates\QuestionsTemplates;
 use Yii;
 use yii\web\Controller;
 use app\components\AdminBase;
@@ -18,8 +20,17 @@ class TemplateController extends Controller
     public function actionIndex()
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $countQuestions = QuestionsTemplates::find()
+            ->count();
+        $countCharacteristic = CharacteristicsTemplates::find()
+            ->count();
+        $countContracts = TemplateContract::find()->count();
 
-        return $this->render('index');
+        return $this->render('index', [
+            'countQuestions' => $countQuestions,
+            'countContracts' => $countContracts,
+            'countCharacteristic' => $countCharacteristic,
+        ]);
     }
 
 

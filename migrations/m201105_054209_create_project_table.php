@@ -16,6 +16,7 @@ class m201105_054209_create_project_table extends Migration
             'id' => $this->primaryKey(),
             'project_id' => $this->string(),
             'nameProject' => $this->string(),
+            'address' => $this->string(),
             'date_start' => $this->string(),
             'customer' => $this->integer(),
             'length' => $this->integer(),

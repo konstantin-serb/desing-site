@@ -16,6 +16,7 @@ class Storage
     public $imageQuality;
     public $uploadsPath = '/files/uploads/';
 
+
     public function saveUploadedImage($file, $length, $currentAvatar=null)
     {
         $filename = Yii::$app->security->generateRandomString($length);
@@ -42,6 +43,18 @@ class Storage
             echo $e->getMessage();
         }
         return false;
+    }
+
+
+    public static function clean($fileName)
+    {
+        $path = '/files/uploads/';
+        $currentFile = $path . $fileName;
+        $existsFile = $_SERVER['DOCUMENT_ROOT'] . $currentFile;
+        if (file_exists($existsFile)) {
+            unlink($existsFile);
+        }
+        return true;
     }
 
 }

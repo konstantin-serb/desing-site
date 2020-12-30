@@ -1,5 +1,6 @@
 html {
     --lightGray: #fafafa;
+    --lightGray2: #f0f0f0;
     --grayBlock: #E3E3E3;
     --gray: #C5C5C5;
     --gold: #C28D2A;
@@ -10,6 +11,7 @@ html {
     --blue: #0060B9;
     --warning: orangered;
     --lightGreen: #34E830;
+    --lightGreen2: #d2ffc5;
     --yellow: #FFE600;
     --lightYellow: #FFFCE5;
     --green: #038F00;
@@ -218,6 +220,10 @@ h5 {
     font-weight: normal;
 }
 
+.button-add a {
+    background-color: var(--green);
+}
+
 img {
     width: 100%;
     margin-bottom: -5px;
@@ -237,7 +243,31 @@ img {
     margin: 1em auto;
 }
 
-.button a {
+.button button.a-link.del,
+.button > .del {
+    background-color: red;
+    color: white;
+}
+
+.button button.a-link:hover,
+.button > .del:hover {
+    background-color: #e30000;
+    color: #ffeec3;
+}
+
+.twoButton {
+    display: flex;
+    justify-content: center;
+}
+
+.button.twoButton a {
+    display: flex;
+    justify-content: center;
+    margin: 0.1em;
+}
+
+.button a,
+.button button.a-link {
     display: block;
     margin: 0 auto;
     border: 1px solid var(--bordo);
@@ -246,6 +276,11 @@ img {
     padding: 0.2em 0;
     color: var(--gold);
     text-transform: uppercase;
+}
+
+.button button.a-link {
+    margin-top: 0.1em;
+    height: 1.85em;
 }
 
 .adminPage .button a {
@@ -271,6 +306,16 @@ img {
     width: 100%;
     font-family: 'Oswald';
     padding-bottom: 2em;
+}
+
+.normalForm label {
+    color: var(--gold);
+}
+
+.normalForm input,
+.normalForm textarea {
+    background-color: var(--lightGray);
+    font-size: 1rem;
 }
 
 .formStyle .form-group {
@@ -347,7 +392,7 @@ select.form-control {
     outline: none;
     font-size: 1.05rem;
     color: #555;
-    background-color: #E4E4E4;
+    background-color: var(--lightGray);
 }
 
 input:focus {
@@ -970,6 +1015,17 @@ footer .chapter + .chapter {
     padding-top: 0.7em;
     margin-bottom: 1em;
     padding-bottom: 1.5em;
+}
+
+.contentFrame {
+    /*padding: 0 1em;*/
+
+}
+
+.mainAssignmentWrap {
+    background-color: var(--lightGray2);
+    margin: 0.5em;
+    padding: 0.5em 1em;
 }
 
 .stringWrap + .stringWrap {
@@ -1810,19 +1866,19 @@ h2 .svgIcon {
     color: red;
 }
 
- .photoDate2 .control-label,
- .label-modal{
-     color: green;
- }
+.photoDate2 .control-label,
+.label-modal {
+    color: green;
+}
 
- .photoDate2 .dow,
- .photoDate2 .prev,
- .photoDate2 .next {
-     color: var(--darkGray);
- }
+.photoDate2 .dow,
+.photoDate2 .prev,
+.photoDate2 .next {
+    color: var(--darkGray);
+}
 
 .photoDate2 .day,
-.datepicker-switch{
+.datepicker-switch {
     color: goldenrod;
     text-align: center;
 }
@@ -1837,14 +1893,14 @@ h2 .svgIcon {
 
 .modal-footer .btn + .btn {
     margin-top: 0.5em;
-     margin-left: 0;
+    margin-left: 0;
 }
 
-.formStyle button.close-my{
+.formStyle button.close-my {
 
     background-color: white;
     color: var(--darkGray2);
-    border:1px solid var(--darkGray2);
+    border: 1px solid var(--darkGray2);
 
 }
 
@@ -1853,7 +1909,7 @@ h2 .svgIcon {
 }
 
 .success-message {
-    text-align:center;
+    text-align: center;
     padding: 0.5em 0;
     font-size: 1.3rem;
     color: green;
@@ -1864,11 +1920,11 @@ h2 .svgIcon {
     justify-content: center;
 }
 
-.modalDoubleButton button+button {
+.modalDoubleButton button + button {
     margin: 0 0.4em;
 }
 
-.modalDoubleButton button+a {
+.modalDoubleButton button + a {
     margin: 0 0.4em;
 }
 
@@ -1876,13 +1932,13 @@ h2 .svgIcon {
     padding-bottom: 1em;
 }
 
-.modalDoubleButton button{
+.modalDoubleButton button {
     font-size: 1.1rem;
     font-family: Oswald;
     padding: 0.3em 1em;
 }
 
-.modalDoubleButton a{
+.modalDoubleButton a {
     font-size: 1.1rem;
     font-family: Oswald;
     padding: 0.3em 1em;
@@ -1914,7 +1970,7 @@ h2 .svgIcon {
 .hidden-block {
     transition: all 2s ease 0s;
     border: 1px solid gray;
-    margin:1em 0.3em 0 0.3em;
+    margin: 1em 0.3em 0 0.3em;
     padding: 1em;
     background-color: var(--darkGray);
 }
@@ -1930,14 +1986,15 @@ h2 .svgIcon {
 
 .hidden-block h5 {
     margin-bottom: 0.2em;
-    margin-top:0.5em;
+    margin-top: 0.5em;
 }
 
 .hidden-block .formStyle {
     padding-bottom: 0;
 }
 
-.doubleLink a{
+.doubleLink button,
+.doubleLink a {
     display: block;
     padding: 0.3em 0 0.4em;
     border-radius: 0.2em;
@@ -1945,6 +2002,23 @@ h2 .svgIcon {
     width: 7em;
     margin: 0.1em;
     text-align: center;
+}
+
+.doubleLink button:focus {
+    outline:none;
+}
+
+.doubleLink button {
+    border:0 solid var(--gold);
+}
+
+.doubleLink button:hover {
+    color: lightyellow;
+}
+
+.btn-delete {
+    color: white;
+    background-color: red;
 }
 
 .doubleLink {
@@ -1982,7 +2056,7 @@ h2 .svgIcon {
     margin: 1em auto;
 }
 
-.formStyleBig label{
+.formStyleBig label {
     color: var(--gold);
 }
 
@@ -2013,7 +2087,7 @@ h2 .svgIcon {
 }
 
 .doubleColumn {
-    display:flex;
+    display: flex;
     flex-direction: column;
 
 }
@@ -2024,7 +2098,7 @@ h2 .svgIcon {
     padding: 1em 0;
 }
 
-.doubleColumn > .columnContract h4{
+.doubleColumn > .columnContract h4 {
     text-align: center;
 }
 
@@ -2040,7 +2114,7 @@ h2 .svgIcon {
 
 .imageUpdate > input[type="file"] {
     position: absolute;
-    padding-left:50px;
+    padding-left: 50px;
     width: 50px;
     height: 50px;
     cursor: pointer;
@@ -2050,10 +2124,10 @@ h2 .svgIcon {
 
 .imageUpdate .svgIcon {
     position: absolute;
-    top:10px;
+    top: 10px;
     right: 10px;
     z-index: 2;
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5);
     padding: 7px 5px 5px 9px;
     width: 40px;
     height: 40px;
@@ -2149,7 +2223,11 @@ h2 .svgIcon {
     border: 4px solid red;
     padding: 1em;
     background-color: var(--lightYellow);
-    margin:1em;
+    margin: 1em;
+}
+
+.delete-block h5 {
+    color: red;
 }
 
 .btn-red {
@@ -2160,6 +2238,182 @@ h2 .svgIcon {
 .btn-red:hover {
     color: white;
 }
+
+.procent-group > div {
+    width: 100%;
+    margin: 0 0.3em;
+}
+
+.userForm .procent-group {
+    text-align: center;
+}
+
+.userForm .procent-group input {
+    text-align: center;
+    height: 2.5em;
+    font-size: 1.1rem;
+}
+
+.userForm .procent-group textarea {
+
+    font-size: 1.1rem;
+}
+
+.userButton {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid var(--bordo);
+    width: 15em;
+    text-align: center;
+    padding: 0.2em 0;
+    color: var(--gold);
+    text-transform: uppercase;
+    background-color: transparent;
+}
+
+.userButton:hover {
+
+    color: var(--bordo);
+
+}
+
+.custom {
+    background-color: var(--grayBlock);
+    padding: 0.2em;
+}
+
+.formContainer1 {
+    width: 70%;
+    margin: 1em auto;
+}
+
+.formContainer1 label {
+    color: var(--gold);
+}
+
+.custom input[type="file"] {
+    margin: 0 auto;
+}
+
+.custom input[type="text"] {
+    height: 2.5em;
+    font-size: 1rem;
+}
+
+.preliminary {
+    display: block;
+    margin: 0 auto;
+    max-width: 300px;
+}
+
+.referenceView {
+    max-width: 800px;
+    margin: 1.5em auto;
+}
+
+.referenceView p {
+    font-family: Oswald;
+    margin-top: 1em;
+}
+
+.minInputs {
+    max-width: 10em;
+    margin: 0 auto;
+}
+
+.minInputs input {
+    text-align: center;
+}
+
+.refWrap {
+    /*max-height: 25em;*/
+    /*overflow: scroll;*/
+}
+
+.oneQuestion {
+    text-align: center;
+    /*margin: 1.5em 0;*/
+}
+
+.oneQuestion.no-edited {
+    color: #939393;
+}
+
+.qustionsDescription {
+    font-style: italic;
+}
+
+.oneItem .question {
+    margin-bottom: 0.1em;
+}
+
+.form-input {
+    margin-top: 0.4em;
+}
+
+.question {
+    font-size: 1.1rem;
+}
+
+.oneItem {
+    border: 1px solid grey;
+    margin-bottom: 2em;
+    padding: 0.5em 1em;
+    background-color: var(--lightGray);
+}
+
+.questions > .wrap {
+    margin: 1.5em 0;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    font-size: 1em;
+    padding-left: 0.5em;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    outline:none;
+}
+
+.link a, .link button.a-link {
+    align-self: center;
+    height: 1.9em;
+    display: inline-block;
+    border: 1px solid var(--bordo);
+    width: 15em;
+    text-align: center;
+    padding: 0.2em 0;
+    color: var(--gold);
+    text-transform: uppercase;
+}
+
+.green-fill {
+    background-color: var(--lightGreen2);
+}
+
+.check-svg {
+    width: 3em;
+    height: 3em;
+    display:inline-block;
+}
+
+.link {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.link .time {
+    align-self: center;
+}
+
+.dark-section {
+    background-color: var(--lightGray2);
+    padding: 1.5em 0;
+}
+
 
 
 

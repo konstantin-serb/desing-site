@@ -114,6 +114,9 @@ $this->registerJsFile('/files/js/calculatePercentsAJAX.js', [
                     <div class="input-block" id="block2">
                         <div class="form-group" id="block2-1">
                             <div class="form-group">
+                                <?=$form->field($model, 'address')->textInput()?>
+                            </div>
+                            <div class="form-group">
                                 <?= $form->field($model, 'nameProject')->textInput()->label('
                                 Полное название проекта') ?>
                                 <div class="help-block"></div>

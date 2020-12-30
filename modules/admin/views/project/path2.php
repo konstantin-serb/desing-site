@@ -40,6 +40,18 @@ $this->registerJsFile('/files/js/project/addContractFromTemplateAjax.js', [
     'depends' => \yii\web\JqueryAsset::class,
 ]);
 
+$this->registerJsFile('/files/js/project/addContractFromContractAjax.js', [
+    'depends' => \yii\web\JqueryAsset::class,
+]);
+
+$this->registerJsFile('/files/js/project/showHiddenAssignmentBlock.js', [
+    'depends' => \yii\web\JqueryAsset::class,
+]);
+
+$this->registerJsFile('/files/js/assignment/addQuestions.js', [
+    'depends' => \yii\web\JqueryAsset::class,
+]);
+
 
 $this->title = 'Завершение редактирования проекта';
 
@@ -61,9 +73,11 @@ $model->pricePart4 = $project->price_p4;
 $model->pricePart5 = $project->price_p5;
 
 
+
 $modelTemplateContract->dateStart = $project->getDate($project->date_start);
 $modelTemplateContract->dateContract = $project->getDate($project->date_start);
 $modelTemplateContract->dateContract = $project->getDate($project->date_start);
+$modelTemplateContract->address = $project->address;
 $modelTemplateContract->priceWords = $project->price_words;
 $modelTemplateContract->customer = $project->client->surname . ' ' . $project->client->user_name
     . ' ' . $project->client->last_name;
@@ -173,7 +187,12 @@ if ($project->currency) {
                             Город:
                         </div>
                         <div class="stringRegular"><span
-                                    id="cityName"><?= $project->city_name->city ?></span>
+                                    id="cityName"><?php
+                                if (!empty($project->city)) {
+                                    echo $project->city_name->city;
+                                } else {
+                                    echo 'Город не известный';
+                                } ?></span>
                             <?php Modal::begin([
                                 'size' => 'modal-lg',
                                 'header' => '<h2>Изменить город</h2>',
@@ -701,8 +720,8 @@ if ($project->currency) {
 </section>
 <section class="doc">
     <div class="myContainer">
-        <h2>Техническое задание на проектирование
-            <a href="#" class="block-link">
+        <h2 id="docs">Техническое задание на проектирование
+            <a id="showAssignmentBlock" class="block-link">
                 <div class="svgIcon">
                     <svg width="44" height="45" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d)">
@@ -744,53 +763,17 @@ if ($project->currency) {
                 </div>
             </a>
         </h2>
-        <!--        <div class="doc_content">-->
-        <!--            <p>В первой половине мая 2020 г. ассоциация «Руссофт» провела опрос среди российских ИТ-фирм, согласно-->
-        <!--                которому 15% готовятся сократить свой персонал более чем на 10%. В целом, к массовым увольнениям в-->
-        <!--                ближайшем будущем могут прийти 42% отечественных компаний из ИТ-сферы.</p>-->
-        <!--            <p>«Индустрия разработки ПО – высокоинтеллектуальная отрасль с высоким порогом входа, создающая-->
-        <!--                технически сложные продукты, на разработку которых уходят годы, и в случае банкротства компаний-->
-        <!--                восстановление их будет крайне затруднено либо невозможно. Принимая во внимание, что фонд оплаты-->
-        <!--                труда составляет порядка 80% расходов ИТ-компаний, спад в отрасли приведет к сокращению персонала»,-->
-        <!--                – сказано в направленном Мишустину письме Касперской и Макарова.</p>-->
-        <!---->
-        <!--            <p> Глава ассоциации Валентин Макаров, ссылаясь на другой отчет, сообщил РБК, что в работу могут-->
-        <!--                потерять от 20 тыс. до 25 тыс. ИТ-специалистов, тогда как ежегодный прирост, к примеру,-->
-        <!--                программистов, осуществляемый, по большей части, за счет выпускников, составляет в пределах от 15-->
-        <!--                тыс. до 17 тыс. человек.</p>-->
-        <!---->
-        <!--            <p>«Годовой прирост числа программистов на две трети будет нивелирован отъездом опытных разработчиков.-->
-        <!--                Это означает, что в 2020 г. мы впервые за все 17 лет измерений можем увидеть снижение экспорта и,-->
-        <!--                конечно, снижение объема продаж на внутреннем рынке», – сказал Валентин Макаров.</p>-->
-        <!---->
-        <!--            <p>По оценке Минкомсвязи России, чистая прибыль ИТ-компаний по итогам II квартала 2020 г. может-->
-        <!--                сократиться до нуля, а к убыточности бизнес могут привести различные отчисления, в том числе и-->
-        <!--                выплаты процентов по кредитам. По итогам всего 2020 г. прибыль отрасли в целом может снизиться на 30-->
-        <!--                млрд руб. в сравнении с 2019 г. и составить 93 млрд руб.</p>-->
-        <!---->
-        <!--            <p>В первой половине мая 2020 г. ассоциация «Руссофт» провела опрос среди российских ИТ-фирм, согласно-->
-        <!--                которому 15% готовятся сократить свой персонал более чем на 10%. В целом, к массовым увольнениям в-->
-        <!--                ближайшем будущем могут прийти 42% отечественных компаний из ИТ-сферы.</p>-->
-        <!---->
-        <!--            <p>«Индустрия разработки ПО – высокоинтеллектуальная отрасль с высоким порогом входа, создающая-->
-        <!--                технически сложные продукты, на разработку которых уходят годы, и в случае банкротства компаний-->
-        <!--                восстановление их будет крайне затруднено либо невозможно. Принимая во внимание, что фонд оплаты-->
-        <!--                труда составляет порядка 80% расходов ИТ-компаний, спад в отрасли приведет к сокращению персонала»,-->
-        <!--                – сказано в направленном Мишустину письме Касперской и Макарова.</p>-->
-        <!---->
-        <!--            <p>Глава ассоциации Валентин Макаров, ссылаясь на другой отчет, сообщил РБК, что в работу могут потерять-->
-        <!--                от 20 тыс. до 25 тыс. ИТ-специалистов, тогда как ежегодный прирост, к примеру, программистов,-->
-        <!--                осуществляемый, по большей части, за счет выпускников, составляет в пределах от 15 тыс. до 17 тыс.-->
-        <!--                человек.</p>-->
-        <!---->
-        <!--            <p>«Годовой прирост числа программистов на две трети будет нивелирован отъездом опытных разработчиков.-->
-        <!--                Это означает, что в 2020 г. мы впервые за все 17 лет измерений можем увидеть снижение экспорта и,-->
-        <!--                конечно, снижение объема продаж на внутреннем рынке»-->
-        <!--            </p>-->
-        <!---->
-        <!---->
-        <!--            <br>-->
-        <!--        </div>-->
+<div class="hiddenInputs hidden-block docs" id="assignmentBlock">
+        <span id="blockAssignment">
+            <?= $this->render('/project/party/blockAssignment', [
+                'project' => $project,
+                'characteristicModel' => $characteristicModel,
+                'characteristicArray' => $characteristicArray,
+                'questionModel' => $questionModel,
+                'questionsArray' => $questionsArray,
+            ]); ?>
+        </span>
+</div>
 
         <h2>Договор на разработку проекта
             <a id="contracts" class="block-link">
@@ -890,11 +873,28 @@ if ($project->currency) {
                                     </button>
                                 </div>
                             </div>
-                            <?php ActiveForm::end(); ?>
+
                         </div>
                     </div>
                     <div class="contracts-analog">
                         <h4>Создать договор из договора</h4>
+                        <div class="formStyleBig">
+
+                            <div class="form-path">
+                                <?= $form->field($modelContract, 'contractId')
+                                    ->dropDownList($projectContractArray)
+                                    ->label('Выберите договор из проекта') ?>
+                            </div>
+                            <div class="buttonGroup1">
+                                <div class="modalDoubleButton">
+                                    <button id="addContractContract" type="button"
+                                            data-id="<?= $project->id ?>" class=" btn btn-orange">
+                                        Создать
+                                    </button>
+                                </div>
+                            </div>
+                            <?php ActiveForm::end(); ?>
+                        </div>
                     </div>
                 </div>
                 <div class="">

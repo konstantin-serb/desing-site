@@ -21,6 +21,17 @@ class DateHelper
         return $data;
     }
 
+
+    public static function getTime($stamp)
+    {
+        $strTime = $stamp;
+
+        $data = date('H', $strTime) . ':' . date('i', $strTime). ':' .date('s', $strTime);
+
+        return $data;
+    }
+
+
 }
 
 
