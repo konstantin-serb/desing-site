@@ -24,7 +24,7 @@ $template->contractCity = $templateContract->contractCity;
         <a href="javascript: history.back()" class="a-link btn-default">Назад</a>
     </div>
     <h2>Редактирование шаблона на договор:</h2>
-    <h3>Тип 1 без реконструкции. Украинский</h3>
+    <h3><?=$template->title?></h3>
     <section class="doc">
         <div class="myContainer">
             <?php $form = ActiveForm::begin();?>

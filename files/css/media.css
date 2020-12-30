@@ -60,6 +60,7 @@
         margin-right: 0.5em;
     }
 
+    .doubleLink button,
     .doubleLink a{
         width: 10em;
     }
@@ -173,7 +174,22 @@
         text-align: right;
     }
 
+    .references {
+        display: flex;
+        justify-content: start;
+        flex-wrap: wrap;
+    }
 
+    .oneReference{
+        width: 33.333%;
+        margin-bottom: 0.9em;
+        padding: 0.35em
+    }
+
+    .oneReference p {
+        font-family: Oswald;
+        margin-top: 0.3em;
+    }
 
 
 
@@ -561,6 +577,11 @@
 
     .centerBlockInputs {
         width: 60%;
+        margin: 0 auto;
+    }
+
+    .container-questions {
+        max-width: 60%;
         margin: 0 auto;
     }
 }

@@ -13,6 +13,7 @@ use app\models\Currency;
  * @property int $id
  * @property string|null $project_id
  * @property string|null $nameProject
+ * @property string|null $address
  * @property string|null $date_start
  * @property int|null $customer
  * @property int|null $length
@@ -43,6 +44,8 @@ use app\models\Currency;
 class Project extends \yii\db\ActiveRecord
 {
     const STATUS_UNDERFORMED = 9;
+    const STATUS_FOR_ASSIGNMENT = 8;
+    const STATUS_FULL = 10;
 
     /**public const
      * {@inheritdoc}
@@ -86,6 +89,11 @@ class Project extends \yii\db\ActiveRecord
     public function getClient()
     {
         return $this->hasOne(Clients::class, ['id' => 'customer']);
+    }
+
+    public function getClientSurname()
+    {
+        return $this->client->surname . ' ' . $this->client->user_name . ' ' . $this->client->last_name ;
     }
 
 
@@ -150,6 +158,28 @@ class Project extends \yii\db\ActiveRecord
         }
 
         return implode($string);
+    }
+
+
+    public function checkIsQuestions()
+    {
+        $assignment = Assignment::find()->where(['project_id' => $this->id])->one();
+        $questions = Question::find()->where(['assignment_id' => $assignment->id])->one();
+        if ($questions) {
+            return true;
+        }
+        return false;
+    }
+
+
+    public function checkIsCharacteristic()
+    {
+        $assignment = Assignment::find()->where(['project_id' => $this->id])->one();
+        $characteristic = Characteristic::find()->where(['assignment_id' => $assignment->id])->one();
+        if ($characteristic) {
+            return true;
+        }
+        return false;
     }
 
 }

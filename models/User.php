@@ -93,5 +93,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return $this->hasOne(Clients::class, ['user_id' => 'id']);
     }
 
+    public function getSurnamePlus()
+    {
+        $surname = $this->surname;
+        $name = $this->username;
+        $lastName = $this->lastName;
+
+        return $surname .' '. $name .' '. $lastName;
+    }
+
 
 }

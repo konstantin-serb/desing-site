@@ -49,7 +49,7 @@ if (empty($this->params['activePage'])) {
                 ?>"><a class="a-link" href="<?=Url::to(['/customer'])?>">Кабинет</a></li>
                 <li class="<?php
                 if($this->params['activePage'] == 'projects')echo 'active';
-                ?>"><a class="a-link" href="#">Проекты</a></li>
+                ?>"><a class="a-link" href="<?=Url::to(['/customer/project'])?>">Проекты</a></li>
                 <li class="<?php
                 if($this->params['activePage'] == 'drafts')echo 'active';
                 ?>"><a class="a-link" href="#">Черновики</a></li>

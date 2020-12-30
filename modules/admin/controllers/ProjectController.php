@@ -3,20 +3,30 @@
 namespace app\modules\admin\controllers;
 
 use app\components\AdminBase;
+use app\models\Assignment;
+use app\models\Characteristic;
+use app\models\CharacteristicsTemplates;
 use app\models\City;
 use app\models\Contracts;
 use app\models\Currency;
 use app\models\forms\admin\AddProjectForm;
+use app\models\forms\assignment\AdminAddCharacteristicsForm;
+use app\models\forms\assignment\AdminAddQuestionsForm;
+use app\models\forms\project\AddFromContractContractForm;
 use app\models\forms\project\CalculateForm;
+use app\models\forms\project\EditCharacteristicsForm;
 use app\models\forms\project\EditCityForm;
+use app\models\forms\project\EditQuestionsForm;
 use app\models\forms\project\UpdateContractForm;
 use app\models\forms\project\UpdateProjectCustomer;
 use app\models\forms\project\UpdateProjectMoney;
 use app\models\forms\project\UploadProjectPictureForm;
 use app\models\forms\stage\AddStageForm;
 use app\models\Project;
+use app\models\Question;
 use app\models\Stage;
 use app\models\TemplateContract;
+use app\models\templates\QuestionsTemplates;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -34,8 +44,10 @@ class ProjectController extends Controller
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $this->view->params['activePage'] = 'projects';
-        $undeformeds = Project::find()->where(['project_status' => 9])
-            ->orderBy('time_update desc')->limit(3)->all();
+        $undeformeds = Project::find()
+            ->where(['in', 'project_status', [Project::STATUS_UNDERFORMED, Project::STATUS_FOR_ASSIGNMENT]])
+            ->orderBy('time_update desc')
+            ->limit(3)->all();
 
         return $this->render('index', [
             'underformeds' => $undeformeds,
@@ -55,7 +67,7 @@ class ProjectController extends Controller
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
-        $undeformeds = Project::find()->where(['project_status' => 9])
+        $undeformeds = Project::find()->where(['in', 'project_status', [8, 9]])
             ->orderBy('time_update desc')->all();
 
 
@@ -94,7 +106,15 @@ class ProjectController extends Controller
                 $model->imageMin = null;
             }
             if ($projectId = $model->save()) {
-                return $this->redirect(['/admin/project/create-path2', 'id' => $projectId]);
+                $assignment = new Assignment();
+                $assignment->project_id = $projectId;
+                $assignment->address = $model->address;
+                $assignment->time_create = time();
+                $assignment->status = Assignment::STATUS_CREATE;
+                $assignment->time_update = $assignment->time_create;
+                if ($assignment->save()) {
+                    return $this->redirect(['/admin/project/create-path2', 'id' => $projectId]);
+                }
             }
         }
 
@@ -139,11 +159,24 @@ class ProjectController extends Controller
         $templateContracts = TemplateContract::find()->where(['status' => 10])
             ->orderBy('title')->all();
         $contractsArray = [];
-        foreach($templateContracts as $contract) {
+        foreach ($templateContracts as $contract) {
             $contractsArray += [$contract->id => $contract->title];
         }
+        $contracts = Contracts::find()->all();
+        $projectContractArray = [];
+        foreach ($contracts as $itemContract) {
+            $projectContractArray += [$itemContract->id => $itemContract->title];
+        }
+
+        $templateQuestions = QuestionsTemplates::find()->all();
+        $questionsArray = ArrayHelper::map($templateQuestions, 'id', 'title');
+        $templateCharacteristic = CharacteristicsTemplates::find()->all();
+        $characteristicArray = ArrayHelper::map($templateCharacteristic, 'id', 'title');
+        $questionModel = new AdminAddQuestionsForm();
+        $characteristicModel = new AdminAddCharacteristicsForm();
 
         $modelTemplateContract = new AddFromTemplateContractForm;
+        $modelContract = new AddFromContractContractForm();
 
         $customerObjects = Clients::find()->orderBy('created_at desc')->all();
         $customers = [];
@@ -173,6 +206,12 @@ class ProjectController extends Controller
             'city' => $city,
             'contracts' => $contracts,
             'updateContract' => $updateContract,
+            'questionsArray' => $questionsArray,
+            'characteristicArray' => $characteristicArray,
+            'questionModel' => $questionModel,
+            'characteristicModel' => $characteristicModel,
+            'projectContractArray' => $projectContractArray,
+            'modelContract' => $modelContract,
         ]);
     }
 
@@ -298,7 +337,7 @@ class ProjectController extends Controller
             if ($updatePhoto->update($file, $projectId)) {
 
                 $project = Project::findOne($projectId);
-                $image = '<img src="'. $project->getImage() . '">';
+                $image = '<img src="' . $project->getImage() . '">';
 
                 return [
                     'success' => true,
@@ -351,6 +390,31 @@ class ProjectController extends Controller
         $result = $newContract->save();
 
         if ($result) {
+            return [
+                'success' => true,
+                'result' => 'Договор успешно добавлен',
+                'code' => $this->getContractsView($newContract->projectId),
+            ];
+        }
+    }
+
+
+    public function actionAddContractFromContractAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $newContract = new AddFromContractContractForm();
+        $newContract->projectId = Yii::$app->request->post('projectId');
+        $newContract->contractId = Yii::$app->request->post('contractId');
+        $newContract->dateContract = Yii::$app->request->post('contractDate');
+        $newContract->dateStart = Yii::$app->request->post('projectStartDate');
+        $newContract->customer = Yii::$app->request->post('customer');
+        $newContract->address = Yii::$app->request->post('address');
+        $newContract->priceWords = Yii::$app->request->post('priceWords');
+        $newContract->currency = Yii::$app->request->post('currency');
+        $newContract->customerInfo = Yii::$app->request->post('customerInfo');
+
+        if ($newContract->save()) {
             return [
                 'success' => true,
                 'result' => 'Договор успешно добавлен',
@@ -422,6 +486,235 @@ class ProjectController extends Controller
         return $code;
     }
 
+    public function actionAddAvailableAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $id = Yii::$app->request->post('projectId');
+        $project = Project::findOne($id);
+        $project->project_status = Project::STATUS_FOR_ASSIGNMENT;
+
+        if ($project->save()) {
+            $content = '<div class="hiddenInputs"></div>';
+            return [
+                'success' => true,
+                'content' => $content,
+            ];
+        }
+    }
+
+
+    public function actionCharacteristicsView($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $assignment = Assignment::find()->where(['project_id' => $id])->one();
+        $questions = Characteristic::find()->where(['assignment_id' => $assignment->id])
+            ->orderBy('sort')->all();
+        $model = new EditCharacteristicsForm();
+        $project = Project::findOne($id);
+
+        return $this->render('characteristics-view', [
+            'model' => $model,
+            'questions' => $questions,
+            'project' => $project,
+
+        ]);
+    }
+
+
+    public function actionQuestionsView($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $assignment = Assignment::find()->where(['project_id' => $id])->one();
+        $questions = Question::find()->where(['assignment_id' => $assignment->id])
+            ->orderBy('sort')->all();
+        $model = new EditCharacteristicsForm();
+        $project = Project::findOne($id);
+
+        return $this->render('questions-view', [
+            'model' => $model,
+            'questions' => $questions,
+            'project' => $project,
+
+        ]);
+    }
+
+
+    public function actionCreateCharacteristicAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = new EditCharacteristicsForm();
+        $model->question = Yii::$app->request->post('question');
+        $model->projectId = Yii::$app->request->post('projectId');
+        $model->description = Yii::$app->request->post('description');
+
+        if ($model->save()) {
+            $value = $this->getCharacteristic($model->projectId);
+            return [
+                'value' => $value,
+            ];
+        }
+    }
+
+
+    public function actionCreateQuestionsAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+
+        $model = new EditQuestionsForm();
+        $model->question = Yii::$app->request->post('question');
+        $model->projectId = Yii::$app->request->post('projectId');
+        $model->description = Yii::$app->request->post('description');
+
+        if ($model->save()) {
+            $value = $this->getQuestion($model->projectId);
+            return [
+                'value' => $value,
+            ];
+        }
+    }
+
+
+    public function getCharacteristic($projectId)
+    {
+        $this->layout = 'empty';
+        $assignment = Assignment::find()->where(['project_id' => $projectId])
+            ->one();
+        $assignmentId = $assignment->id;
+        $newQuestions = Characteristic::find()
+            ->where(['assignment_id' => $assignmentId])
+            ->orderBy('sort')->all();
+
+        return $this->render('/project/party/characteristic', [
+            'questions' => $newQuestions,
+        ]);
+    }
+
+
+    public function getQuestion($projectId)
+    {
+        $this->layout = 'empty';
+        $assignment = Assignment::find()->where(['project_id' => $projectId])
+            ->one();
+        $assignmentId = $assignment->id;
+        $newQuestions = Question::find()
+            ->where(['assignment_id' => $assignmentId])
+            ->orderBy('sort')->all();
+
+        return $this->render('/project/party/characteristic', [
+            'questions' => $newQuestions,
+        ]);
+    }
+
+
+    public function actionUpdateCharacteristic($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $question = Characteristic::findOne($id);
+        $assignment = Assignment::findOne($question->assignment_id);
+        if ($question->status == Characteristic::NO_EDITED) {
+            return $this->redirect(['characteristics-view', 'id' => $assignment->project_id,]);
+        }
+        $model = new EditCharacteristicsForm();
+        $arrayBlank = Characteristic::find()
+            ->where(['assignment_id' => $question->assignment_id])
+            ->orderBy('sort')->all();
+
+        $nom = 0;
+        $array = [];
+        foreach ($arrayBlank as $item) {
+            $nom = $nom + 1;
+            $array += [$item->sort => $nom];
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->update($id)) {
+
+                return $this->redirect(['characteristics-view', 'id' => $assignment->project_id, '#' => 'question-' . $question->id]);
+            }
+        }
+
+        return $this->render('update-characteristic', [
+            'question' => $question,
+            'model' => $model,
+            'array' => $array,
+        ]);
+    }
+
+
+    public function actionUpdateQuestion($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $question = Question::findOne($id);
+        $assignment = Assignment::findOne($question->assignment_id);
+        if ($question->status == Question::NO_EDITED) {
+            return $this->redirect(['questions-view', 'id' => $assignment->project_id, ]);
+        }
+        $model = new EditQuestionsForm();
+        $arrayBlank = Question::find()
+            ->where(['assignment_id' => $question->assignment_id])
+            ->orderBy('sort')->all();
+
+        $nom = 0;
+        $array = [];
+        foreach ($arrayBlank as $item) {
+            $nom = $nom + 1;
+            $array += [$item->sort => $nom];
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->update($id)) {
+
+                return $this->redirect(['questions-view', 'id' => $assignment->project_id, '#' => 'question-'.$question->id]);
+            }
+        }
+
+        return $this->render('update-question', [
+            'question' => $question,
+            'model' => $model,
+            'array' => $array,
+        ]);
+    }
+
+
+    public function actionDeleteCharacteristic($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $question = $question = Characteristic::findOne($id);
+        $assignment = Assignment::findOne($question->assignment_id);
+        if ($question->status == Characteristic::NO_EDITED) {
+            return $this->redirect(['characteristics-view', 'id' => $assignment->project_id,]);
+        }
+
+        if (Yii::$app->request->post()) {
+            $question->delete();
+            return $this->redirect(['characteristics-view', 'id' => $question->assignment_id]);
+        }
+
+        return $this->render('delete-characteristic', [
+            'question' => $question,
+        ]);
+    }
+
+
+    public function actionDeleteQuestion($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $question = $question = Question::findOne($id);
+        $assignment = Assignment::findOne($question->assignment_id);
+        if ($question->status == Question::NO_EDITED) {
+            return $this->redirect(['questions-view', 'id' => $assignment->project_id,]);
+        }
+
+        if (Yii::$app->request->post()) {
+            $question->delete();
+            return $this->redirect(['questions-view', 'id' => $question->assignment_id]);
+        }
+
+        return $this->render('delete-question', [
+            'question' => $question,
+        ]);
+    }
 
 }
 

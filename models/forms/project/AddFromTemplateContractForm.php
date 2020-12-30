@@ -6,7 +6,6 @@ namespace app\models\forms\project;
 
 use app\models\Contracts;
 use app\models\TemplateContract;
-use Yii;
 use yii\base\Model;
 use app\models\Project;
 
@@ -83,7 +82,6 @@ class AddFromTemplateContractForm extends Model
             return false;
 
         }
-//        return $errors = $this->errors;
     }
 
 

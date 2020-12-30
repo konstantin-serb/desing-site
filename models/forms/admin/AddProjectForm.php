@@ -13,6 +13,7 @@ class AddProjectForm extends Model
     public $id;
     public $projectId;
     public $nameProject;
+    public $address;
     public $dateStart;
     public $customer;
     public $length;
@@ -41,6 +42,7 @@ class AddProjectForm extends Model
             'pricePart3' => 'Часть 3',
             'pricePart4' => 'Часть 4',
             'pricePart5' => 'Часть 5',
+            'address' => 'Адрес проекта',
 
         ];
     }
@@ -50,8 +52,8 @@ class AddProjectForm extends Model
     {
         return [
             [['id'], 'integer'],
-            [['projectId', 'nameProject', 'length', 'dateStart'], 'required'],
-            [['dateStart', 'addCity'], 'string'],
+            [['projectId', 'nameProject', 'length', 'dateStart', 'address'], 'required'],
+            [['dateStart', 'addCity', 'address'], 'string'],
             [['projectId'], 'string', 'length' => [5, 20]],
             [['customer', 'length', 'area', 'city', 'priceDigital',
                 'currency'], 'integer'],
@@ -67,6 +69,7 @@ class AddProjectForm extends Model
             $project = new Project();
             $project->project_id = $this->projectId;
             $project->nameProject = $this->nameProject;
+            $project->address = $this->address;
             $project->date_start = $this->dateStart;
             $project->customer = $this->customer;
             $project->length = $this->length;
@@ -101,8 +104,6 @@ class AddProjectForm extends Model
 
             $project->time_create =  $project->time_update = time();
             $project->project_status = $project::STATUS_UNDERFORMED;
-
-
 
             if ($project->save()) {
                 return Yii::$app->db->getLastInsertID();
