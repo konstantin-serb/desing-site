@@ -16,7 +16,9 @@ function draw_calendar($month, $year)
 {
 
     $array = Calendar::find()->where(['year' => $year])->andWhere(['holiday' => 1])->orderBy('number_day')->all();
-    $nameTypeHoliday = Calendar::find()->where(['!=','holiday', 'null'])->one();
+    $nameTypeHoliday = Calendar::find()
+        ->where(['year' => $year])
+        ->andWhere(['!=','holiday', 'null'])->one();
 
     $calendar = '<table cellpadding="0" cellspacing="0" class="b-calendar__tb">';
     $headings = array('Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс');
@@ -126,9 +128,9 @@ return $calendar;
         <h2>Календарь на <?=$year?> год</h2>
 
         <div class="add-button button-group">
-            <a class="a-link" href="<?= Url::to(['/admin/calendar/clean-holiday']) ?>">Очистить все выходные</a>
-            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'su']) ?>">Выходные вс</a>
-            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'sa-su']) ?>">Выходные сб и вс</a>
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/clean-holiday','year' => $year]) ?>">Очистить все выходные</a>
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'su','year' => $year]) ?>">Выходные вс</a>
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'sa-su','year' => $year]) ?>">Выходные сб и вс</a>
         </div>
 
         <?php
@@ -162,6 +164,11 @@ return $calendar;
 
 
         <h2>Календарь на <?=$nextYear?> год</h2>
+        <div class="add-button button-group">
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/clean-holiday', 'year' => $nextYear]) ?>">Очистить все выходные</a>
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'su', 'year' => $nextYear]) ?>">Выходные вс</a>
+            <a class="a-link" href="<?= Url::to(['/admin/calendar/create-holiday', 'code' => 'sa-su' , 'year' => $nextYear]) ?>">Выходные сб и вс</a>
+        </div>
         <div class="calendar-wrap">
             <?php
             for ($month = 1; $month <= 12; $month++) { ?>
@@ -179,3 +186,7 @@ return $calendar;
 
 
 </div>
+
+<?php
+$this->title = 'Календарь на '.$year .' и на '. $nextYear. ' года';
+?>

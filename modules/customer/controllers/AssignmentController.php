@@ -196,8 +196,7 @@ class AssignmentController extends Controller
                 foreach($constants as $key => $val) {
                     if ($newPhoto->type == $key) {
                         $imageType = 'image'.$val;
-                        $functionName = 'get'.$val.'CommentForm';
-                        $commentForm = $this->$functionName($idReference);
+                        $commentForm = $this->getNewCommentForm($idReference, $val);
                     }
                 }
 
@@ -210,6 +209,19 @@ class AssignmentController extends Controller
             return false;
         }
         return false;
+    }
+
+    public function getNewCommentForm($idReference, $name)
+    {
+        $this->layout = 'empty';
+        $nameFunction = 'app\models\forms\assignment\Add'.$name.'Comment';
+
+        $model = new $nameFunction;
+        return $this->render('/assignment/party/add-comment', [
+            'model' => $model,
+            'idReference' => $idReference,
+            'buttonId' => 'addReference'.$name,
+        ]);
     }
 
 
@@ -268,7 +280,6 @@ class AssignmentController extends Controller
         ];
 
         if ($reference->save()) {
-
             foreach ($constants as $key => $val) {
                 if ($oldReference->type == $key) {
                     $referenceName = 'references'.$val;
@@ -315,42 +326,6 @@ class AssignmentController extends Controller
 
         return $this->render('/assignment/party/references', [
             'references' => $references,
-        ]);
-    }
-
-
-    public function getCommentForm($idReference)
-    {
-        $this->layout = 'empty';
-        $model = new AddComment();
-        return $this->render('/assignment/party/add-comment', [
-            'model' => $model,
-            'idReference' => $idReference,
-            'buttonId' => 'addReference',
-        ]);
-    }
-
-
-    public function getWallCommentForm($idReference)
-    {
-        $this->layout = 'empty';
-        $model = new AddWallComment();
-        return $this->render('/assignment/party/add-comment', [
-            'model' => $model,
-            'idReference' => $idReference,
-            'buttonId' => 'addReferenceWall',
-        ]);
-    }
-
-
-    public function getFloorCommentForm($idReference)
-    {
-        $this->layout = 'empty';
-        $model = new AddFloorComment();
-        return $this->render('/assignment/party/add-comment', [
-            'model' => $model,
-            'idReference' => $idReference,
-            'buttonId' => 'addReferenceFloor',
         ]);
     }
 

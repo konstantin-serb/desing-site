@@ -188,7 +188,7 @@ $modelSurname->lastName = $user->user->lastName;
                                         <?= $form->field($modelPassword, 'currentPassword')->passwordInput()->label(
                                                 'Текущий пароль') ?>
                                         <?= $form->field($modelPassword, 'password')->passwordInput()->label(
-                                            'Новый пароль') ?>
+                                            'Новый пароь') ?>
                                         <?= $form->field($modelPassword, 'repeatPassword')->passwordInput()->label(
                                             'Повторите новый пароль') ?>
                                         <div class="button">

@@ -182,4 +182,21 @@ class Project extends \yii\db\ActiveRecord
         return false;
     }
 
+    public function checkAssignment()
+    {
+        $assignment = Assignment::find()->where(['project_id'=>$this->id])->one();
+        $question = Question::find()->where(['assignment_id'=>$assignment->id])
+            ->andWhere(['!=','answer', 'null'])->one();
+        $reference = Reference::find()->where(['assignment_id'=>$assignment->id])->one();
+        $characteristics = Characteristic::find()->where(['assignment_id'=>$assignment->id])
+            ->andWhere(['!=','answer', 'null'])->one();
+
+        if ($question || $reference || $characteristics) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

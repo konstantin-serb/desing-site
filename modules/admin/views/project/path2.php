@@ -103,7 +103,7 @@ if ($project->currency) {
             <h2>Завершение редактирования проекта</h2>
             <br>
             <div class="singleLink">
-                <a href="javascript: history.back()" class="a-link btn-default">Назад</a>
+                <a href="<?=Url::to(['index'])?>" class="a-link btn-default">Назад</a>
             </div>
 
             <div class="topFrame frame">
@@ -762,7 +762,16 @@ if ($project->currency) {
                     </svg>
                 </div>
             </a>
+
         </h2>
+        <?php if($project->checkAssignment()):?>
+        <div class="clients">
+            <div class="add-button button-group">
+                <a class="a-link" href="<?=Url::to(['assignment', 'id'=>$project->id])?>">Техзадание</a>
+            </div>
+        </div>
+        <?php endif;?>
+
 <div class="hiddenInputs hidden-block docs" id="assignmentBlock">
         <span id="blockAssignment">
             <?= $this->render('/project/party/blockAssignment', [
@@ -774,6 +783,9 @@ if ($project->currency) {
             ]); ?>
         </span>
 </div>
+
+    <hr>
+
 
         <h2>Договор на разработку проекта
             <a id="contracts" class="block-link">

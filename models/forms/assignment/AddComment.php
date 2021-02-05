@@ -52,21 +52,28 @@ class AddComment extends Model
 
             if ($reference->save()) {
                 $assignment->save();
+                $constants = [
+                    Reference::TYPE_GENERAL => '',
+                    Reference::TYPE_WALL => 'Wall',
+                    Reference::TYPE_FLOOR => 'Floor',
+                    Reference::TYPE_FURNITURE =>'Furniture',
+                    Reference::TYPE_KITCHEN =>'Kitchen',
+                    Reference::TYPE_BATHROOM => 'Bathroom',
+                    Reference::TYPE_ROOMS => 'Rooms',
+                    Reference::TYPE_CHILD => 'Child',
+                    Reference::TYPE_LIVING => 'Living',
+                    Reference::TYPE_DOOR => 'Door',
+                    Reference::TYPE_DECOR => 'Decor',
+                ];
 
-                if ($reference->type == Reference::TYPE_GENERAL) {
-                    $empty = Reference::find()->where(['description' => null])
-                        ->andWhere(['type' => Reference::TYPE_GENERAL])->all();
+                foreach ($constants as $key => $val) {
+                    if ($reference->type == $key) {
+                        $empty = Reference::find()->where(['description' => null])
+                            ->andWhere(['type' => $key])->all();
+                    }
                 }
 
-                if ($reference->type == Reference::TYPE_WALL) {
-                    $empty = Reference::find()->where(['description' => null])
-                        ->andWhere(['type' => Reference::TYPE_WALL])->all();
-                }
 
-                if ($reference->type == Reference::TYPE_FLOOR) {
-                    $empty = Reference::find()->where(['description' => null])
-                        ->andWhere(['type' => Reference::TYPE_FLOOR])->all();
-                }
 
                 if ($empty) {
                     foreach($empty as $item) {

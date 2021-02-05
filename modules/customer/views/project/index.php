@@ -18,11 +18,12 @@ $this->title = 'Проекты';
         </div>
     </section>
 
-
+    <?php if($undeformedProjects):?>
     <section class="noFormalizes cardProjects">
         <div class="myContainer">
             <h2>Не начатые проекты:</h2>
             <div class="blockWrap">
+
                 <?php foreach($undeformedProjects as $project):?>
                 <div class="itemWrap">
                     <a href="<?=Url::to(['/customer/project/view', 'id' => $project->id])?>" class="block-link">
@@ -56,6 +57,7 @@ $this->title = 'Проекты';
                     </a>
                 </div>
                 <?php endforeach;?>
+
             </div>
 <!--            <div class="button">-->
 <!--                <a href="#" class="a-link">Все проекты</a>-->
@@ -63,6 +65,7 @@ $this->title = 'Проекты';
             <hr>
         </div>
     </section>
+    <?php endif;?>
 
     <section class="activProjects cardProjects">
         <div class="myContainer">

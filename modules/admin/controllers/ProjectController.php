@@ -24,6 +24,7 @@ use app\models\forms\project\UploadProjectPictureForm;
 use app\models\forms\stage\AddStageForm;
 use app\models\Project;
 use app\models\Question;
+use app\models\Reference;
 use app\models\Stage;
 use app\models\TemplateContract;
 use app\models\templates\QuestionsTemplates;
@@ -60,6 +61,51 @@ class ProjectController extends Controller
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
 
         return $this->render('view');
+    }
+
+
+    public function actionAssignment($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $assignment = Assignment::find()->where(['project_id'=>$id])->one();
+        $assignmentId = $assignment->id;
+
+        $constants = [
+            'referencesGeneral' => Reference::TYPE_GENERAL,
+            'referencesWall' => Reference::TYPE_WALL,
+            'referencesFloor' => Reference::TYPE_FLOOR,
+            'referencesFurniture' => Reference::TYPE_FURNITURE,
+            'referencesKitchen' => Reference::TYPE_KITCHEN,
+            'referencesBathroom' => Reference::TYPE_BATHROOM,
+            'referencesRooms' => Reference::TYPE_ROOMS,
+            'referencesChild' => Reference::TYPE_CHILD,
+            'referencesLiving' => Reference::TYPE_LIVING,
+            'referencesDoor' => Reference::TYPE_DOOR,
+            'referencesDecor' => Reference::TYPE_DECOR,
+        ];
+
+        foreach($constants as $key => $value) {
+            ${$key} = Reference::find()->where(['type' => $value])
+                ->andWhere(['assignment_id' => $assignmentId])
+                ->andWhere(['!=','description', 'null'])
+                ->orderBy('sort')
+                ->all();
+        }
+
+        return $this->render('assignment', [
+            'assignment' => $assignment,
+            'referencesGeneral' => $referencesGeneral,
+            'referencesWall' => $referencesWall,
+            'referencesFloor' => $referencesFloor,
+            'referencesFurniture' => $referencesFurniture,
+            'referencesKitchen' => $referencesKitchen,
+            'referencesBathroom' => $referencesBathroom,
+            'referencesRooms' => $referencesRooms,
+            'referencesChild' => $referencesChild,
+            'referencesLiving' => $referencesLiving,
+            'referencesDoor' => $referencesDoor,
+            'referencesDecor' => $referencesDecor,
+        ]);
     }
 
 
@@ -149,6 +195,7 @@ class ProjectController extends Controller
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $project = Project::findOne($id);
         $model = new AddProjectForm();
+
         $stages = Stage::find()->where(['project_id' => $id])->orderBy('number')->all();
         $stageModel = new AddStageForm();
 

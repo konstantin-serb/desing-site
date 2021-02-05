@@ -4,6 +4,7 @@ namespace app\modules\customer\controllers;
 
 
 use app\models\Assignment;
+use app\models\Clients;
 use yii\web\Controller;
 use app\models\Project;
 use app\components\AdminBase;
@@ -19,10 +20,16 @@ class ProjectController extends Controller
         if (!AdminBase::isCustomer()) return $this->redirect(['/']);
 
         $this->view->params['activePage'] = 'projects';
+        $userId = Yii::$app->user->identity->getId();
+        if($userId) {
+            $customerId = Clients::find()->where(['user_id' => $userId])->one()->id;
+        }
+        if ($customerId) {
+            $undeformedProjects = Project::find()
+                ->where(['customer' => $customerId])
+                ->andWhere(['project_status' => Project::STATUS_FOR_ASSIGNMENT])->all();
+        }
 
-        $undeformedProjects = Project::find()
-            ->where(['customer' => Yii::$app->user->identity->getId()])
-            ->andWhere(['project_status' => Project::STATUS_FOR_ASSIGNMENT])->all();
 
 
         return $this->render('index', [

@@ -26,6 +26,7 @@ class NewCalendarForm
     public function creat($year)
     {
         $check = Calendar::find()->where(['year' => $year])->one();
+
         if (!$check) {
             $day = gregoriantojd(1, 1, $year);
 
@@ -60,11 +61,13 @@ class NewCalendarForm
     }
 
 
-    public function createHoliday($code)
+    public function createHoliday($code, $year)
     {
         if ($code == 'su') {
-            $this->cleanHoliday();
-            $array = Calendar::find()->where(['week_day' => 0])->all();
+            $this->cleanHoliday($year);
+            $array = Calendar::find()
+                ->where(['year' => $year])
+                ->andWhere(['week_day' => 0])->all();
             foreach ($array as $item) {
                 $item->type_holiday = '0';
                 $item->holiday = '1';
@@ -73,8 +76,10 @@ class NewCalendarForm
         }
 
         if ($code == 'sa-su') {
-            $this->cleanHoliday();
-            $array = Calendar::find()->where(['week_day' => [6,0]])->all();
+            $this->cleanHoliday($year);
+            $array = Calendar::find()
+                ->where(['year' => $year])
+                ->andWhere(['week_day' => [6,0]])->all();
             foreach ($array as $item) {
                 $item->type_holiday = 2;
                 $item->holiday = 1;
@@ -86,9 +91,11 @@ class NewCalendarForm
 
     }
 
-    public function cleanHoliday()
+    public function cleanHoliday($year)
     {
-        $array = Calendar::find()->where(['week_day' => [0,6]])->all();
+        $array = Calendar::find()
+            ->where(['year' => $year])
+            ->andWhere(['week_day' => [0,6]])->all();
 
         foreach($array as $item) {
             $item->holiday = null;

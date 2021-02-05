@@ -241,7 +241,7 @@
     .adminPage ul > li > .wrapLi > a.a-link,
     .employeePage ul > li > .wrapLi > a.a-link,
     .logout-button button  {
-        font-size: 1.05rem;
+        font-size: 0.95rem;
         text-transform: uppercase;
     }
 

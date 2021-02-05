@@ -76,4 +76,9 @@ class Assignment extends \yii\db\ActiveRecord
             return 'Добавить характеристики ('. ($countQuestion - $countAnswer).')';
         }
     }
+
+
+
 }
+
+

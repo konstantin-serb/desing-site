@@ -254,5 +254,281 @@ $this->registerJsFile('/files/js/assignment/addPhoto.js', [
             </div>
             <hr>
         </section>
+
+        <section class="section-reference">
+            <h2>Предпочтения по кухне</h2>
+            <?php $name = 'Kitchen';
+            $type = \app\models\Reference::TYPE_KITCHEN;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesKitchen,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+
+        <section class="section-reference">
+            <h2>Предпочтения по санузлам</h2>
+            <?php $name = 'Bathroom';
+            $type = \app\models\Reference::TYPE_BATHROOM;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesBathroom,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+
+        <section class="section-reference">
+            <h2>Предпочтения по жилым комнатам</h2>
+            <?php $name = 'Rooms';
+            $type = \app\models\Reference::TYPE_ROOMS;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesRooms,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+        <section class="section-reference">
+            <h2>Предпочтения по детстким комнатам</h2>
+            <?php $name = 'Child';
+            $type = \app\models\Reference::TYPE_CHILD;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesChild,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+        <section class="section-reference">
+            <h2>Предпочтения по гостиной и прихожей</h2>
+            <?php $name = 'Living';
+            $type = \app\models\Reference::TYPE_LIVING;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesLiving,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+        <section class="section-reference">
+            <h2>Предпочтения по дверям и окнам</h2>
+            <?php $name = 'Door';
+            $type = \app\models\Reference::TYPE_DOOR;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesDoor,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+            <hr>
+        </section>
+        <section class="section-reference">
+            <h2>Предпочтения по декору</h2>
+            <?php $name = 'Decor';
+            $type = \app\models\Reference::TYPE_DECOR;
+            ?>
+            <div class="refWrap">
+                <div class="references" id="referenceBlock<?=$name?>">
+                    <?= $this->render('/assignment/party/references', [
+
+                        'references' => $referencesDecor,
+                    ]) ?>
+                </div>
+
+
+            </div>
+            <div id="reference<?=$name?>" class="hiddenInputs">
+                <div class="custom">
+                    <div class="formContainer1">
+                        <span id="newReference<?=$name?>"></span>
+                        <form action="/customer/assignment/add-photo-ajax" method="post"
+                              enctype="multipart/form-data"
+                              id="form<?=$name?>">
+                            <label>Чтобы изменить изображение:</label>
+                            <input type="file" name="image" id="image<?=$name?>">
+                            <input type="hidden" name="id" id="id" value="<?= $assignment->id ?>">
+                            <input type="hidden" name="type" id="type" value="<?=$type?>">
+                        </form>
+                    </div>
+                    <span id="addComment<?=$name?>">
+
+                </span>
+                </div>
+            </div>
+
+            <div class="button">
+                <a id="showAdd<?=$name?>Reference" class="a-link cancel">Добавить референс</a>
+            </div>
+
+        </section>
     </div>
 </div>
