@@ -6,6 +6,7 @@
 
 use yii\helpers\Url;
 use yii\helpers\Html;
+use app\components\StringHelper;
 
 ?>
 
@@ -16,7 +17,7 @@ use yii\helpers\Html;
     <div class="image">
         <img src="<?=$oneReference->getImage()?>">
     </div>
-    <p><?=Html::encode($oneReference->description)?></p>
+    <p><?=StringHelper::getShort(Html::encode($oneReference->description), 50)?></p>
     </a>
 </div>
 <?php endforeach;?>

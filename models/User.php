@@ -23,6 +23,10 @@ use yii\web\IdentityInterface;
  */
 class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
+    const STATUS_ADMIN = 10;
+    const STATUS_EMPLOYEE = 8;
+    const STATUS_CLIENT = 9;
+
     /**
      * {@inheritdoc}
      */
@@ -52,7 +56,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         ];
     }
 
-    public static function findByEmail($email) {
+    public static function findByEmail($email)
+    {
         return self::find()->where(['email' => $email])->one();
     }
 
@@ -99,7 +104,83 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         $name = $this->username;
         $lastName = $this->lastName;
 
-        return $surname .' '. $name .' '. $lastName;
+        return $surname . ' ' . $name . ' ' . $lastName;
+    }
+
+
+    public static function getUsernameForComment($userId)
+    {
+        $user = self::findOne($userId);
+        if ($user) {
+
+            switch ($user->status) {
+                case 10:
+                    echo 'Admin';
+                    break;
+
+                case 9:
+                    $client = Clients::find()->where(['user_id' => $userId])->one();
+                    echo $client->surname . ' ' . $client->user_name . ' ' . $client->last_name;
+                    break;
+
+                case 8:
+                    $employee = Employee::find()->where(['user_id' => $userId])->one();
+                    echo $employee->surname . ' ' . $employee->user_name . ' ' . $employee->last_name;
+                    break;
+            }
+        }
+    }
+
+
+    public static function getUserAvaForComment($userId)
+    {
+        $user = self::findOne($userId);
+        if ($user) {
+
+            switch ($user->status) {
+                case 10:
+                    $user = Admin::find()->where(['user_id' => $userId])->one();
+                    if($user) {
+                        return $user->getMini();
+                    } else {
+                        return '/files/uploads/avatar/mini/no-foto.png';
+                    }
+
+                    break;
+
+                case 9:
+                    $client = Clients::find()->where(['user_id' => $userId])->one();
+                    return $client->getMini();
+                    break;
+
+                case 8:
+                    $employee = Employee::find()->where(['user_id' => $userId])->one();
+
+                    break;
+            }
+        }
+    }
+
+
+    public static function getUserStatus($userId)
+    {
+        $user = self::findOne($userId);
+        if ($user) {
+
+            switch ($user->status) {
+                case 10:
+                    return 'Admin';
+                    break;
+
+                case 9:
+                    return 'client';
+                    break;
+
+                case 8:
+                    return 'employee';
+                    break;
+            }
+        }
     }
 
 

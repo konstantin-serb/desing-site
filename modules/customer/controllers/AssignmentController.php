@@ -2,21 +2,23 @@
 
 namespace app\modules\customer\controllers;
 
-
-
+use app\components\Tree;
 use app\models\Assignment;
+use app\models\AssignmentComments;
 use app\models\Characteristic;
 use app\models\forms\assignment\AddAnswerCharacteristics;
 use app\models\forms\assignment\AddAnswerQuestions;
 use app\models\forms\assignment\AddAssignment;
 use app\models\forms\assignment\AddComment;
-use app\models\forms\assignment\AddFloorComment;
-use app\models\forms\assignment\AddWallComment;
+use app\models\forms\assignment\UpdateAssignmentForm;
 use app\models\forms\assignment\UpdateComment;
 use app\models\forms\assignment\UploadReferencePictureForm;
 use app\models\forms\assignment\UpdateReferencePictureForm;
+use app\models\forms\comments\assignment\AddAnswerForm;
+use app\models\forms\comments\assignment\UpdateAnswerForm;
 use app\models\Question;
 use app\models\Reference;
+use app\models\User;
 use yii\web\Controller;
 use app\components\AdminBase;
 use Yii;
@@ -26,13 +28,27 @@ use app\components\Storage;
 
 class AssignmentController extends Controller
 {
+    public $constants = [
+        'referencesGeneral' => Reference::TYPE_GENERAL,
+        'referencesWall' => Reference::TYPE_WALL,
+        'referencesFloor' => Reference::TYPE_FLOOR,
+        'referencesFurniture' => Reference::TYPE_FURNITURE,
+        'referencesKitchen' => Reference::TYPE_KITCHEN,
+        'referencesBathroom' => Reference::TYPE_BATHROOM,
+        'referencesRooms' => Reference::TYPE_ROOMS,
+        'referencesChild' => Reference::TYPE_CHILD,
+        'referencesLiving' => Reference::TYPE_LIVING,
+        'referencesDoor' => Reference::TYPE_DOOR,
+        'referencesDecor' => Reference::TYPE_DECOR,
+    ];
+
+
    public $layout = 'customerTemplate';
 
 
     public function actionIndex()
     {
         if (!AdminBase::isCustomer()) return $this->redirect(['/']);
-
         return $this->render('index', [
 
         ]);
@@ -44,24 +60,14 @@ class AssignmentController extends Controller
         if (!AdminBase::isCustomer()) return $this->redirect(['/']);
 
         $assignment = Assignment::find()->where(['project_id' => $id])->one();
+        $model = new UpdateAssignmentForm();
+        $model->assignmentId = $assignment->id;
+
         $referenceModel = new UploadReferencePictureForm();
         $questionNotAnswer = Question::find()->where(['assignment_id'=>$assignment->id])
             ->andWhere(['answer' => ''])->count();
 
-        $constants = [
-            'referencesGeneral' => Reference::TYPE_GENERAL,
-            'referencesWall' => Reference::TYPE_WALL,
-            'referencesFloor' => Reference::TYPE_FLOOR,
-            'referencesFurniture' => Reference::TYPE_FURNITURE,
-            'referencesKitchen' => Reference::TYPE_KITCHEN,
-            'referencesBathroom' => Reference::TYPE_BATHROOM,
-            'referencesRooms' => Reference::TYPE_ROOMS,
-            'referencesChild' => Reference::TYPE_CHILD,
-            'referencesLiving' => Reference::TYPE_LIVING,
-            'referencesDoor' => Reference::TYPE_DOOR,
-            'referencesDecor' => Reference::TYPE_DECOR,
-        ];
-
+        $constants = $this->constants;
         foreach($constants as $key => $value) {
             ${$key} = Reference::find()->where(['type' => $value])
                 ->andWhere(['assignment_id' => $assignment->id])
@@ -69,6 +75,27 @@ class AssignmentController extends Controller
                 ->orderBy('sort')
                 ->all();
         }
+
+        $allComments = AssignmentComments::find()->where(['project_id'=> $id])->all();
+        $answer = new AddAnswerForm();
+        if ($answer->load(Yii::$app->request->post())) {
+            $answer->commentatorId = Yii::$app->user->identity->getId();
+            $answer->projectId = $id;
+            $answer->userType = User::getUserStatus($answer->commentatorId);
+
+
+            if ($answer->save()) {
+                return $this->redirect(['view', 'id' => $id, '#' => $answer->type]);
+            }
+        }
+
+        $updateAnswerModel = new UpdateAnswerForm();
+        if($updateAnswerModel->load(Yii::$app->request->post())) {
+            if($updateAnswerModel->save()){
+                return $this->redirect(['view', 'id' => $id, '#' => $updateAnswerModel->type]);
+            }
+        }
+
 
         return $this->render('view', [
             'assignment' => $assignment,
@@ -85,7 +112,46 @@ class AssignmentController extends Controller
             'referencesLiving' => $referencesLiving,
             'referencesDoor' => $referencesDoor,
             'referencesDecor' => $referencesDecor,
+
+            'allComments' => $allComments,
+            'answer' => $answer,
+            'updateAnswerModel' => $updateAnswerModel,
+            'userId' => Yii::$app->user->identity->getId(),
+            'projectId' => $id,
+            'model' => $model,
         ]);
+    }
+
+
+
+    public function actionDeleteCommentAjax()
+    {
+        $type = Yii::$app->request->post('type');
+        $id = Yii::$app->request->post('id');
+        $projectId = Yii::$app->request->post('projectId');
+        $comment = AssignmentComments::findOne($id);
+        if ($comment && $comment->delete()) {
+            return true;
+        }
+    }
+
+
+    private function getArray($object)
+    {
+        $globCommArray = [];
+        foreach ($object as $key => $value)
+        {
+            $globCommArray += [$value->id => [
+                'id' => $value->id,
+                'comment' => $value->comment,
+                'parents_id' => $value->parents_id,
+                'commentator_id' => $value->commentator_id,
+                'user_type' => $value->user_type,
+                'date_create' => $value->date_create,
+                'date_update' => $value->date_update,
+            ]];
+        }
+        return $globCommArray;
     }
 
     public function actionReferenceView($id)

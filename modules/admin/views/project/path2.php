@@ -723,7 +723,7 @@ if ($project->currency) {
         <h2 id="docs">Техническое задание на проектирование
             <a id="showAssignmentBlock" class="block-link">
                 <div class="svgIcon">
-                    <svg width="44" height="45" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="1.80rem" height="1.80rem" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d)">
                             <path d="M17.6938 9.71484C12.4516 14.9114 1.89891 25.3729 1.6254 25.6466L7.09552 26.5353L6.68526 29.8174H10.3776L10.9246 34.9456L26.8563 18.9455L17.6938 9.71484Z"
                                   fill="url(#paint0_linear)"/>
@@ -767,7 +767,7 @@ if ($project->currency) {
         <?php if($project->checkAssignment()):?>
         <div class="clients">
             <div class="add-button button-group">
-                <a class="a-link" href="<?=Url::to(['assignment', 'id'=>$project->id])?>">Техзадание</a>
+                <a class="a-link" href="<?=Url::to(['project-assignment', 'id'=>$project->id])?>">Техзадание</a>
             </div>
         </div>
         <?php endif;?>
@@ -790,7 +790,7 @@ if ($project->currency) {
         <h2>Договор на разработку проекта
             <a id="contracts" class="block-link">
                 <div class="svgIcon">
-                    <svg width="44" height="45" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg width="1.80rem" height="1.80rem" viewBox="0 0 44 45" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g filter="url(#filter0_d)">
                             <path d="M17.6938 9.71484C12.4516 14.9114 1.89891 25.3729 1.6254 25.6466L7.09552 26.5353L6.68526 29.8174H10.3776L10.9246 34.9456L26.8563 18.9455L17.6938 9.71484Z"
                                   fill="url(#paint0_linear)"/>

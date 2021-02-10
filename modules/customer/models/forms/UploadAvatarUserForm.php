@@ -17,6 +17,7 @@ class UploadAvatarUserForm extends Model
     public function rules()
     {
         return [
+            [['avatar'], 'required'],
             [['avatar'], 'file',
 //                'skipOnEmpty' => false,
                 'extensions' => ['jpg', 'png'],
@@ -41,13 +42,35 @@ class UploadAvatarUserForm extends Model
          if ($fileTableName = $fileUpload->saveUploadedImage($file, $nameLength, $currentAvatar)) {
 
              $customer->avatar = $fileTableName;
-             if ($customer->save()) {
+             if ($customer->save() && $this->saveMini($file, $userId)) {
                  $user = User::findOne($customer->user_id);
                  $user->updated_at = time();
                  $user->save();
                  return true;
              }
          }
+    }
+
+
+    public function saveMini($file, $userId)
+    {
+        $fileUpload = new Storage();
+        $fileUpload->folder = 'avatar/mini/';
+        $fileUpload->imageWidth = 100;
+        $fileUpload->imageHeight = 100;
+        $fileUpload->imageMethod = 'crop';
+        $fileUpload->imageQuality = 90;
+        $nameLength = 12;
+
+        $customer = Clients::findOne($userId);
+        $currentAvatar = $customer->mini;
+        if ($fileTableName = $fileUpload->saveUploadedImage($file, $nameLength, $currentAvatar)) {
+
+            $customer->mini = $fileTableName;
+            if ($customer->save()) {
+                return true;
+            }
+        }
     }
 
 

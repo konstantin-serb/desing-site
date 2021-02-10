@@ -14,6 +14,9 @@ $this->title = 'Админпанель | Главная';
                 <wbr>
                 Добро пожаловать в ваш личный кабинет!
             </h5>
+            <div class="button">
+                <a href="<?php echo Url::to(['customization'])?>" class="a-link">Настройки админа</a>
+            </div>
             <hr>
         </div>
     </section>

@@ -16,7 +16,8 @@ use Yii;
  * @property int|null $created_at
  * @property int|null $register_date
  * @property int|null $status
- * @property int|null $avatar
+ * @property string|null $avatar
+ * @property string|null $mini
  *
  * @property User $user
  */
@@ -44,6 +45,8 @@ class Clients extends \yii\db\ActiveRecord
             'created_at' => 'Created At',
             'register_date' => 'Register Date',
             'status' => 'Status',
+            'avatar' => 'Avatar',
+            'mini' => 'Mini',
         ];
     }
 
@@ -98,6 +101,15 @@ class Clients extends \yii\db\ActiveRecord
             return '/files/uploads/'.$this->avatar;
         } else {
             return '/files/uploads/avatar/no-foto.png';
+        }
+    }
+
+    public function getMini()
+    {
+        if ($this->mini) {
+            return '/files/uploads/'.$this->mini;
+        } else {
+            return '/files/uploads/avatar/mini/no-foto.png';
         }
     }
 }

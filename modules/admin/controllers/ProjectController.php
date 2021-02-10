@@ -3,15 +3,24 @@
 namespace app\modules\admin\controllers;
 
 use app\components\AdminBase;
+use app\components\Storage;
+use app\components\Tree;
 use app\models\Assignment;
+use app\models\AssignmentComments;
 use app\models\Characteristic;
 use app\models\CharacteristicsTemplates;
 use app\models\City;
 use app\models\Contracts;
 use app\models\Currency;
 use app\models\forms\admin\AddProjectForm;
+use app\models\forms\assignment\AddAnswerCharacteristics;
+use app\models\forms\assignment\AddAnswerQuestions;
 use app\models\forms\assignment\AdminAddCharacteristicsForm;
 use app\models\forms\assignment\AdminAddQuestionsForm;
+use app\models\forms\assignment\UpdateComment;
+use app\models\forms\comments\assignment\AddAnswerForm;
+use app\models\forms\comments\assignment\AddCommentForm;
+use app\models\forms\comments\assignment\UpdateAnswerForm;
 use app\models\forms\project\AddFromContractContractForm;
 use app\models\forms\project\CalculateForm;
 use app\models\forms\project\EditCharacteristicsForm;
@@ -28,6 +37,7 @@ use app\models\Reference;
 use app\models\Stage;
 use app\models\TemplateContract;
 use app\models\templates\QuestionsTemplates;
+use app\models\User;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -40,6 +50,19 @@ use app\models\forms\project\AddFromTemplateContractForm;
 class ProjectController extends Controller
 {
     public $layout = 'adminTemplate';
+    public $constants = [
+        'referencesGeneral' => Reference::TYPE_GENERAL,
+        'referencesWall' => Reference::TYPE_WALL,
+        'referencesFloor' => Reference::TYPE_FLOOR,
+        'referencesFurniture' => Reference::TYPE_FURNITURE,
+        'referencesKitchen' => Reference::TYPE_KITCHEN,
+        'referencesBathroom' => Reference::TYPE_BATHROOM,
+        'referencesRooms' => Reference::TYPE_ROOMS,
+        'referencesChild' => Reference::TYPE_CHILD,
+        'referencesLiving' => Reference::TYPE_LIVING,
+        'referencesDoor' => Reference::TYPE_DOOR,
+        'referencesDecor' => Reference::TYPE_DECOR,
+    ];
 
     public function actionIndex()
     {
@@ -64,26 +87,47 @@ class ProjectController extends Controller
     }
 
 
-    public function actionAssignment($id)
+    public function actionProjectAssignment($id)
     {
         if (!AdminBase::isAdmin()) return $this->redirect(['/']);
         $assignment = Assignment::find()->where(['project_id'=>$id])->one();
         $assignmentId = $assignment->id;
+        $commentModel = new AddCommentForm();
 
-        $constants = [
-            'referencesGeneral' => Reference::TYPE_GENERAL,
-            'referencesWall' => Reference::TYPE_WALL,
-            'referencesFloor' => Reference::TYPE_FLOOR,
-            'referencesFurniture' => Reference::TYPE_FURNITURE,
-            'referencesKitchen' => Reference::TYPE_KITCHEN,
-            'referencesBathroom' => Reference::TYPE_BATHROOM,
-            'referencesRooms' => Reference::TYPE_ROOMS,
-            'referencesChild' => Reference::TYPE_CHILD,
-            'referencesLiving' => Reference::TYPE_LIVING,
-            'referencesDoor' => Reference::TYPE_DOOR,
-            'referencesDecor' => Reference::TYPE_DECOR,
-        ];
+        $allComments = AssignmentComments::find()->where(['project_id'=> $id])->all();
 
+        if ($commentModel->load(Yii::$app->request->post())) {
+            $commentModel->commentatorId = Yii::$app->user->identity->getId();
+            $commentModel->projectId = $id;
+            if (Yii::$app->user->identity->status == User::STATUS_ADMIN) {
+                $commentModel->userType = AssignmentComments::ADMIN;
+            } else {
+                $commentModel->userType = AssignmentComments::EMPLOYEE;
+
+            }
+            if ($commentModel->save()) {
+                return $this->redirect(['project-assignment', 'id' => $id, '#' => $commentModel->type]);
+            }
+        }
+
+        $answer = new AddAnswerForm();
+        $updateAnswerModel = new UpdateAnswerForm();
+
+        if ($answer->load(Yii::$app->request->post())) {
+            $answer->commentatorId = Yii::$app->user->identity->getId();
+            $answer->projectId = $id;
+            $answer->userType = User::getUserStatus($answer->commentatorId);
+
+            if ($answer->save()) {
+                return $this->redirect(['project-assignment', 'id' => $id, '#' => $answer->type]);
+            }
+        }
+        if($updateAnswerModel->load(Yii::$app->request->post())) {
+            if($updateAnswerModel->save()){
+                return $this->redirect(['project-assignment', 'id' => $id, '#' => $updateAnswerModel->type]);
+            }
+        }
+        $constants = $this->constants;
         foreach($constants as $key => $value) {
             ${$key} = Reference::find()->where(['type' => $value])
                 ->andWhere(['assignment_id' => $assignmentId])
@@ -105,7 +149,25 @@ class ProjectController extends Controller
             'referencesLiving' => $referencesLiving,
             'referencesDoor' => $referencesDoor,
             'referencesDecor' => $referencesDecor,
+
+            'commentModel' => $commentModel,
+            'allComments' => $allComments,
+            'answer' => $answer,
+            'updateAnswerModel' => $updateAnswerModel,
+            'userId' => Yii::$app->user->identity->getId(),
+            'projectId' => $id,
         ]);
+    }
+
+    public function actionDeleteCommentAjax()
+    {
+        $type = Yii::$app->request->post('type');
+        $id = Yii::$app->request->post('id');
+        $projectId = Yii::$app->request->post('projectId');
+        $comment = AssignmentComments::findOne($id);
+        if ($comment && $comment->delete()) {
+            return true;
+        }
     }
 
 
@@ -760,6 +822,40 @@ class ProjectController extends Controller
 
         return $this->render('delete-question', [
             'question' => $question,
+        ]);
+    }
+
+
+    public function actionReferenceView($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $reference = Reference::findOne($id);
+
+        return $this->render('ref-view', [
+            'reference' => $reference,
+        ]);
+    }
+
+    public function actionQuestionsNewView($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $questions = Question::find()->where(['assignment_id' => $id])
+            ->orderBy('sort')->all();
+
+        return $this->render('questions-new-view', [
+            'questions' => $questions,
+        ]);
+    }
+
+
+    public function actionCharacteristicsNewView($id)
+    {
+        if (!AdminBase::isAdmin()) return $this->redirect(['/']);
+        $questions = Characteristic::find()->where(['assignment_id' => $id])
+            ->orderBy('sort')->all();
+
+        return $this->render('characteristics-new-view', [
+            'questions' => $questions,
         ]);
     }
 

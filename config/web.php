@@ -46,10 +46,15 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+                'host' => 'mail.adm.tools',
+                'username' => 'admin@i-des.net',
+                'password' => 'Tl1Uy67Oe9Hf',
+                'port' => '2525',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -82,6 +87,9 @@ $config = [
                 '/employee' => '/employee/default/index',
 //                '' => '',
             ],
+        ],
+        'emailService' => [
+            'class' => 'app\components\EmailService',
         ],
 
     ],

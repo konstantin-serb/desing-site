@@ -59,7 +59,7 @@ class Question extends \yii\db\ActiveRecord
             if ($this->time_update) {
                 $answer = 'Изменения внес: <b>'. $this->getUser(). '</b>&nbsp; &nbsp; ' . DateHelper::getDate($this->time_update). ' &nbsp; &nbsp;' . DateHelper::getTime($this->time_update);
             } else {
-                $answer = 'Ответил: '. $this->getUser(). '&nbsp; &nbsp; ' . DateHelper::getDate($this->time_create). ' &nbsp; &nbsp;' . DateHelper::getTime($this->time_create);
+                $answer = 'Ответил: <b>'. $this->getUser(). '</b>&nbsp; &nbsp; ' . DateHelper::getDate($this->time_create). ' &nbsp; &nbsp;' . DateHelper::getTime($this->time_create);
             }
         } else {$answer = '';}
 

@@ -169,7 +169,7 @@ body {
     padding: 0;
     font-family: 'PT Sans Narrow';
     background-color: var(--lightGray);
-    font-size: 0.8rem;
+    font-size: 1rem;
     line-height: inherit;
 }
 
@@ -188,7 +188,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2.19em;
+    font-size: 1.9em;
     font-weight: 400;
 }
 
@@ -371,7 +371,7 @@ img {
 
 select.form-control {
     height: 2.65em;
-    font-size: 1rem;
+    font-size: 0.85rem;
     padding: 0.3em
 }
 
@@ -979,12 +979,16 @@ footer .chapter + .chapter {
 .countMessage {
     position: absolute;
     top: -0.8em;
-    right: -1.4em;
-    font-size: 1rem;
+    right: -1.15em;
+    font-size: 0.85rem;
     background-color: var(--bordo);
     width: 1.5em;
     height: 1.5em;
     border-radius: 2em;
+}
+
+textarea.form-control {
+    font-size: 0.95rem;
 }
 
 .cont-link {
@@ -1372,6 +1376,11 @@ h3.inFrame {
     right: 0;
 }
 
+.oneReference p {
+    font-family: Oswald;
+    margin-top: 0.5em;
+}
+
 .adminPanel .chapter2 .button-admin {
     text-align: center;
 }
@@ -1466,7 +1475,7 @@ h3.inFrame {
 
 .userItem .userInfo p {
     margin: 0.2em 0;
-    font-size: 0.95rem;
+    font-size: 0.78rem;
 }
 
 .clients .user-button {
@@ -1776,7 +1785,7 @@ h3.inFrame {
     width: auto;
     text-align: center;
     padding: 0.2em;
-    font-size: 1.5rem;
+    font-size: 1.32rem;
     height: 1.67em;
     margin-top: 0.77em;
     margin-left: 0.5em;
@@ -1933,13 +1942,13 @@ h2 .svgIcon {
 }
 
 .modalDoubleButton button {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     font-family: Oswald;
     padding: 0.3em 1em;
 }
 
 .modalDoubleButton a {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     font-family: Oswald;
     padding: 0.3em 1em;
 }
@@ -1998,7 +2007,7 @@ h2 .svgIcon {
     display: block;
     padding: 0.3em 0 0.4em;
     border-radius: 0.2em;
-    font-size: 1.2em;
+    font-size: 1em;
     width: 7em;
     margin: 0.1em;
     text-align: center;
@@ -2156,7 +2165,7 @@ h2 .svgIcon {
 }
 
 .docs textarea {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
 }
 
 .procent-group {
@@ -2355,6 +2364,11 @@ h2 .svgIcon {
     font-size: 1.1rem;
 }
 
+.answer {
+    font-size: 1.3rem;
+    color:red;
+}
+
 .oneItem {
     border: 1px solid grey;
     margin-bottom: 2em;
@@ -2411,9 +2425,133 @@ h2 .svgIcon {
 
 .dark-section {
     background-color: var(--lightGray2);
-    padding: 1.5em 0;
+    padding: 0.9em 0;
 }
 
+ul.comment-tree {
+    padding:0;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    /*margin-left:-1em;*/
+}
+
+.comments {
+
+    margin-left:-1em;
+}
+
+ul.comment-tree > li {
+    text-align: left;
+    padding-left: 1em;
+    margin-top: 0.9em;
+    margin-bottom: 0.5em;
+}
+
+.one-comment {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.comment-photo {
+    width: 7em;
+    background-color: grey;
+}
+
+.one-comment hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.adminPage .one-comment {
+    background-color: var(--lightGray);
+}
+
+.client .one-comment {
+    background-color: var(--lightGray2);
+}
+
+.comment-text {
+    font-size: 0.9rem;
+    padding: 0.3em 0.5em;
+}
+
+.top-comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar-comment {
+    width: 2em;
+    background-color: #1b6d85;
+}
+
+.client .top-comment {
+    background-color: #E9E9E9;
+}
+
+.bottom-comment {
+    padding: 0.7em;
+    min-width: 100%;
+}
+
+.client .top-comment,
+.client .bottom-comment {
+    color: #BBBBBB;
+}
+
+.autor-comment {
+    height: 2em;
+    padding-left: 0.5em;
+    padding-top:0.3em;
+}
+
+.my-comment .comment-text p{
+    /*font-weight: bold;*/
+    color: var(--bordo);
+}
+
+ .client .my-comment .top-comment {
+    background-color: #E9E9E9;
+     color: var(--bordo);
+}
+
+.comment-text p {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.commentTopWrap {
+    display:flex;
+
+}
+
+
+.classic-button button.a-link {
+    background-color: white;
+    color: var(--bordo);
+}
+
+.classic-button button.a-link:hover {
+    color: black;
+    background-color: var(--lightGray);
+}
+
+.centerInputs input[type="file"] {
+        margin: 0  auto;
+}
+
+.center-ava {
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.closeBlock a {
+    padding: 0.6em;
+    color: gray;
+}
+
+.closeBlock a:hover {
+    color: red;
+}
 
 
 
